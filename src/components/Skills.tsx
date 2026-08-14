@@ -1,6 +1,29 @@
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Reveal, SectionHeading } from "@/components/Reveal";
 import { skillNotes, skills } from "@/data/resume";
+
+const levelWidth: Record<string, string> = {
+  "Production Experience": "100%",
+  Advanced: "78%",
+  "Working Knowledge": "52%",
+};
+
+function LevelMeter({ level }: { level: string }) {
+  const reduce = useReducedMotion();
+  const w = levelWidth[level] ?? "70%";
+  return (
+    <div className="mt-3 h-[3px] w-full max-w-[9rem] overflow-hidden rounded-full bg-border">
+      <motion.span
+        className="block h-full rounded-full bg-accent"
+        initial={reduce ? { width: w } : { width: 0 }}
+        whileInView={{ width: w }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: reduce ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </div>
+  );
+}
 
 export function Skills() {
   const [active, setActive] = useState<string | null>(null);
