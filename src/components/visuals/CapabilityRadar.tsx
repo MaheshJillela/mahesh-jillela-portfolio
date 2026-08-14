@@ -55,10 +55,10 @@ export function CapabilityRadar() {
           points={shape}
           className="fill-accent/12 stroke-accent"
           strokeWidth="1.5"
-          initial={reduce ? undefined : { scale: 0.6, opacity: 0 }}
-          whileInView={reduce ? undefined : { scale: 1, opacity: 1 }}
+          initial={reduce ? { scale: 1, opacity: 1 } : { scale: 0.6, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: reduce ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
           style={{ transformOrigin: `${C}px ${C}px` }}
         />
 
