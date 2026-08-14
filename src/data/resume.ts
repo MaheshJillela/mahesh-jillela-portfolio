@@ -98,7 +98,7 @@ export const projects = [
     role: "Sole developer — architecture, backend services, frontend components and testing.",
     tech: ["Python", "Flask", "JavaScript", "HTML", "CSS", "MySQL", "REST APIs"],
     overview:
-      "Luvis is a full-stack web application designed and developed independently, taking ownership from concept and architecture through implementation and testing.",
+      "Luvis is a live e-commerce web application for girls' jewellery, hair accessories and matching dress + ornament combos, designed and developed independently from concept and architecture through implementation, testing and deployment.",
     purpose:
       "The project was built to deliver a complete working application where the interface, application logic, data storage and the communication layer between them were all designed as one coherent system.",
     contribution: [
@@ -115,6 +115,7 @@ export const projects = [
       "Database — MySQL",
     ],
     features: [
+      "Product catalogue browsing for jewellery, hair accessories and combos",
       "Interactive, responsive frontend components",
       "Flask API endpoints for application logic",
       "Data processing and database interactions",
