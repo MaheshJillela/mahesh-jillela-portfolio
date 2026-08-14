@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SectionHeading } from "@/components/Reveal";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CaseStudy } from "@/components/CaseStudy";
-import { StackFlow } from "@/components/visuals/StackFlow";
+import { StorefrontMock } from "@/components/visuals/StorefrontMock";
 import { SensorPlot } from "@/components/visuals/SensorPlot";
 import { projects } from "@/data/resume";
 
@@ -17,7 +17,7 @@ export function Projects() {
           index="03"
           eyebrow="Selected work"
           title="Two projects, owned end to end."
-          lead="A full-stack web application and a sensor-driven dashboard with an automated control loop — architecture, implementation and testing all handled personally."
+          lead="A live e-commerce storefront and a sensor-driven control system — both owned end to end."
         />
 
         <div className="mt-20 space-y-28 sm:mt-24 sm:space-y-36">
@@ -29,9 +29,7 @@ export function Projects() {
               onOpen={setOpenId}
               visual={
                 p.id === "luvis" ? (
-                  <StackFlow
-                    layers={["Frontend — HTML, CSS, JS", "REST APIs", "Backend — Python / Flask", "Database — MySQL"]}
-                  />
+                  <StorefrontMock />
                 ) : (
                   <SensorPlot />
                 )
