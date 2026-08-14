@@ -2,8 +2,8 @@ import { useState } from "react";
 import { SectionHeading } from "@/components/Reveal";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CaseStudy } from "@/components/CaseStudy";
-import { StorefrontMock } from "@/components/visuals/StorefrontMock";
-import { SensorPlot } from "@/components/visuals/SensorPlot";
+import { LuvisShowcase } from "@/components/visuals/LuvisShowcase";
+import { AquaMonitor } from "@/components/visuals/AquaMonitor";
 import { projects } from "@/data/resume";
 
 export function Projects() {
@@ -27,13 +27,7 @@ export function Projects() {
               project={p}
               index={i}
               onOpen={setOpenId}
-              visual={
-                p.id === "luvis" ? (
-                  <StorefrontMock />
-                ) : (
-                  <SensorPlot />
-                )
-              }
+              visual={p.id === "luvis" ? <LuvisShowcase /> : <AquaMonitor />}
             />
           ))}
         </div>
