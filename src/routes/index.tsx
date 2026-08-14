@@ -12,7 +12,6 @@ import { Lab } from "@/components/Lab";
 import { Skills } from "@/components/Skills";
 import { Performance } from "@/components/Performance";
 import { Process } from "@/components/Process";
-import { Achievement } from "@/components/Achievement";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -69,7 +68,6 @@ function Index() {
         <Skills />
         <Performance />
         <Process />
-        <Achievement />
         <Contact />
       </main>
       <Footer />
