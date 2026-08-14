@@ -57,6 +57,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SmoothScroll />
+      <ScrollProgress />
       <CustomCursor />
       <Navbar />
       <main id="main">
