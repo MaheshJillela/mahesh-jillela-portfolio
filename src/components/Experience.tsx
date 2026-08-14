@@ -1,59 +1,119 @@
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { Reveal, SectionHeading } from "@/components/Reveal";
-import { experience } from "@/data/resume";
+import { experience, timeline } from "@/data/resume";
+
+function ScrollLine({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 75%", "end 60%"],
+  });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 90, damping: 26, restDelta: 0.001 });
+
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute top-0 bottom-0 left-[7px] w-px bg-border sm:left-[calc(7rem+7px)]"
+    >
+      <motion.div
+        style={reduce ? { scaleY: 1 } : { scaleY }}
+        className="h-full w-px origin-top bg-gradient-to-b from-accent via-accent to-accent/10"
+      />
+    </div>
+  );
+}
 
 export function Experience() {
+  const journeyRef = useRef<HTMLDivElement>(null);
+  const entries = [...timeline].reverse();
+
   return (
-    <section id="experience" className="relative border-t border-border/60 py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-6xl px-5">
-        <SectionHeading eyebrow="Experience" title="Production work, shipped." />
+    <section id="experience" className="relative border-t border-border py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+        <SectionHeading
+          index="02"
+          eyebrow="Experience"
+          title="Production work, in the open."
+        />
 
-        <div className="mt-14 space-y-8">
-          {experience.map((job) => (
-            <Reveal key={job.company}>
-              <article className="relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 sm:p-10">
-                <div className="absolute -top-24 -right-24 size-64 rounded-full bg-[radial-gradient(circle,oklch(0.7_0.13_190/0.16),transparent_65%)]" />
-                <div className="relative flex flex-wrap items-baseline justify-between gap-3">
-                  <div>
-                    <h3 className="text-2xl font-medium text-foreground sm:text-3xl">{job.role}</h3>
-                    <p className="mt-1 text-base text-accent">{job.company}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-mono text-xs tracking-[0.18em] text-foreground uppercase">
-                      {job.period}
-                    </p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {job.type} · {job.place}
-                    </p>
-                  </div>
-                </div>
+        {experience.map((job) => (
+          <div key={job.company} className="mt-16 grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+            {/* Meta column */}
+            <Reveal className="lg:sticky lg:top-28 lg:self-start">
+              <p className="label text-accent">{job.period}</p>
+              <h3 className="mt-5 font-display text-3xl leading-tight font-medium text-foreground sm:text-4xl">
+                {job.role}
+              </h3>
+              <p className="mt-3 text-base text-foreground/80">{job.company}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {job.type} · {job.place}
+              </p>
 
-                <ul className="relative mt-8 grid gap-4 sm:grid-cols-2">
-                  {job.points.map((p, i) => (
-                    <Reveal as="li" key={p} delay={i * 0.04} className="flex gap-3">
-                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent/70" />
-                      <span className="text-sm leading-relaxed text-foreground/85">{p}</span>
-                    </Reveal>
-                  ))}
-                </ul>
-
-                <div className="relative mt-8 border-t border-border/60 pt-6">
-                  <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                    Technologies used
-                  </p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {job.tech.map((t) => (
-                      <li
-                        key={t}
-                        className="rounded-full border border-border/70 bg-secondary/50 px-3 py-1 font-mono text-[11px] text-foreground/80"
-                      >
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+              <ul className="mt-8 flex flex-wrap gap-x-4 gap-y-2">
+                {job.tech.map((t) => (
+                  <li key={t} className="font-mono text-[11px] text-muted-foreground">
+                    {t}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-          ))}
+
+            {/* Responsibilities as numbered editorial rows */}
+            <ol className="border-t border-border">
+              {job.points.map((p, i) => (
+                <Reveal as="li" key={p} delay={i * 0.03} className="group border-b border-border">
+                  <div className="flex gap-5 py-6 transition-colors sm:gap-8">
+                    <span className="font-mono text-[11px] text-accent/70 transition-colors group-hover:text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="max-w-2xl text-[0.95rem] leading-relaxed text-foreground/85 transition-colors group-hover:text-foreground">
+                      {p}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        ))}
+
+        {/* Journey — animated timeline, newest first */}
+        <div className="mt-24 sm:mt-32">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <span className="label text-muted-foreground">Journey</span>
+              <span aria-hidden="true" className="rule-x flex-1" />
+            </div>
+          </Reveal>
+
+          <div ref={journeyRef} className="relative mt-10 pl-8 sm:pl-0">
+            <ScrollLine containerRef={journeyRef} />
+
+            <ol className="space-y-12">
+              {entries.map((e, i) => (
+                <Reveal as="li" key={`${e.year}-${e.title}`} delay={i * 0.04}>
+                  <div className="relative sm:grid sm:grid-cols-[7rem_1fr] sm:gap-8">
+                    <p className="label text-accent sm:pt-1 sm:text-right">{e.year}</p>
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-1.5 -left-8 size-[15px] rounded-full border border-accent/50 bg-background sm:left-[calc(7rem)]"
+                    >
+                      <span className="absolute inset-[3px] rounded-full bg-accent" />
+                    </span>
+                    <div className="mt-2 sm:mt-0 sm:pl-8">
+                      <h4 className="font-display text-lg font-medium text-foreground sm:text-xl">
+                        {e.title}
+                      </h4>
+                      <p className="mt-1 text-sm text-muted-foreground">{e.org}</p>
+                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/70">
+                        {e.body}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
       </div>
     </section>

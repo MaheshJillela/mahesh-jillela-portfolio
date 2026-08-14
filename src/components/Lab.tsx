@@ -4,35 +4,45 @@ import { Reveal, SectionHeading } from "@/components/Reveal";
 import { ParticleField } from "@/components/pixi/ParticleField";
 import { InteractiveGrid } from "@/components/pixi/InteractiveGrid";
 import { SpriteOrbit } from "@/components/pixi/SpriteOrbit";
+import { WaveField } from "@/components/pixi/WaveField";
 
-function LabCard({
+function Experiment({
   id,
   title,
   note,
+  stack,
+  wide,
+  tall,
   children,
-  span,
 }: {
   id: string;
   title: string;
   note: string;
+  stack: string;
+  wide?: boolean;
+  tall?: boolean;
   children: React.ReactNode;
-  span?: boolean;
 }) {
   return (
-    <Reveal as="li" className={span ? "sm:col-span-2" : ""}>
-
+    <Reveal
+      as="li"
+      className={`${wide ? "lg:col-span-2" : ""} ${tall ? "lg:row-span-2" : ""}`}
+    >
       <figure
         data-cursor="EXPLORE"
-        className="group h-full overflow-hidden rounded-3xl border border-border/70 bg-card/40 transition-colors hover:border-accent/40"
+        className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-500 hover:border-accent/40"
       >
-        <div className="relative h-56 overflow-hidden border-b border-border/60 sm:h-64">
+        <div className={`relative overflow-hidden ${tall ? "flex-1 min-h-64" : "h-52 sm:h-56"}`}>
           {children}
+          <span className="pointer-events-none absolute top-4 left-4 font-mono text-[11px] tracking-[0.2em] text-accent uppercase">
+            {id}
+          </span>
         </div>
-        <figcaption className="p-5">
-          <p className="font-mono text-[11px] tracking-[0.2em] text-accent uppercase">
-            Experiment {id}
-          </p>
-          <h3 className="mt-2 text-base font-medium text-foreground">{title}</h3>
+        <figcaption className="border-t border-border p-5">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="font-display text-base font-medium text-foreground">{title}</h3>
+            <span className="font-mono text-[10px] text-muted-foreground">{stack}</span>
+          </div>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{note}</p>
         </figcaption>
       </figure>
@@ -40,39 +50,44 @@ function LabCard({
   );
 }
 
-function CursorStates() {
-  const [state, setState] = useState<string>("idle");
+function CursorLab() {
+  const [state, setState] = useState("idle");
   const targets = [
-    { key: "project", label: "Project", cursor: "VIEW" },
-    { key: "experiment", label: "Experiment", cursor: "EXPLORE" },
-    { key: "link", label: "Link", cursor: "OPEN" },
+    { label: "Project", cursor: "VIEW" },
+    { label: "Experiment", cursor: "EXPLORE" },
+    { label: "Link", cursor: "OPEN" },
   ];
+
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 bg-[radial-gradient(60%_60%_at_50%_40%,oklch(0.45_0.08_200/0.18),transparent_70%)]">
-      <div className="flex flex-wrap justify-center gap-2">
+    <div className="flex h-full flex-col items-center justify-center gap-5 bg-background">
+      <div className="grid-texture absolute inset-0 opacity-60" aria-hidden="true" />
+      <div className="relative flex flex-wrap justify-center gap-2">
         {targets.map((t) => (
           <button
-            key={t.key}
+            key={t.label}
             type="button"
             data-cursor={t.cursor}
             onPointerEnter={() => setState(t.cursor)}
             onPointerLeave={() => setState("idle")}
             onFocus={() => setState(t.cursor)}
             onBlur={() => setState("idle")}
-            className="min-h-11 rounded-full border border-border/70 bg-secondary/40 px-4 font-mono text-[11px] tracking-[0.16em] text-foreground/85 uppercase transition-colors hover:border-accent/50 hover:text-accent"
+            className="min-h-11 rounded-full border border-border px-4 font-mono text-[11px] tracking-[0.16em] text-foreground/85 uppercase transition-colors hover:border-accent hover:text-accent"
           >
             {t.label}
           </button>
         ))}
       </div>
-      <p className="font-mono text-xs tracking-[0.24em] text-accent uppercase" aria-live="polite">
+      <p
+        className="relative font-mono text-xs tracking-[0.24em] text-accent uppercase"
+        aria-live="polite"
+      >
         cursor → {state}
       </p>
     </div>
   );
 }
 
-function ParallaxLayers() {
+function ParallaxLab() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const [p, setP] = useState({ x: 0, y: 0 });
@@ -84,9 +99,9 @@ function ParallaxLayers() {
   };
 
   const layers = [
-    { depth: 8, size: "size-40", color: "oklch(0.55 0.12 265 / 0.35)" },
-    { depth: 18, size: "size-28", color: "oklch(0.7 0.13 195 / 0.35)" },
-    { depth: 34, size: "size-16", color: "oklch(0.88 0.11 180 / 0.5)" },
+    { depth: 6, cls: "size-44 rounded-2xl border border-border" },
+    { depth: 16, cls: "size-28 rounded-xl border border-accent/25 bg-accent/5" },
+    { depth: 32, cls: "size-14 rounded-lg bg-accent/70" },
   ];
 
   return (
@@ -94,9 +109,9 @@ function ParallaxLayers() {
       ref={ref}
       onPointerMove={onMove}
       onPointerLeave={() => setP({ x: 0, y: 0 })}
-      className="relative h-full overflow-hidden"
+      className="relative h-full overflow-hidden bg-background"
     >
-      <div className="grid-texture absolute inset-0" />
+      <div className="grid-texture absolute inset-0" aria-hidden="true" />
       {layers.map((l, i) => (
         <div
           key={i}
@@ -105,10 +120,7 @@ function ParallaxLayers() {
             transform: `translate(-50%, -50%) translate3d(${p.x * l.depth * -3}px, ${p.y * l.depth * -3}px, 0)`,
           }}
         >
-          <div
-            className={`${l.size} rounded-3xl border border-border/60`}
-            style={{ backgroundColor: l.color }}
-          />
+          <div className={l.cls} />
         </div>
       ))}
     </div>
@@ -117,55 +129,70 @@ function ParallaxLayers() {
 
 export function Lab() {
   return (
-    <section id="lab" className="relative border-t border-border/60 py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-6xl px-5">
+    <section id="lab" className="relative border-t border-border py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
+          index="04"
           eyebrow="Interactive lab"
-          title="Small experiments, real rendering."
-          lead="Each experiment runs on PixiJS or plain pointer maths, pauses when it scrolls off-screen, and falls back to a static frame when reduced motion is requested."
+          title="Interactive lab — run it, don't read it."
+          lead="Five lightweight experiments rendered with PixiJS and pointer maths. Each one pauses when it scrolls off-screen and falls back to a static frame under reduced motion."
         />
 
-        <ul className="mt-14 grid gap-6 sm:grid-cols-2">
-          <LabCard
-            id="01"
+        <ul className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Experiment
+            id="01 — Particle system"
             title="Particle system"
-            note="A PixiJS particle field where nodes drift, link to nearby nodes and lean toward the cursor."
+            note="Nodes drift, link to their neighbours and lean toward the pointer."
+            stack="PixiJS"
+            tall
           >
-            <ParticleField className="absolute inset-0" density={0.00016} linkDistance={110} />
-          </LabCard>
+            <ParticleField className="absolute inset-0" density={0.00018} linkDistance={104} />
+          </Experiment>
 
-          <LabCard
-            id="02"
-            title="Interactive cursor"
-            note="Cursor state changes with the element under the pointer — VIEW, EXPLORE, OPEN."
-          >
-            <CursorStates />
-          </LabCard>
-
-          <LabCard
-            id="03"
+          <Experiment
+            id="02 — Parallax"
             title="Parallax layers"
-            note="Layered elements translate at different rates based on pointer position and depth."
+            note="Three layers translate at different rates from pointer position and depth."
+            stack="CSS / Pointer"
           >
-            <ParallaxLayers />
-          </LabCard>
+            <ParallaxLab />
+          </Experiment>
 
-          <LabCard
-            id="04"
+          <Experiment
+            id="03 — Sprite animation"
             title="Sprite animation"
-            note="A procedural PixiJS sprite orbiting with a fading trail and a secondary body."
+            note="A procedural sprite orbiting with a fading trail and a secondary body."
+            stack="PixiJS"
           >
             <SpriteOrbit className="absolute inset-0" />
-          </LabCard>
+          </Experiment>
 
-          <LabCard
-            id="05"
+          <Experiment
+            id="04 — Interactive grid"
             title="Interactive grid"
             note="A dot grid that displaces and brightens around the pointer, redrawn each frame."
-            span
+            stack="PixiJS"
           >
             <InteractiveGrid className="absolute inset-0" />
-          </LabCard>
+          </Experiment>
+
+          <Experiment
+            id="05 — WebGL wave"
+            title="WebGL wave field"
+            note="Wave lines distorted by pointer proximity, drawn through a single graphics pass."
+            stack="PixiJS / WebGL"
+          >
+            <WaveField className="absolute inset-0" />
+          </Experiment>
+
+          <Experiment
+            id="06 — Cursor states"
+            title="Interactive cursor"
+            note="Cursor state changes with the element under the pointer — VIEW, EXPLORE, OPEN."
+            stack="React"
+          >
+            <CursorLab />
+          </Experiment>
         </ul>
       </div>
     </section>

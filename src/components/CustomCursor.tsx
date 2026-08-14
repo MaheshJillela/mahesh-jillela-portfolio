@@ -1,48 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
- * Desktop-only custom cursor. Elements opt in with data-cursor="VIEW" etc.
- * Disabled for touch/coarse pointers and for reduced-motion users.
+ * Desktop-only cursor: a small dot that expands into a contextual label
+ * when the pointer is over an element carrying `data-cursor`.
+ * Disabled for touch devices and reduced-motion users.
  */
 export function CustomCursor() {
-  const [enabled, setEnabled] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
   const [label, setLabel] = useState<string | null>(null);
+  const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const fine =
-      window.matchMedia("(pointer: fine)").matches &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!fine) return;
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!fine || reduce) return;
     setEnabled(true);
 
+    const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const pos = { ...target };
     let raf = 0;
-    let next = { x: 0, y: 0 };
 
     const onMove = (e: PointerEvent) => {
-      next = { x: e.clientX, y: e.clientY };
+      target.x = e.clientX;
+      target.y = e.clientY;
       setVisible(true);
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          setPos(next);
-        });
-      }
-      const el = (e.target as HTMLElement | null)?.closest?.("[data-cursor]");
-      const attr = el?.getAttribute("data-cursor") ?? null;
-      setLabel((prev) => (prev === attr ? prev : attr));
+      const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-cursor]");
+      setLabel(el?.dataset['cursor'] ?? null);
     };
     const onLeave = () => setVisible(false);
 
+    const loop = () => {
+      pos.x += (target.x - pos.x) * 0.2;
+      pos.y += (target.y - pos.y) * 0.2;
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%)`;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+
     window.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerleave", onLeave);
-    document.documentElement.classList.add("has-custom-cursor");
     return () => {
+      cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerleave", onLeave);
-      document.documentElement.classList.remove("has-custom-cursor");
-      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -50,27 +53,25 @@ export function CustomCursor() {
 
   return (
     <div
+      ref={dotRef}
       aria-hidden="true"
-      className="pointer-events-none fixed top-0 left-0 z-[100] hidden md:block"
-      style={{
-        transform: `translate3d(${pos.x}px, ${pos.y}px, 0)`,
-        opacity: visible ? 1 : 0,
-        transition: "opacity 200ms ease",
-      }}
+      className="pointer-events-none fixed top-0 left-0 z-[90] hidden md:block"
+      style={{ opacity: visible ? 1 : 0, transition: "opacity 200ms" }}
     >
       <div
-        className="-translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/70 bg-accent/15 backdrop-blur-[2px] transition-all duration-200 ease-out"
-        style={
+        className={`flex items-center justify-center rounded-full border transition-all duration-300 ease-out ${
           label
-            ? { width: 68, height: 68 }
-            : { width: 12, height: 12, backgroundColor: "oklch(0.85 0.13 180 / 0.9)" }
-        }
+            ? "size-16 border-accent/60 bg-accent/10 backdrop-blur-[1px]"
+            : "size-2 border-accent bg-accent"
+        }`}
       >
-        {label ? (
-          <span className="flex h-full w-full items-center justify-center font-mono text-[10px] tracking-[0.18em] text-accent">
-            {label}
-          </span>
-        ) : null}
+        <span
+          className={`font-mono text-[10px] tracking-[0.16em] text-accent uppercase transition-opacity duration-200 ${
+            label ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {label}
+        </span>
       </div>
     </div>
   );

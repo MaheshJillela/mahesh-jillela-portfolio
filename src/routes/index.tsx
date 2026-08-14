@@ -6,7 +6,6 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
-import { Timeline } from "@/components/Timeline";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Lab } from "@/components/Lab";
@@ -17,9 +16,9 @@ import { Achievement } from "@/components/Achievement";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
-const title = "Mahesh Jillela — Frontend & Interactive Developer";
+const title = "Mahesh Jillela — Frontend Engineer | Interactive & PixiJS";
 const description =
-  "Portfolio of Mahesh Jillela, Software Engineer building interactive casino game interfaces with React, TypeScript, PixiJS and WebGL.";
+  "Mahesh Jillela builds interactive digital experiences — React, JavaScript, PixiJS, WebGL and TypeScript, plus full-stack work with Python, Flask and MySQL.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,7 +39,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Mahesh Jillela",
-          jobTitle: "Software Engineer",
+          jobTitle: "Frontend Engineer",
           email: "mailto:maheshjillela6@gmail.com",
           address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressCountry: "IN" },
           sameAs: [
@@ -64,7 +63,6 @@ function Index() {
       <main id="main">
         <Hero />
         <About />
-        <Timeline />
         <Experience />
         <Projects />
         <Lab />
