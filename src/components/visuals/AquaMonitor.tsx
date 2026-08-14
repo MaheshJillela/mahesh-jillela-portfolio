@@ -105,8 +105,12 @@ export function AquaMonitor({ className = "" }: { className?: string }) {
           <div className="flex items-center gap-2 rounded-lg border border-border bg-background/40 px-2.5 py-2">
             <motion.span
               className="text-accent"
-              animate={reduce ? undefined : { rotate: 360 }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
+              {...(reduce
+                ? {}
+                : {
+                    animate: { rotate: 360 },
+                    transition: { duration: 2.4, repeat: Infinity, ease: "linear" as const },
+                  })}
               aria-hidden="true"
             >
               <Fan className="size-3.5" />

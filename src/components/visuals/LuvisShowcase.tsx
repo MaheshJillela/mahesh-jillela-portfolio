@@ -33,8 +33,12 @@ export function LuvisShowcase({ className = "" }: { className?: string }) {
           className="absolute text-blush"
           style={{ left: s.x, top: s.y }}
           initial={reduce ? false : { opacity: 0.25, scale: 0.85 }}
-          animate={reduce ? undefined : { opacity: [0.25, 0.9, 0.25], scale: [0.85, 1.1, 0.85] }}
-          transition={{ duration: 3.2, repeat: Infinity, delay: s.d, ease: "easeInOut" }}
+          {...(reduce
+            ? {}
+            : {
+                animate: { opacity: [0.25, 0.9, 0.25], scale: [0.85, 1.1, 0.85] },
+                transition: { duration: 3.2, repeat: Infinity, delay: s.d, ease: "easeInOut" as const },
+              })}
         >
           <Sparkles className="size-3.5" />
         </motion.span>
