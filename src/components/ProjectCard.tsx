@@ -99,19 +99,37 @@ export function ProjectCard({
             <span className="h-px w-6 bg-border-strong" aria-hidden="true" />
             {project.kind}
           </p>
-          <h3 className="mt-5 font-display text-[8vw] leading-[1.02] font-medium tracking-[-0.02em] text-foreground sm:text-4xl lg:text-5xl">
+
+          <h3 className="mt-5 font-display text-[9vw] leading-[1.02] font-medium tracking-[-0.02em] text-foreground sm:text-4xl lg:text-5xl">
             {project.name}
           </h3>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            {project.blurb}
+
+          <p className="mt-4 font-display text-xl leading-snug text-foreground/90 sm:text-2xl">
+            {project.tagline}
           </p>
 
-          <div className="mt-7 border-t border-border pt-5">
-            <p className="label text-muted-foreground">My contribution</p>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground/85">
-              {project.role}
-            </p>
-          </div>
+          {/* Visual fact tiles — scannable instead of a paragraph */}
+          <dl className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
+            {project.highlights.map((h, i) => (
+              <motion.div
+                key={h.k}
+                initial={reduce ? false : { opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="group/tile relative bg-surface p-4 transition-colors hover:bg-accent/5"
+              >
+                <dt className="label text-muted-foreground">{h.k}</dt>
+                <dd className="mt-2 font-display text-sm leading-tight text-foreground sm:text-base">
+                  {h.v}
+                </dd>
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover/tile:w-full"
+                />
+              </motion.div>
+            ))}
+          </dl>
 
           <ul className="mt-6 flex flex-wrap gap-2">
             {project.tech.map((tech, i) => (
@@ -128,15 +146,29 @@ export function ProjectCard({
             ))}
           </ul>
 
-          <button
-            type="button"
-            data-cursor="VIEW"
-            onClick={() => onOpen(project.id)}
-            className="group mt-8 inline-flex min-h-11 items-center gap-3 font-mono text-[11px] tracking-[0.18em] text-accent uppercase"
-          >
-            View case study
-            <span className="h-px w-10 bg-accent transition-all duration-300 group-hover:w-16" />
-          </button>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            {project.url ? (
+              <a
+                data-cursor="OPEN"
+                href={project.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-5 font-mono text-[11px] tracking-[0.16em] text-accent-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                Visit {project.urlLabel}
+                <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            ) : null}
+            <button
+              type="button"
+              data-cursor="VIEW"
+              onClick={() => onOpen(project.id)}
+              className="group inline-flex min-h-11 items-center gap-3 rounded-full border border-border px-5 font-mono text-[11px] tracking-[0.18em] text-foreground uppercase transition-colors hover:border-accent hover:text-accent"
+            >
+              Case study
+              <span className="h-px w-8 bg-current transition-all duration-300 group-hover:w-12" />
+            </button>
+          </div>
         </div>
       </div>
     </Reveal>

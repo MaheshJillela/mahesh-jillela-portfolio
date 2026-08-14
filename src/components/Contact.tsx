@@ -38,24 +38,34 @@ export function Contact() {
           </div>
         </Reveal>
 
-        <h2 className="mt-10 max-w-4xl font-display text-[10vw] leading-[0.95] font-medium tracking-[-0.03em] text-foreground sm:text-[5.5rem]">
+        <h2 className="mt-8 max-w-4xl font-display text-[12vw] leading-[0.95] font-medium tracking-[-0.03em] text-foreground sm:mt-10 sm:text-[5.5rem]">
           <LineReveal text="LET'S BUILD SOMETHING INTERACTIVE." />
         </h2>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+
+        <div className="mt-10 grid gap-10 sm:mt-16 sm:gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <Reveal delay={0.08}>
-              <p className="max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Open to interactive frontend and full-stack work — canvas and PixiJS interfaces,
-                React applications, and end-to-end product builds. Based in {profile.location}.
+              <p className="max-w-lg font-display text-lg leading-snug text-foreground/90 sm:text-xl">
+                Open to interactive frontend and full-stack work.
               </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {["Canvas / PixiJS", "React apps", "Full-stack builds", profile.location].map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full border border-border px-3 py-1 font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
               <a
                 data-cursor="OPEN"
                 href={`mailto:${profile.email}`}
-                className="group mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-accent px-6 font-mono text-[11px] tracking-[0.18em] text-accent-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
+                className="group mt-8 inline-flex min-h-12 max-w-full items-center gap-3 rounded-full bg-accent px-5 font-mono text-[10px] tracking-[0.14em] text-accent-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5 sm:px-6 sm:text-[11px] sm:tracking-[0.18em]"
               >
-                {profile.email}
-                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span className="truncate">{profile.email}</span>
+                <ArrowUpRight className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </Reveal>
 
@@ -81,15 +91,17 @@ export function Contact() {
                     href={c.href}
                     target={c.href.startsWith("http") ? "_blank" : undefined}
                     rel={c.href.startsWith("http") ? "noreferrer noopener" : undefined}
-                    className="group flex items-center gap-5 py-5"
+                    className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 py-5 sm:grid-cols-[auto_auto_minmax(0,1fr)_auto] sm:gap-5"
                   >
-                    <c.Icon className="size-4 text-accent" aria-hidden="true" />
-                    <span className="label w-24 shrink-0 text-muted-foreground">{c.label}</span>
-                    <span className="flex-1 truncate text-sm text-foreground transition-transform duration-300 group-hover:translate-x-1">
+                    <c.Icon className="col-start-1 row-span-2 row-start-1 size-4 shrink-0 text-accent sm:row-span-1" aria-hidden="true" />
+                    <span className="col-start-2 row-start-1 label text-muted-foreground sm:w-24 sm:shrink-0">
+                      {c.label}
+                    </span>
+                    <span className="col-start-2 row-start-2 min-w-0 truncate text-sm text-foreground transition-transform duration-300 group-hover:translate-x-1 sm:col-start-3 sm:row-start-1">
                       {c.value}
                     </span>
                     <ArrowUpRight
-                      className="size-4 text-muted-foreground transition-colors group-hover:text-accent"
+                      className="col-start-3 row-span-2 row-start-1 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent sm:col-start-4 sm:row-span-1"
                       aria-hidden="true"
                     />
                   </a>

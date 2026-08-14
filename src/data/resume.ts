@@ -83,13 +83,22 @@ export const projects = [
   {
     id: "luvis",
     name: "Luvis",
-    kind: "Full-Stack Application · Website",
+    kind: "Full-Stack E-Commerce · Live",
+    url: "https://luvis.site" as string | null,
+    urlLabel: "luvis.site" as string | null,
+    tagline: "A live storefront, built and shipped solo.",
     blurb:
-      "An independent full-stack web application owned end to end, from concept and architecture through implementation and testing.",
+      "Luvis is a live e-commerce web application for girls' jewellery, hair accessories and matching combos — designed, built and shipped end to end by one developer.",
+    highlights: [
+      { k: "Live", v: "luvis.site" },
+      { k: "Type", v: "E-commerce storefront" },
+      { k: "Owner", v: "Sole developer" },
+      { k: "Scope", v: "Concept → deploy" },
+    ],
     role: "Sole developer — architecture, backend services, frontend components and testing.",
     tech: ["Python", "Flask", "JavaScript", "HTML", "CSS", "MySQL", "REST APIs"],
     overview:
-      "Luvis is a full-stack web application designed and developed independently, taking ownership from concept and architecture through implementation and testing.",
+      "Luvis is a live e-commerce web application for girls' jewellery, hair accessories and matching dress + ornament combos, designed and developed independently from concept and architecture through implementation, testing and deployment.",
     purpose:
       "The project was built to deliver a complete working application where the interface, application logic, data storage and the communication layer between them were all designed as one coherent system.",
     contribution: [
@@ -106,6 +115,7 @@ export const projects = [
       "Database — MySQL",
     ],
     features: [
+      "Product catalogue browsing for jewellery, hair accessories and combos",
       "Interactive, responsive frontend components",
       "Flask API endpoints for application logic",
       "Data processing and database interactions",
@@ -120,8 +130,17 @@ export const projects = [
     id: "aquaculture",
     name: "Dissolved Oxygen Management in Aquaculture Ponds",
     kind: "Web Dashboard · Machine Learning",
+    url: null as string | null,
+    urlLabel: null as string | null,
+    tagline: "Sensors in, oxygen decisions out.",
     blurb:
       "A sensor-driven dashboard and automated aeration system that estimates and optimises dissolved oxygen levels in aquaculture ponds.",
+    highlights: [
+      { k: "Model", v: "Random Forest" },
+      { k: "Data", v: "Live sensors + MySQL" },
+      { k: "Control", v: "Automated aeration" },
+      { k: "Output", v: "Dashboard charts" },
+    ],
     role: "Model development, automation logic, data layer and dashboard visualisation.",
     tech: ["Python", "Random Forest", "MySQL", "Sensors"],
     overview:
