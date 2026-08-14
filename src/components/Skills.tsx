@@ -23,7 +23,7 @@ export function Skills() {
               as="li"
               key={group.group}
               delay={gi * 0.06}
-              className="rounded-3xl border border-border/70 bg-card/40 p-6 backdrop-blur-sm transition-colors hover:border-accent/40"
+              className="rounded-3xl border border-border/70 bg-card/40 p-6 transition-colors hover:border-accent/40"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="text-base font-medium text-foreground">{group.group}</h3>

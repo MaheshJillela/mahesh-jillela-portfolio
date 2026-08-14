@@ -16,7 +16,7 @@ export function Process() {
               as="li"
               key={step.stage}
               delay={i * 0.06}
-              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 backdrop-blur-sm transition-colors hover:border-accent/40"
+              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 transition-colors hover:border-accent/40"
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[11px] tracking-[0.24em] text-accent uppercase">

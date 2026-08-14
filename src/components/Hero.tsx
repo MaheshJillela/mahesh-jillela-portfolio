@@ -120,7 +120,7 @@ export function Hero() {
             </div>
           </div>
 
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/40 backdrop-blur-sm">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/40">
             {facts.map((f, i) => (
               <motion.div
                 key={f.k}
@@ -139,7 +139,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden border-t border-border/50 bg-background/40 py-3 backdrop-blur-sm">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden border-t border-border/50 bg-background/40 py-3">
         <motion.div
           className="flex w-max gap-10 font-mono text-[11px] tracking-[0.3em] text-muted-foreground/80 uppercase"
           animate={reduce ? false : { x: ["0%", "-50%"] }}

@@ -51,7 +51,7 @@ export function ProjectCard({ project, index, onOpen }: Props) {
         <button
           type="button"
           onClick={() => onOpen(project.id)}
-          className="block w-full cursor-pointer overflow-hidden rounded-3xl border border-border/70 bg-card/40 text-left backdrop-blur-sm transition-colors duration-300 outline-none group-hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent"
+          className="block w-full cursor-pointer overflow-hidden rounded-3xl border border-border/70 bg-card/40 text-left transition-colors duration-300 outline-none group-hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent"
           aria-label={`View case study: ${project.name}`}
         >
           <div

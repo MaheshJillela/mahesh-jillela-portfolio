@@ -23,7 +23,7 @@ function LabCard({
 
       <figure
         data-cursor="EXPLORE"
-        className="group h-full overflow-hidden rounded-3xl border border-border/70 bg-card/40 backdrop-blur-sm transition-colors hover:border-accent/40"
+        className="group h-full overflow-hidden rounded-3xl border border-border/70 bg-card/40 transition-colors hover:border-accent/40"
       >
         <div className="relative h-56 overflow-hidden border-b border-border/60 sm:h-64">
           {children}
@@ -106,7 +106,7 @@ function ParallaxLayers() {
           }}
         >
           <div
-            className={`${l.size} rounded-3xl border border-border/60 backdrop-blur-sm`}
+            className={`${l.size} rounded-3xl border border-border/60`}
             style={{ backgroundColor: l.color }}
           />
         </div>
