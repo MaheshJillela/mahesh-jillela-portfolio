@@ -84,8 +84,8 @@ export const projects = [
     id: "luvis",
     name: "Luvis",
     kind: "Full-Stack E-Commerce · Live",
-    url: "https://luvis.site",
-    urlLabel: "luvis.site",
+    url: "https://luvis.site" as string | null,
+    urlLabel: "luvis.site" as string | null,
     tagline: "A live storefront, built and shipped solo.",
     blurb:
       "Luvis is a live e-commerce web application for girls' jewellery, hair accessories and matching combos — designed, built and shipped end to end by one developer.",
@@ -129,6 +129,8 @@ export const projects = [
     id: "aquaculture",
     name: "Dissolved Oxygen Management in Aquaculture Ponds",
     kind: "Web Dashboard · Machine Learning",
+    url: null as string | null,
+    urlLabel: null as string | null,
     tagline: "Sensors in, oxygen decisions out.",
     blurb:
       "A sensor-driven dashboard and automated aeration system that estimates and optimises dissolved oxygen levels in aquaculture ponds.",
