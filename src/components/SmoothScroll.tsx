@@ -11,6 +11,8 @@ export function SmoothScroll() {
       wheelMultiplier: 1,
       touchMultiplier: 1.6,
       syncTouch: false,
+      // Overlays (case study modal) scroll natively instead of the page.
+      prevent: (node) => node?.hasAttribute?.("data-lenis-prevent") === true,
     });
 
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
