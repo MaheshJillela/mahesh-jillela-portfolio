@@ -105,8 +105,10 @@ export function ParticleField({
       };
     }
 
-    app.ticker.maxFPS = 60;
+    app.ticker.maxFPS = 40;
+    let frame = 0;
     app.ticker.add((ticker) => {
+      frame++;
       const dt = Math.min(ticker.deltaTime, 2);
       pointer.x += (pointer.tx - pointer.x) * 0.08;
       pointer.y += (pointer.ty - pointer.y) * 0.08;
