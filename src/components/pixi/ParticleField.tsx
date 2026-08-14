@@ -146,7 +146,7 @@ export function ParticleField({
         layer.y += -layer.y * 0.05;
       }
 
-      draw();
+      if (frame % 3 === 0) draw();
     });
 
     return () => {
