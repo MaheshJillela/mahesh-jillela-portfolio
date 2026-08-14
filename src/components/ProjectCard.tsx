@@ -81,11 +81,6 @@ export function ProjectCard({
                 }}
               />
 
-              {/* index + reveal label */}
-              <span className="absolute top-4 left-5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                {String(index + 1).padStart(2, "0")} / {project.kind.split("·")[0]?.trim()}
-              </span>
-
               <motion.span
                 animate={{ opacity: hover && !reduce ? 1 : 0, y: hover && !reduce ? 0 : 8 }}
                 transition={{ duration: 0.3 }}
@@ -99,7 +94,11 @@ export function ProjectCard({
 
         {/* Copy */}
         <div className={flip ? "lg:pr-6" : "lg:pl-6"}>
-          <p className="label text-accent">{project.kind}</p>
+          <p className="label flex items-center gap-3 text-accent">
+            <span className="text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+            <span className="h-px w-6 bg-border-strong" aria-hidden="true" />
+            {project.kind}
+          </p>
           <h3 className="mt-5 font-display text-[8vw] leading-[1.02] font-medium tracking-[-0.02em] text-foreground sm:text-4xl lg:text-5xl">
             {project.name}
           </h3>
