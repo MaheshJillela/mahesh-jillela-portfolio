@@ -30,7 +30,7 @@ export function Hero() {
       <div className="grid-texture absolute inset-0 -z-10" />
 
       <motion.div
-        style={reduce ? {} : { y, opacity: fade }}
+        style={reduce ? {} : { y }}
         className="mx-auto w-full max-w-6xl px-5 pt-32 pb-24"
       >
         <motion.div
