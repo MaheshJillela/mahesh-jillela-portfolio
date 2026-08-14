@@ -282,3 +282,108 @@ export const achievement = {
   title: "1st Place — CodewalaQuest Hackathon 2024",
   org: "QIS College of Engineering & Technology",
 };
+
+/* ---------- Redesign content (all derived from the resume above) ---------- */
+
+export const pillars = [
+  {
+    label: "Interactive Experiences",
+    note: "Slot and crash game interfaces — gameplay UI, animations and interactions, in production.",
+  },
+  {
+    label: "PixiJS & Canvas",
+    note: "Built and optimized high-performance canvas-based game interfaces and animations.",
+  },
+  {
+    label: "React Architecture",
+    note: "Reusable components and dynamic application state across React applications.",
+  },
+  {
+    label: "Animation",
+    note: "Gameplay flows, sound integration and motion tuned for responsiveness.",
+  },
+  {
+    label: "Performance",
+    note: "Debugged complex rendering, animation and cross-browser/device issues.",
+  },
+  {
+    label: "Full-Stack Development",
+    note: "Python, Flask, Node.js, REST APIs and MySQL — owned end to end on Luvis.",
+  },
+];
+
+export const skillNotes: Record<string, string> = {
+  React: "Enhanced React applications and UI components in production.",
+  "Next.js": "Used alongside React in day-to-day frontend work.",
+  JavaScript: "Primary language for interactive application and gameplay work.",
+  TypeScript: "Typed frontend development for interactive interfaces.",
+  HTML5: "Markup for interactive, responsive frontend components.",
+  CSS3: "Responsive layouts across different devices.",
+  "Tailwind CSS": "Utility-first styling in frontend applications.",
+  "Pixi.js": "Built and optimized high-performance canvas game interfaces.",
+  WebGL: "GPU-accelerated rendering behind canvas game interfaces.",
+  "Canvas Animation": "Gameplay animation and interaction work in production titles.",
+  Spine: "Skeletal animation assets used in game interfaces.",
+  "Texture Packer": "Sprite atlas preparation for game assets.",
+  "Node.js": "Server-side JavaScript in application development.",
+  Express: "REST API layer in Node.js services.",
+  Python: "Backend services and the Random Forest model in the aquaculture project.",
+  Flask: "Application logic, API endpoints and database interactions on Luvis.",
+  "REST APIs": "Frontend-backend communication for dynamic functionality.",
+  MySQL: "Structured storage, retrieval and database operations.",
+  PostgreSQL: "Relational database work.",
+  Redis: "In-memory data store.",
+  SQL: "Querying and application-level database operations.",
+  "React Native": "Cross-platform mobile application development.",
+  Git: "Version control across all project work.",
+  GitHub: "Repository hosting and collaboration.",
+  "GitHub Actions": "Automated build and delivery workflows.",
+  "CI/CD": "Continuous integration and delivery pipelines.",
+  Docker: "Containerised development environments.",
+  "AWS Cloud Platform": "S3 and CloudFront for game asset delivery.",
+  Linux: "Primary development and deployment environment.",
+  Postman: "API testing during backend development.",
+  Jira: "Issue tracking and delivery workflow.",
+  "Visual Studio Code": "Daily development environment.",
+  "MySQL Workbench": "Schema design and query work.",
+};
+
+export const buildSteps = [
+  {
+    id: "01",
+    stage: "Architect",
+    body: "Decide the frontend, API, backend and database boundaries before writing code — as done end to end on Luvis.",
+    tags: ["Architecture", "REST APIs", "MySQL"],
+  },
+  {
+    id: "02",
+    stage: "Build",
+    body: "Build reusable React components, canvas systems and API endpoints, managing dynamic application state.",
+    tags: ["React", "PixiJS", "Flask"],
+  },
+  {
+    id: "03",
+    stage: "Animate",
+    body: "Implement gameplay flows, animations, interactions and sound integration across devices.",
+    tags: ["Canvas Animation", "Spine", "Sound"],
+  },
+  {
+    id: "04",
+    stage: "Optimize",
+    body: "Profile canvas rendering and animation, then resolve cross-browser and device issues in production apps.",
+    tags: ["Rendering", "Responsive UI", "Debugging"],
+  },
+  {
+    id: "05",
+    stage: "Deploy",
+    body: "Deploy and serve game assets through AWS S3 and CloudFront for reliable delivery across regions.",
+    tags: ["AWS S3", "CloudFront", "CI/CD"],
+  },
+];
+
+export const deliveryChain = [
+  { node: "Build output", note: "Game assets and bundled frontend" },
+  { node: "AWS S3", note: "Origin storage for game assets" },
+  { node: "CloudFront", note: "Edge distribution across regions" },
+  { node: "Players", note: "Reliable delivery, improved performance" },
+];

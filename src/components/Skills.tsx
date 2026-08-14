@@ -1,61 +1,73 @@
+import { useState } from "react";
 import { Reveal, SectionHeading } from "@/components/Reveal";
-import { skills } from "@/data/resume";
-
-const dots: Record<string, number> = {
-  "Production Experience": 5,
-  Advanced: 4,
-  "Working Knowledge": 3,
-};
+import { skillNotes, skills } from "@/data/resume";
 
 export function Skills() {
+  const [active, setActive] = useState<string | null>(null);
+  const note = active ? skillNotes[active] : null;
+
   return (
-    <section id="skills" className="relative border-t border-border/60 py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-6xl px-5">
+    <section id="skills" className="relative border-t border-border py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
+          index="05"
           eyebrow="Skills"
-          title="Grouped by what it's actually used for."
-          lead="Levels describe how the technology has been used — production work, advanced use, or working knowledge — instead of arbitrary percentages."
+          title="Tools, grouped by what they actually do."
+          lead="No percentages. Hover or focus a technology to see how it has been used."
         />
 
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {skills.map((group, gi) => (
-            <Reveal
-              as="li"
-              key={group.group}
-              delay={gi * 0.06}
-              className="rounded-3xl border border-border/70 bg-card/40 p-6 transition-colors hover:border-accent/40"
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="text-base font-medium text-foreground">{group.group}</h3>
-                <span aria-hidden="true" className="flex gap-1">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <span
-                      key={i}
-                      className={
-                        i < (dots[group.level] ?? 3)
-                          ? "size-1.5 rounded-full bg-accent"
-                          : "size-1.5 rounded-full bg-border"
-                      }
-                    />
-                  ))}
-                </span>
-              </div>
-              <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-                {group.level}
+        <div className="mt-16 grid gap-12 lg:grid-cols-[1.4fr_0.6fr] lg:gap-20">
+          <div className="space-y-10">
+            {skills.map((group, gi) => (
+              <Reveal key={group.group} delay={gi * 0.04}>
+                <div className="grid gap-4 border-t border-border pt-6 sm:grid-cols-[11rem_1fr] sm:gap-8">
+                  <div>
+                    <h3 className="label text-accent">{group.group}</h3>
+                    <p className="mt-2 font-mono text-[10px] text-muted-foreground">{group.level}</p>
+                  </div>
+                  <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                    {group.items.map((item) => (
+                      <li key={item}>
+                        <button
+                          type="button"
+                          onMouseEnter={() => setActive(item)}
+                          onMouseLeave={() => setActive(null)}
+                          onFocus={() => setActive(item)}
+                          onBlur={() => setActive(null)}
+                          aria-describedby="skill-note"
+                          className={`text-left text-base transition-colors duration-200 sm:text-lg ${
+                            active === item
+                              ? "text-accent"
+                              : "text-foreground/75 hover:text-foreground"
+                          }`}
+                        >
+                          {item}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Contextual note panel — sticky, mono, system-style */}
+          <Reveal className="lg:sticky lg:top-28 lg:self-start">
+            <div className="rounded-xl border border-border bg-surface p-6">
+              <p className="label text-muted-foreground">Context</p>
+              <p
+                id="skill-note"
+                aria-live="polite"
+                className="mt-4 min-h-24 text-sm leading-relaxed text-foreground/85"
+              >
+                {note ?? "Select a technology to read where it has been used in production or project work."}
               </p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-full border border-border/70 bg-secondary/40 px-3 py-1 text-xs text-foreground/85"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </ul>
+              <p className="mt-6 border-t border-border pt-4 font-mono text-[10px] tracking-[0.16em] text-accent uppercase">
+                {active ?? "— idle"}
+              </p>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

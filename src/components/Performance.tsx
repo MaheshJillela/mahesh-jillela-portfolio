@@ -1,35 +1,92 @@
-import { Gauge } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Reveal, SectionHeading } from "@/components/Reveal";
-import { performanceFocus } from "@/data/resume";
+import { deliveryChain, performanceFocus } from "@/data/resume";
+
+function DeliveryDiagram() {
+  const reduce = useReducedMotion();
+
+  return (
+    <div className="noise relative overflow-hidden rounded-xl border border-border bg-surface p-6 sm:p-10">
+      <div className="grid-texture absolute inset-0 opacity-60" aria-hidden="true" />
+      <div className="relative flex items-baseline justify-between">
+        <p className="label text-accent">Asset delivery</p>
+        <p className="font-mono text-[10px] text-muted-foreground">AWS S3 · CloudFront</p>
+      </div>
+
+      <ol className="relative mt-8 space-y-3">
+        {deliveryChain.map((step, i) => (
+          <li key={step.node} className="relative">
+            <div className="flex items-start gap-4 rounded-lg border border-border bg-background/70 p-4">
+              <p className="mt-0.5 font-mono text-[10px] tracking-[0.16em] text-accent uppercase">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <div className="min-w-0">
+                <p className="font-display text-sm font-medium text-foreground">{step.node}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{step.note}</p>
+              </div>
+            </div>
+
+            {i < deliveryChain.length - 1 ? (
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-3 left-8 block h-3 w-px bg-border-strong"
+              >
+                {!reduce ? (
+                  <motion.span
+                    className="absolute -left-[2px] top-0 size-[5px] rounded-full bg-accent"
+                    animate={{ y: [0, 12], opacity: [0, 1, 0] }}
+                    transition={{
+                      duration: 1.6,
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ) : null}
+              </span>
+            ) : null}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 
 export function Performance() {
   return (
-    <section className="relative border-t border-border/60 py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-6xl px-5">
+    <section id="performance" className="relative border-t border-border py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
+          index="06"
           eyebrow="Performance focused"
-          title="Rendering cost is a design constraint."
-          lead="Concepts drawn from production work — no invented benchmark numbers."
+          title="Interfaces that stay responsive under load."
         />
 
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {performanceFocus.map((p, i) => (
-            <Reveal
-              as="li"
-              key={p.title}
-              delay={i * 0.05}
-              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6"
-            >
-              <Gauge
-                aria-hidden="true"
-                className="size-5 text-accent transition-transform duration-300 group-hover:rotate-12"
-              />
-              <h3 className="mt-4 text-base font-medium text-foreground">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-              <span className="absolute inset-x-0 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-accent/70 to-transparent transition-transform duration-500 group-hover:scale-x-100" />
-            </Reveal>
-          ))}
-        </ul>
+        <div className="mt-16 grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <ul className="border-t border-border">
+            {performanceFocus.map((item, i) => (
+              <Reveal as="li" key={item.title} delay={i * 0.03} className="group border-b border-border">
+                <div className="flex gap-5 py-6">
+                  <span className="font-mono text-[11px] text-accent/70">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg font-medium text-foreground transition-transform duration-300 group-hover:translate-x-1">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+
+          <Reveal delay={0.08} className="lg:sticky lg:top-28 lg:self-start lg:pt-6">
+            <DeliveryDiagram />
+          </Reveal>
+        </div>
       </div>
     </section>
   );
