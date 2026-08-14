@@ -64,31 +64,56 @@ export function ProjectCard({
             <motion.div
               animate={{ rotateX: t.rx, rotateY: t.ry }}
               transition={{ type: "spring", stiffness: 140, damping: 18 }}
-              className="relative aspect-[16/11] w-full overflow-hidden rounded-xl border border-border bg-surface"
+              className="relative overflow-hidden rounded-2xl border border-border bg-surface-2 p-2 shadow-[0_30px_60px_-40px_oklch(0_0_0/0.9)] transition-colors duration-500 hover:border-accent/40"
               style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="absolute inset-0" style={{ transform: `translate3d(${t.px * -0.4}px, ${t.py * -0.4}px, 0) scale(1.08)` }}>
-                {visual}
+              {/* window chrome */}
+              <div className="flex items-center justify-between px-1.5 pb-2">
+                <span className="flex items-center gap-1.5" aria-hidden="true">
+                  {[0, 1, 2].map((d) => (
+                    <span
+                      key={d}
+                      className="size-1.5 rounded-full"
+                      style={{
+                        background:
+                          d === 0 && hover ? "var(--color-accent)" : "var(--color-border-strong)",
+                      }}
+                    />
+                  ))}
+                </span>
+                <span className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground uppercase">
+                  {project.urlLabel ?? project.kind}
+                </span>
               </div>
 
-              {/* hover lighting */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 opacity-0 transition-opacity duration-500"
-                style={{
-                  opacity: hover ? 1 : 0,
-                  background: `radial-gradient(40% 40% at ${50 + t.px}% ${50 + t.py}%, oklch(0.855 0.148 178 / 0.14), transparent 70%)`,
-                }}
-              />
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border">
+                <div
+                  className="absolute inset-0"
+                  style={{ transform: `translate3d(${t.px * -0.3}px, ${t.py * -0.3}px, 0) scale(1.06)` }}
+                >
+                  {visual}
+                </div>
 
-              <motion.span
-                animate={{ opacity: hover && !reduce ? 1 : 0, y: hover && !reduce ? 0 : 8 }}
-                transition={{ duration: 0.3 }}
-                className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 font-mono text-[11px] tracking-[0.16em] text-accent-foreground uppercase"
-              >
-                View case study <ArrowUpRight className="size-3.5" aria-hidden="true" />
-              </motion.span>
+                {/* hover lighting */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 transition-opacity duration-500"
+                  style={{
+                    opacity: hover ? 1 : 0,
+                    background: `radial-gradient(40% 40% at ${50 + t.px}% ${50 + t.py}%, oklch(0.855 0.148 178 / 0.12), transparent 70%)`,
+                  }}
+                />
+
+                <motion.span
+                  animate={{ opacity: hover && !reduce ? 1 : 0, y: hover && !reduce ? 0 : 8 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 font-mono text-[11px] tracking-[0.16em] text-accent-foreground uppercase"
+                >
+                  View case study <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                </motion.span>
+              </div>
             </motion.div>
+
           </button>
         </div>
 
