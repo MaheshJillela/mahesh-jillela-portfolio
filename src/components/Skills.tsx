@@ -47,6 +47,7 @@ export function Skills() {
                   <div>
                     <h3 className="label text-accent">{group.group}</h3>
                     <p className="mt-2 font-mono text-[10px] text-muted-foreground">{group.level}</p>
+                    <LevelMeter level={group.level} />
                   </div>
                   <ul className="flex flex-wrap gap-x-6 gap-y-3">
                     {group.items.map((item) => (
