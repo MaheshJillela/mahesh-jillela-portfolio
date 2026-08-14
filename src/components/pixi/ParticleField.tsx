@@ -37,7 +37,7 @@ export function ParticleField({
 
     const area = () => app.screen.width * app.screen.height;
     const target = Math.round(
-      Math.min(140, Math.max(28, area() * density * (window.innerWidth < 768 ? 0.55 : 1))),
+      Math.min(70, Math.max(18, area() * density * (window.innerWidth < 768 ? 0.4 : 0.7))),
     );
 
     const particles: Particle[] = [];
