@@ -13,6 +13,8 @@ export function SmoothScroll() {
       syncTouch: false,
     });
 
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+
     let frame = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -37,6 +39,7 @@ export function SmoothScroll() {
       document.removeEventListener("click", onClick);
       cancelAnimationFrame(frame);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 
