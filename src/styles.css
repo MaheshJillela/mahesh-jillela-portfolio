@@ -37,6 +37,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-dim: var(--accent-dim);
+  --color-blush: var(--blush);
+  --color-blush-soft: var(--blush-soft);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -77,6 +79,10 @@
   --accent: oklch(0.855 0.148 178);
   --accent-foreground: oklch(0.17 0.01 200);
   --accent-dim: oklch(0.62 0.1 180);
+
+  /* Blush — reserved for the Luvis storefront visual */
+  --blush: oklch(0.82 0.095 350);
+  --blush-soft: oklch(0.82 0.095 350 / 0.12);
 
   --primary: oklch(0.855 0.148 178);
   --primary-foreground: oklch(0.17 0.01 200);

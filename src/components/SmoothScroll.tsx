@@ -11,7 +11,11 @@ export function SmoothScroll() {
       wheelMultiplier: 1,
       touchMultiplier: 1.6,
       syncTouch: false,
+      // Overlays (case study modal) scroll natively instead of the page.
+      prevent: (node) => node?.hasAttribute?.("data-lenis-prevent") === true,
     });
+
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
 
     let frame = 0;
     const raf = (time: number) => {
@@ -37,6 +41,7 @@ export function SmoothScroll() {
       document.removeEventListener("click", onClick);
       cancelAnimationFrame(frame);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 

@@ -41,9 +41,16 @@ export function CaseStudy({
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    // Pause inertial page scrolling so the modal scrolls instead of the page.
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } })
+      .__lenis;
+    lenis?.stop();
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      lenis?.start();
     };
   }, [project, onClose]);
 
@@ -57,6 +64,7 @@ export function CaseStudy({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           className="fixed inset-0 z-[80] overflow-y-auto bg-background"
+          data-lenis-prevent
           role="dialog"
           aria-modal="true"
           aria-label={`${project.name} case study`}
