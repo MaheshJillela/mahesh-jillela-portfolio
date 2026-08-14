@@ -13,26 +13,28 @@ function DeliveryDiagram() {
         <p className="font-mono text-[10px] text-muted-foreground">AWS S3 · CloudFront</p>
       </div>
 
-      <ol className="relative mt-8 grid gap-4 sm:grid-cols-4 sm:gap-0">
+      <ol className="relative mt-8 space-y-3">
         {deliveryChain.map((step, i) => (
-          <li key={step.node} className="relative sm:pr-6">
-            <div className="rounded-lg border border-border bg-background/70 p-4">
-              <p className="font-mono text-[10px] tracking-[0.16em] text-accent uppercase">
+          <li key={step.node} className="relative">
+            <div className="flex items-start gap-4 rounded-lg border border-border bg-background/70 p-4">
+              <p className="mt-0.5 font-mono text-[10px] tracking-[0.16em] text-accent uppercase">
                 {String(i + 1).padStart(2, "0")}
               </p>
-              <p className="mt-2 font-display text-sm font-medium text-foreground">{step.node}</p>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{step.note}</p>
+              <div className="min-w-0">
+                <p className="font-display text-sm font-medium text-foreground">{step.node}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{step.note}</p>
+              </div>
             </div>
 
             {i < deliveryChain.length - 1 ? (
               <span
                 aria-hidden="true"
-                className="absolute top-1/2 right-0 hidden h-px w-6 -translate-y-1/2 bg-border-strong sm:block"
+                className="absolute -bottom-3 left-8 block h-3 w-px bg-border-strong"
               >
                 {!reduce ? (
                   <motion.span
-                    className="absolute -top-[2px] left-0 size-[5px] rounded-full bg-accent"
-                    animate={{ x: [0, 24], opacity: [0, 1, 0] }}
+                    className="absolute -left-[2px] top-0 size-[5px] rounded-full bg-accent"
+                    animate={{ y: [0, 12], opacity: [0, 1, 0] }}
                     transition={{
                       duration: 1.6,
                       repeat: Infinity,
@@ -81,7 +83,7 @@ export function Performance() {
             ))}
           </ul>
 
-          <Reveal delay={0.08} className="lg:pt-6">
+          <Reveal delay={0.08} className="lg:sticky lg:top-28 lg:self-start lg:pt-6">
             <DeliveryDiagram />
           </Reveal>
         </div>
