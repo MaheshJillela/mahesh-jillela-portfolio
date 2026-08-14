@@ -43,13 +43,22 @@ export function Contact() {
         </h2>
 
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+        <div className="mt-10 grid gap-10 sm:mt-16 sm:gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <Reveal delay={0.08}>
-              <p className="max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Open to interactive frontend and full-stack work — canvas and PixiJS interfaces,
-                React applications, and end-to-end product builds. Based in {profile.location}.
+              <p className="max-w-lg font-display text-lg leading-snug text-foreground/90 sm:text-xl">
+                Open to interactive frontend and full-stack work.
               </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {["Canvas / PixiJS", "React apps", "Full-stack builds", profile.location].map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full border border-border px-3 py-1 font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
               <a
                 data-cursor="OPEN"
                 href={`mailto:${profile.email}`}
