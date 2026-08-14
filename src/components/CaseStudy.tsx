@@ -41,6 +41,7 @@ export function CaseStudy({
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     // Pause inertial page scrolling so the modal scrolls instead of the page.
     const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } })
       .__lenis;
@@ -48,6 +49,7 @@ export function CaseStudy({
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       lenis?.start();
     };
   }, [project, onClose]);
