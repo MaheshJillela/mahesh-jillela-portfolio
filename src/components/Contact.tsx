@@ -38,9 +38,10 @@ export function Contact() {
           </div>
         </Reveal>
 
-        <h2 className="mt-10 max-w-4xl font-display text-[10vw] leading-[0.95] font-medium tracking-[-0.03em] text-foreground sm:text-[5.5rem]">
+        <h2 className="mt-8 max-w-4xl font-display text-[12vw] leading-[0.95] font-medium tracking-[-0.03em] text-foreground sm:mt-10 sm:text-[5.5rem]">
           <LineReveal text="LET'S BUILD SOMETHING INTERACTIVE." />
         </h2>
+
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
