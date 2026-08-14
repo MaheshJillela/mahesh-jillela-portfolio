@@ -10,7 +10,7 @@ export function Achievement() {
     <section className="relative border-t border-border/60 py-24 sm:py-32">
       <div className="mx-auto w-full max-w-6xl px-5">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-8 backdrop-blur-sm sm:p-14">
+          <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-8 sm:p-14">
             <div className="absolute inset-0 bg-[radial-gradient(50%_60%_at_20%_20%,oklch(0.75_0.12_95/0.14),transparent_70%)]" />
             <div className="relative flex flex-col items-start gap-8 sm:flex-row sm:items-center">
               <motion.span

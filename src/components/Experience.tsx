@@ -10,7 +10,7 @@ export function Experience() {
         <div className="mt-14 space-y-8">
           {experience.map((job) => (
             <Reveal key={job.company}>
-              <article className="relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 backdrop-blur-sm sm:p-10">
+              <article className="relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 sm:p-10">
                 <div className="absolute -top-24 -right-24 size-64 rounded-full bg-[radial-gradient(circle,oklch(0.7_0.13_190/0.16),transparent_65%)]" />
                 <div className="relative flex flex-wrap items-baseline justify-between gap-3">
                   <div>

@@ -37,7 +37,7 @@ export function ParticleField({
 
     const area = () => app.screen.width * app.screen.height;
     const target = Math.round(
-      Math.min(140, Math.max(28, area() * density * (window.innerWidth < 768 ? 0.55 : 1))),
+      Math.min(70, Math.max(18, area() * density * (window.innerWidth < 768 ? 0.4 : 0.7))),
     );
 
     const particles: Particle[] = [];
@@ -105,8 +105,10 @@ export function ParticleField({
       };
     }
 
-    app.ticker.maxFPS = 60;
+    app.ticker.maxFPS = 40;
+    let frame = 0;
     app.ticker.add((ticker) => {
+      frame++;
       const dt = Math.min(ticker.deltaTime, 2);
       pointer.x += (pointer.tx - pointer.x) * 0.08;
       pointer.y += (pointer.ty - pointer.y) * 0.08;
@@ -144,7 +146,7 @@ export function ParticleField({
         layer.y += -layer.y * 0.05;
       }
 
-      draw();
+      if (frame % 3 === 0) draw();
     });
 
     return () => {

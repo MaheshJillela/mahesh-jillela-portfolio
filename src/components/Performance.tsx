@@ -18,7 +18,7 @@ export function Performance() {
               as="li"
               key={p.title}
               delay={i * 0.05}
-              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 backdrop-blur-sm"
+              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6"
             >
               <Gauge
                 aria-hidden="true"

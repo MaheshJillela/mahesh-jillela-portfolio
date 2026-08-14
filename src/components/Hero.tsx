@@ -17,8 +17,7 @@ export function Hero() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
     <section
@@ -31,7 +30,7 @@ export function Hero() {
       <div className="grid-texture absolute inset-0 -z-10" />
 
       <motion.div
-        style={reduce ? {} : { y, opacity: fade }}
+        style={reduce ? {} : { y }}
         className="mx-auto w-full max-w-6xl px-5 pt-32 pb-24"
       >
         <motion.div
@@ -120,7 +119,7 @@ export function Hero() {
             </div>
           </div>
 
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/40 backdrop-blur-sm">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/40">
             {facts.map((f, i) => (
               <motion.div
                 key={f.k}
@@ -139,7 +138,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden border-t border-border/50 bg-background/40 py-3 backdrop-blur-sm">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden border-t border-border/50 bg-background/40 py-3">
         <motion.div
           className="flex w-max gap-10 font-mono text-[11px] tracking-[0.3em] text-muted-foreground/80 uppercase"
           animate={reduce ? false : { x: ["0%", "-50%"] }}
