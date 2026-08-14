@@ -64,6 +64,7 @@ export function CaseStudy({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           className="fixed inset-0 z-[80] overflow-y-auto bg-background"
+          data-lenis-prevent
           role="dialog"
           aria-modal="true"
           aria-label={`${project.name} case study`}
