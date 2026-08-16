@@ -13,18 +13,31 @@ export function Mindset() {
           lead={mindset.statement}
         />
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="mt-16 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
           <Reveal>
-            <div className="h-full rounded-xl border border-border bg-surface/40 p-6 sm:p-8">
+            <div className="flex h-full flex-col rounded-xl border border-border bg-surface/40 p-6 sm:p-8">
               <p className="label text-muted-foreground">Typical frontend thinking</p>
               <div className="mt-6 opacity-70">
                 <FlowChain steps={mindset.typical} compact packet={false} />
               </div>
-              <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-6 flex items-center gap-3 rounded-lg border border-dashed border-border-strong px-4 py-3">
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground/70 uppercase"
+                >
+                  stops here
+                </span>
+                <span className="h-px flex-1 bg-border-strong" aria-hidden="true" />
+                <span className="font-mono text-[10px] text-muted-foreground/70">
+                  {String(mindset.typical.length).padStart(2, "0")} steps
+                </span>
+              </div>
+              <p className="mt-auto pt-6 text-sm leading-relaxed text-muted-foreground">
                 The request leaves the browser and stops being anyone's problem.
               </p>
             </div>
           </Reveal>
+
 
           <Reveal delay={0.08}>
             <div className="noise relative h-full overflow-hidden rounded-xl border border-accent/40 bg-accent/5 p-6 sm:p-8">

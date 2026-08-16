@@ -32,20 +32,25 @@ export function TechStack() {
                     {String(i + 1).padStart(2, "0")} / {techStack.length}
                   </p>
                 </div>
-                <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                <ul className="flex flex-wrap gap-2.5">
                   {g.items.map((it) => (
                     <li
                       key={it}
-                      className={`transition-colors ${
+                      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 transition-colors ${
                         g.primary
-                          ? "font-display text-lg text-foreground hover:text-accent sm:text-2xl"
-                          : "text-base text-foreground/75 hover:text-foreground"
+                          ? "border-accent/40 bg-accent/10 font-display text-sm font-medium text-foreground hover:border-accent hover:text-accent sm:text-base"
+                          : "border-border bg-background/70 text-sm text-foreground/80 hover:border-accent/50 hover:text-foreground"
                       }`}
                     >
+                      <span
+                        aria-hidden="true"
+                        className={`size-1.5 shrink-0 rounded-full ${g.primary ? "bg-accent" : "bg-accent/40"}`}
+                      />
                       {it}
                     </li>
                   ))}
                 </ul>
+
               </div>
             </Reveal>
           ))}
