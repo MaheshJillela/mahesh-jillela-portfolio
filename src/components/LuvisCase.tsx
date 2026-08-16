@@ -38,18 +38,26 @@ function Block({
 
 function Bullets({ items, columns = 2 }: { items: string[]; columns?: 1 | 2 }) {
   return (
-    <ul className={`grid gap-px overflow-hidden rounded-xl border border-border bg-border ${columns === 2 ? "sm:grid-cols-2" : ""}`}>
-      {items.map((i) => (
+    <ul
+      className={`grid gap-px overflow-hidden rounded-xl border border-border bg-border ${columns === 2 ? "sm:grid-cols-2" : ""}`}
+    >
+      {items.map((i, idx) => (
         <li
           key={i}
-          className="bg-background px-4 py-3.5 text-sm text-foreground/85 transition-colors hover:bg-surface hover:text-foreground"
+          className="group flex items-start gap-3 bg-background px-4 py-4 transition-colors hover:bg-surface"
         >
-          {i}
+          <span className="mt-px font-mono text-[10px] text-accent/60 transition-colors group-hover:text-accent">
+            {String(idx + 1).padStart(2, "0")}
+          </span>
+          <span className="text-sm leading-relaxed text-foreground/85 transition-colors group-hover:text-foreground">
+            {i}
+          </span>
         </li>
       ))}
     </ul>
   );
 }
+
 
 function RedisFlow() {
   const reduce = useReducedMotion();
