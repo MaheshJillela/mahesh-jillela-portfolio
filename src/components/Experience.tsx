@@ -32,9 +32,9 @@ export function Experience() {
     <section id="experience" className="relative border-t border-border py-24 sm:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
-          index="02"
+          index="10"
           eyebrow="Experience"
-          title="Production work, in the open."
+          title="Role, what I built, what it taught me."
         />
 
         {experience.map((job) => (

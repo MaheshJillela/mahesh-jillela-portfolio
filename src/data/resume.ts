@@ -1,45 +1,511 @@
+/**
+ * Single source of truth for the portfolio.
+ * Items marked `confirm: true` are placeholders to replace with confirmed details.
+ */
+
 export const profile = {
   name: "Mahesh Jillela",
-  title: "Software Engineer | Full-Stack Developer",
+  title: "Frontend Developer",
+  headline: "I build interfaces that don't stop at the browser.",
   location: "Hyderabad, India",
   email: "maheshjillela6@gmail.com",
   phone: "9347612425",
   github: "https://github.com/MaheshJillela",
   linkedin: "https://www.linkedin.com/in/mahesh-jillela",
-  summary:
-    "Software Engineer with a Bachelor of Engineering in Computer Science, skilled in full-stack development and React Native. Demonstrated experience in developing interactive applications, utilizing JavaScript, Python, and REST APIs. Successfully built and deployed a casino gaming application, enhancing user experience through optimized UI and performance.",
-  heroTech: ["React", "JavaScript", "PixiJS", "WebGL", "TypeScript"],
+  description:
+    "Frontend-focused developer with hands-on experience building production applications and working across APIs, Node.js, cloud infrastructure, servers, payments, caching, notifications and deployment.",
+  chain: ["Design", "Code", "API", "Server", "Production"],
+  heroTech: ["JavaScript", "React", "Node.js", "Redis", "AWS", "Linux"],
 };
 
-export const traits = [
+export const positioning = {
+  core: "Frontend",
+  extended: ["API", "Node.js", "Database", "Redis", "Server", "Cloud", "Production"],
+  statement:
+    "Frontend is my core strength — but I can also understand, connect, deploy and troubleshoot the systems behind the frontend.",
+};
+
+export const aboutPoints = [
   {
-    label: "Interactive Applications",
-    detail:
-      "Gameplay UI, animations and interactions for slot and crash games in production.",
+    k: "Frontend first",
+    v: "Frontend development is my primary expertise: interactive, responsive, production-ready interfaces.",
   },
   {
-    label: "PixiJS & Canvas",
-    detail:
-      "Built and optimized high-performance canvas-based game interfaces and animations.",
+    k: "Data flow",
+    v: "I care about how the interface communicates with backend systems, and I understand APIs and data flow.",
   },
   {
-    label: "React Architecture",
-    detail:
-      "Reusable components and dynamic application state across React applications.",
+    k: "Node.js when needed",
+    v: "I work with Node.js when the problem requires server-side logic or service integration.",
   },
   {
-    label: "Full-Stack Development",
-    detail: "Python, Flask, Node.js, REST APIs and relational databases.",
+    k: "Deploy & host",
+    v: "I deploy and host applications on cloud and server environments, with practical Linux experience.",
   },
   {
-    label: "Performance & Debugging",
-    detail:
-      "Resolved complex frontend rendering, animation and cross-browser/device issues.",
+    k: "Data & caching",
+    v: "I understand databases and caching, and how they change what the frontend feels like.",
   },
   {
-    label: "Delivery on AWS",
-    detail: "Served game assets through AWS S3 and CloudFront for players across regions.",
+    k: "Production reality",
+    v: "Through Luvis I have worked on live production systems and troubleshooting beyond the frontend.",
   },
+];
+
+export const frontendCore = [
+  {
+    id: "ui",
+    title: "UI Development",
+    lead: "Modern, responsive, component-based interfaces built to survive real users.",
+    items: [
+      "Modern responsive interfaces",
+      "Component-based development",
+      "Reusable UI components",
+      "Responsive layouts",
+      "Mobile-first thinking",
+      "Cross-browser compatibility",
+      "Interactive interfaces",
+      "Forms and validation",
+      "UI states",
+      "Loading / error / empty states",
+    ],
+  },
+  {
+    id: "js",
+    title: "JavaScript",
+    lead: "Browser-side logic: events, async work, API integration and state handling.",
+    items: [
+      "DOM interaction",
+      "Event handling",
+      "Async operations",
+      "API integration",
+      "State handling",
+      "Data transformation",
+      "Dynamic interfaces",
+      "Browser-side logic",
+    ],
+  },
+  {
+    id: "markup",
+    title: "HTML / CSS",
+    lead: "Semantic structure and responsive styling across every device size.",
+    items: [
+      "Semantic HTML",
+      "Responsive CSS",
+      "Flexbox",
+      "Grid",
+      "Animations",
+      "Transitions",
+      "Responsive layouts",
+      "Cross-device UI",
+    ],
+  },
+  {
+    id: "interactive",
+    title: "Interactive Experiences",
+    lead: "Interfaces that respond, animate and give feedback — this portfolio is the example.",
+    items: [
+      "Animations",
+      "Interactive components",
+      "Micro-interactions",
+      "Dynamic UI",
+      "Visual feedback",
+      "Game-like interfaces",
+    ],
+  },
+];
+
+export const requestFlow = [
+  { node: "User", note: "An intent: a tap, a click, a form" },
+  { node: "Frontend", note: "Event handling, UI state, validation" },
+  { node: "API request", note: "REST call, JSON payload, auth header" },
+  { node: "Node.js / Backend", note: "Request handling and server-side logic" },
+  { node: "Database / Redis / External services", note: "Persistence, cache, third parties" },
+  { node: "API response", note: "Status, payload, or error to handle" },
+  { node: "Frontend", note: "State update, loading resolved, UI renders" },
+  { node: "User", note: "Result on screen" },
+];
+
+export const apiSkills = [
+  "REST APIs",
+  "API requests / responses",
+  "Authentication",
+  "Data handling",
+  "Error handling",
+  "Loading states",
+  "API integration",
+  "JSON",
+  "Backend communication",
+];
+
+export const nodeWork = {
+  lead: "Hands-on Node.js experience supporting production applications — not my primary specialisation, but practical and production-tested through Luvis.",
+  items: [
+    "Backend services",
+    "APIs",
+    "Request handling",
+    "Server-side logic",
+    "External service integration",
+    "Email / mailing functionality",
+    "Push notification systems",
+    "Payment-related backend communication",
+    "Logging",
+    "Production debugging",
+  ],
+};
+
+export const cloudPipeline = [
+  { node: "Local development", note: "Build and verify locally" },
+  { node: "Build", note: "Production build output" },
+  { node: "Cloud server", note: "AWS / Linux server environment" },
+  { node: "Application process", note: "Process started and kept alive" },
+  { node: "Domain", note: "Domain and application configuration" },
+  { node: "Users", note: "Real traffic on a real URL" },
+];
+
+export const cloudSkills = [
+  "AWS",
+  "Cloud servers",
+  "Linux servers",
+  "Server environments",
+  "Domain / application configuration",
+  "Deployment workflows",
+  "Process management",
+  "Production troubleshooting",
+];
+
+export const serverPanels = [
+  { id: "application", label: "Application", body: "Built application served from the server environment." },
+  { id: "process", label: "Process", body: "Process started, stopped and restarted during deploys." },
+  { id: "logs", label: "Logs", body: "Application and error logs inspected while debugging." },
+  { id: "memory", label: "Memory", body: "Memory usage checked when a process misbehaves." },
+  { id: "cpu", label: "CPU", body: "CPU load checked against slow or stuck requests." },
+  { id: "network", label: "Network", body: "Ports, domain routing and reachability verified." },
+];
+
+export const serverManagement = {
+  linux: [
+    "Linux",
+    "SSH",
+    "Files",
+    "Permissions",
+    "Processes",
+    "Logs",
+    "Configuration",
+    "Server troubleshooting",
+  ],
+  processChain: ["Application", "Process", "Server", "Logs", "Monitoring"],
+  actions: [
+    "Deploy applications",
+    "Start / stop / restart services",
+    "Inspect logs",
+    "Check memory and CPU",
+    "Troubleshoot production issues",
+    "Safely update builds",
+  ],
+  note: "Process management with tools such as PM2 where applicable.",
+};
+
+export const luvis = {
+  name: "Luvis",
+  subtitle: "A Production Gaming Application",
+  url: "https://luvis.site",
+  urlLabel: "luvis.site",
+  lead: "Luvis is not simply a website. It is an application ecosystem of interconnected systems — web application, game experience, admin panel, APIs, payments, caching, notifications, mailing and the server infrastructure holding it together.",
+  subsystems: [
+    { label: "Web application", note: "User-facing interfaces and application shell" },
+    { label: "Game experience", note: "Interactive, game-related interfaces" },
+    { label: "Admin panel", note: "Operational view over the application" },
+    { label: "Push notifications", note: "Event-driven delivery to users" },
+    { label: "APIs", note: "REST communication layer" },
+    { label: "Payment system", note: "Gateway integration and transaction state" },
+    { label: "Redis", note: "Caching for frequently accessed data" },
+    { label: "Database", note: "Persistent application data" },
+    { label: "Mailing", note: "Server-side transactional email" },
+    { label: "Server / cloud infrastructure", note: "Hosting, processes and deployment" },
+  ],
+  role: [
+    {
+      group: "Frontend",
+      primary: true,
+      items: [
+        "User-facing interfaces",
+        "Interactive UI",
+        "Game-related interfaces",
+        "Responsive experiences",
+        "API integration",
+        "UI states",
+        "Animations and interactions",
+      ],
+    },
+    {
+      group: "Application integration",
+      items: [
+        "API communication",
+        "Backend integration",
+        "Data handling",
+        "Authentication-related flows",
+        "Error handling",
+      ],
+    },
+    {
+      group: "Production",
+      items: [
+        "Deployment",
+        "Server hosting",
+        "Node.js services",
+        "Linux environment",
+        "Process management",
+        "Logs",
+        "Troubleshooting",
+      ],
+    },
+    {
+      group: "Supporting systems",
+      items: [
+        "Payment gateway integration",
+        "Redis caching",
+        "Mailing",
+        "Push notifications",
+        "Admin panel",
+        "Logging",
+        "Database interactions",
+      ],
+    },
+  ],
+  adminModules: [
+    { label: "Users", note: "User records and account state" },
+    { label: "Application management", note: "Game / application configuration" },
+    { label: "Transactions", note: "Payment and transaction records" },
+    { label: "Logs", note: "Request and error activity" },
+    { label: "System activity", note: "Operational overview" },
+    { label: "Configuration", note: "Application settings" },
+    { label: "Notifications", note: "Notification triggers and history" },
+  ],
+  notificationFlow: [
+    "Admin / system event",
+    "Backend",
+    "Notification service",
+    "Push delivery",
+    "User device",
+    "Notification",
+    "User opens app",
+  ],
+  notificationWork: [
+    "Triggering notifications",
+    "Backend communication",
+    "User / device targeting where applicable",
+    "Notification events",
+    "Handling notification-related flows",
+    "Connecting frontend behaviour with backend notification systems",
+  ],
+  paymentFlow: [
+    "Player / user",
+    "Frontend",
+    "Payment request",
+    "Backend",
+    "Payment gateway",
+    "Payment response",
+    "Validation",
+    "Database",
+    "Application state",
+    "User",
+  ],
+  paymentWork: [
+    "Payment gateway integration",
+    "Payment requests",
+    "Success / failure handling",
+    "Transaction state",
+    "Backend validation",
+    "External service communication",
+    "Error handling",
+    "Database recording",
+    "Frontend payment states",
+  ],
+  redisWork: [
+    "Faster access to frequently requested data",
+    "Fewer repeated database queries",
+    "Lower database load under traffic",
+    "Backend ↔ cache interaction",
+    "Cache hit and cache miss handling",
+  ],
+  databaseWork: [
+    "Persistent application data",
+    "Database operations",
+    "API ↔ database interaction",
+    "Reading and writing data",
+    "Data validation",
+    "Error handling",
+  ],
+  mailFlow: ["Application event", "Node.js", "Mail service", "SMTP / provider", "User email"],
+  mailWork: [
+    "Triggered emails",
+    "Transactional messages",
+    "Backend email flow",
+    "Configuration",
+    "Authentication",
+    "Error handling",
+    "Debugging delivery problems",
+  ],
+  loggingWork: [
+    "Debug issues",
+    "Understand system behaviour",
+    "Track requests",
+    "Investigate failures",
+    "Diagnose production problems",
+    "Identify bottlenecks",
+  ],
+  deployFlow: ["Code", "Build", "Upload / deploy", "Server", "Node process", "Domain", "Users"],
+  deployWork: [
+    "Hosting applications",
+    "Cloud / server deployment",
+    "Linux",
+    "Process management",
+    "Application builds",
+    "Server logs",
+    "Restarting services",
+    "Production troubleshooting",
+  ],
+  /** Replace with confirmed vendor names before publishing. */
+  placeholders: [
+    { k: "Payment provider", v: "To confirm" },
+    { k: "Push provider", v: "To confirm" },
+    { k: "Database engine", v: "To confirm" },
+    { k: "Mail provider / SMTP", v: "To confirm" },
+  ],
+};
+
+export const luvisArchitecture = {
+  nodes: [
+    { id: "user", label: "User", body: "Every request starts with a real player." },
+    { id: "web", label: "Web app", body: "Frontend application and game interfaces." },
+    { id: "admin", label: "Admin panel", body: "Operational interface over the same APIs." },
+    { id: "api", label: "API", body: "REST layer between interfaces and services." },
+    { id: "node", label: "Node.js", body: "Request handling, server-side logic, integrations." },
+    { id: "redis", label: "Redis", body: "Cache for frequently accessed data." },
+    { id: "db", label: "Database", body: "Persistent application data." },
+    { id: "payment", label: "Payment", body: "Gateway integration and validation." },
+    { id: "notify", label: "Notifications", body: "Event-driven push delivery." },
+    { id: "server", label: "Server / cloud", body: "Linux server, process, domain." },
+    { id: "logging", label: "Logging", body: "Traces of what actually happened." },
+  ],
+};
+
+export const demoLogs = [
+  { tag: "API", level: "INFO", msg: "Request received" },
+  { tag: "API", level: "INFO", msg: "User authenticated" },
+  { tag: "API", level: "INFO", msg: "API request processed" },
+  { tag: "CACHE", level: "INFO", msg: "Cache lookup" },
+  { tag: "DATABASE", level: "INFO", msg: "Database operation" },
+  { tag: "PAYMENT", level: "INFO", msg: "Payment request" },
+  { tag: "NOTIFICATION", level: "INFO", msg: "Notification triggered" },
+  { tag: "API", level: "INFO", msg: "Response sent" },
+  { tag: "ERROR", level: "ERROR", msg: "Upstream timeout — retried" },
+];
+
+export const logFilters = ["ALL", "API", "PAYMENT", "CACHE", "DATABASE", "NOTIFICATION", "ERROR"];
+
+export const fullFlow = [
+  { step: "User clicks", note: "Interaction captured in the UI" },
+  { step: "Frontend event", note: "Handler runs, state moves to loading" },
+  { step: "API request", note: "REST call with payload and auth" },
+  { step: "Node.js", note: "Request handling and routing" },
+  { step: "Authentication / validation", note: "Is the caller allowed, is the input valid" },
+  { step: "Redis", note: "Cache checked before the database" },
+  { step: "Database if required", note: "Read or write persistent data" },
+  { step: "External service if required", note: "Payment, mail or notification" },
+  { step: "Response", note: "Status and payload returned" },
+  { step: "Frontend update", note: "State resolved, UI re-renders" },
+  { step: "Logging", note: "The request leaves a trace" },
+  { step: "User sees result", note: "Interface reflects reality" },
+];
+
+export const techStack = [
+  {
+    group: "Primary — Frontend",
+    primary: true,
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Modern UI development",
+      "Responsive design",
+      "Interactive experiences",
+      "PixiJS / Canvas",
+    ],
+  },
+  {
+    group: "Backend / Application",
+    items: ["Node.js", "REST APIs", "API integration", "Python", "Flask"],
+  },
+  { group: "Data", items: ["Redis", "MySQL", "SQL"] },
+  {
+    group: "Infrastructure",
+    items: ["AWS", "Cloud servers", "Linux", "PM2 / process management", "Deployment", "Server management"],
+  },
+  {
+    group: "Production systems",
+    items: ["Payment integration", "Push notifications", "Mailing", "Logging", "Admin panels"],
+  },
+];
+
+export const constellation = {
+  center: "MAHESH",
+  ring1: ["FRONTEND"],
+  ring2: ["JAVASCRIPT", "UI", "RESPONSIVE", "API INTEGRATION", "ANIMATION"],
+  ring3: [
+    "NODE.JS",
+    "REDIS",
+    "DATABASE",
+    "PAYMENTS",
+    "NOTIFICATIONS",
+    "SERVER",
+    "AWS",
+    "LINUX",
+  ],
+};
+
+export const skillNotes: Record<string, string> = {
+  FRONTEND: "Core expertise — interactive, responsive, production interfaces.",
+  JAVASCRIPT: "Primary language for browser-side logic and API integration.",
+  UI: "Component-based development and reusable interface pieces.",
+  RESPONSIVE: "Mobile-first layouts verified across devices and browsers.",
+  "API INTEGRATION": "REST requests, JSON handling, auth, errors and loading states.",
+  ANIMATION: "Transitions, micro-interactions and canvas animation.",
+  "NODE.JS": "Hands-on experience supporting production services on Luvis.",
+  REDIS: "Caching frequently accessed data to reduce database load.",
+  DATABASE: "Persistent application data, reads, writes and validation.",
+  PAYMENTS: "Payment gateway integration, validation and transaction state.",
+  NOTIFICATIONS: "Event-driven push notification flows end to end.",
+  SERVER: "Linux server work: processes, logs, configuration, troubleshooting.",
+  AWS: "Cloud hosting and asset delivery for production applications.",
+  LINUX: "SSH, files, permissions, processes and log inspection.",
+};
+
+export const mindset = {
+  typical: ["UI", "Browser"],
+  mine: [
+    "UI",
+    "API",
+    "Backend",
+    "Cache",
+    "Database",
+    "External services",
+    "Server",
+    "Logs",
+    "User",
+  ],
+  statement: "I care about what happens after a user clicks the button.",
+};
+
+export const principles = [
+  { id: "01", title: "Build for the user.", body: "The interface is judged by the person using it, not by the code behind it." },
+  { id: "02", title: "Understand the system behind the UI.", body: "A screen is one layer of a request that crosses APIs, caches, databases and servers." },
+  { id: "03", title: "Debug the root cause.", body: "Reproduce, trace the request, read the logs — then fix the cause, not the symptom." },
+  { id: "04", title: "Make production a first-class concern.", body: "Deployment, processes and logs are part of the work, not someone else's step." },
+  { id: "05", title: "Keep interfaces fast and intuitive.", body: "Render less, cache what repeats, and make state obvious to the user." },
+  { id: "06", title: "Learn whatever the problem requires.", body: "Node.js, Redis, Linux and payment flows were all learned because the product needed them." },
 ];
 
 export const experience = [
@@ -49,360 +515,72 @@ export const experience = [
     company: "TZeSSt Technologies Private Ltd.",
     period: "Jun 2025 - Present",
     place: "On-site • Hyderabad, India",
+    built: "Frontend for production gaming applications, plus the application, service and deployment work around them.",
+    learned:
+      "How a frontend behaves once it is connected to real APIs, caches, payments and a live server.",
     points: [
-      "Developed and maintained interactive casino gaming applications, including slot and crash games, focusing on gameplay UI, animations, and interactions.",
-      "Worked extensively with PixiJS to build and optimize high-performance canvas-based game interfaces and animations.",
-      "Enhanced React-based applications and UI components, integrating reusable components and managing dynamic application states.",
-      "Implemented and maintained game features such as gameplay flows, sound integration, and responsive layouts across different devices.",
-      "Debugged and resolved complex frontend rendering, animation, and cross-browser/device issues in existing production applications.",
-      "Deployed and served casino game assets using AWS S3 and CloudFront, enabling reliable content delivery and improved performance for players across different regions.",
-      "Utilized React Native for developing cross-platform mobile applications.",
+      "Built and maintained frontend interfaces for production gaming applications, focusing on UI, animations and interactions.",
+      "Worked with PixiJS and canvas rendering to build and optimise interactive game interfaces.",
+      "Built reusable React components and managed dynamic application state.",
+      "Implemented responsive layouts, gameplay flows and sound integration across devices.",
+      "Debugged frontend rendering, animation and cross-browser/device issues in live applications.",
+      "Integrated frontend applications with REST APIs and backend services.",
+      "Deployed and served application assets using AWS S3 and CloudFront.",
+      "Worked with React Native for cross-platform mobile application development.",
     ],
     tech: [
       "JavaScript",
       "HTML",
       "CSS",
-      "Git/GitHub",
-      "PixiJS",
       "React",
+      "PixiJS",
       "Node.js",
       "Tailwind CSS",
-      "Python",
       "AWS",
-      "Spine",
-      "Next.js",
-      "WebGL",
-      "React Native",
-    ],
-  },
-];
-
-export type Project = (typeof projects)[number];
-
-export const projects = [
-  {
-    id: "luvis",
-    name: "Luvis",
-    kind: "Full-Stack E-Commerce · Live",
-    url: "https://luvis.site" as string | null,
-    urlLabel: "luvis.site" as string | null,
-    tagline: "A live storefront, built and shipped solo.",
-    blurb:
-      "Luvis is a live e-commerce web application for girls' jewellery, hair accessories and matching combos — designed, built and shipped end to end by one developer.",
-    highlights: [
-      { k: "Live", v: "luvis.site" },
-      { k: "Type", v: "E-commerce storefront" },
-      { k: "Owner", v: "Sole developer" },
-      { k: "Scope", v: "Concept → deploy" },
-    ],
-    role: "Sole developer — architecture, backend services, frontend components and testing.",
-    tech: ["Python", "Flask", "JavaScript", "HTML", "CSS", "MySQL", "REST APIs"],
-    overview:
-      "Luvis is a live e-commerce web application for girls' jewellery, hair accessories and matching dress + ornament combos, designed and developed independently from concept and architecture through implementation, testing and deployment.",
-    purpose:
-      "The project was built to deliver a complete working application where the interface, application logic, data storage and the communication layer between them were all designed as one coherent system.",
-    contribution: [
-      "Designed and developed Luvis as an independent full-stack application, taking ownership from concept and architecture through implementation and testing.",
-      "Developed backend services using Python and Flask, implementing application logic, API endpoints, data processing, and database interactions.",
-      "Built interactive and responsive frontend components using HTML, CSS, and JavaScript.",
-      "Integrated MySQL for structured data storage, retrieval, and application-level database operations.",
-      "Implemented frontend-backend communication through REST APIs for dynamic application functionality.",
-    ],
-    architecture: [
-      "Frontend — HTML, CSS, JavaScript",
-      "REST APIs",
-      "Backend — Python / Flask",
-      "Database — MySQL",
-    ],
-    features: [
-      "Product catalogue browsing for jewellery, hair accessories and combos",
-      "Interactive, responsive frontend components",
-      "Flask API endpoints for application logic",
-      "Data processing and database interactions",
-      "Structured storage and retrieval with MySQL",
-      "Dynamic behaviour driven by REST API communication",
-    ],
-    outcome:
-      "Delivered as a working full-stack application, built and tested end to end by a single developer.",
-    accent: "from-[oklch(0.72_0.14_190)] to-[oklch(0.55_0.16_265)]",
-  },
-  {
-    id: "aquaculture",
-    name: "Dissolved Oxygen Management in Aquaculture Ponds",
-    kind: "Web Dashboard · Machine Learning",
-    url: null as string | null,
-    urlLabel: null as string | null,
-    tagline: "Sensors in, oxygen decisions out.",
-    blurb:
-      "A sensor-driven dashboard and automated aeration system that estimates and optimises dissolved oxygen levels in aquaculture ponds.",
-    highlights: [
-      { k: "Model", v: "Random Forest" },
-      { k: "Data", v: "Live sensors + MySQL" },
-      { k: "Control", v: "Automated aeration" },
-      { k: "Output", v: "Dashboard charts" },
-    ],
-    role: "Model development, automation logic, data layer and dashboard visualisation.",
-    tech: ["Python", "Random Forest", "MySQL", "Sensors"],
-    overview:
-      "A web dashboard combined with a Random Forest model and an automated aeration system for managing dissolved oxygen in aquaculture ponds.",
-    purpose:
-      "Dissolved oxygen is critical to pond health. The project estimates oxygen levels from water-quality parameters and acts on them automatically instead of relying on manual checks.",
-    contribution: [
-      "Built a Random Forest model to estimate dissolved oxygen levels based on water-quality parameters.",
-      "Developed an automated aeration system to optimize oxygen levels in real time.",
-      "Used sensor data and MySQL for monitoring, storage, and retrieval of environmental data.",
-      "Integrated an interactive web dashboard with charts and graphs for visualizing dissolved oxygen levels and management data.",
-    ],
-    architecture: [
-      "Sensors — water-quality parameters",
-      "Python — Random Forest estimation",
-      "MySQL — monitoring, storage, retrieval",
-      "Web dashboard — charts and graphs",
-    ],
-    features: [
-      "Dissolved oxygen estimation from water-quality parameters",
-      "Real-time automated aeration control",
-      "Sensor data monitoring and storage",
-      "Interactive charts and graphs for management data",
-    ],
-    outcome:
-      "An end-to-end system in which estimation, automation and visualisation operate on the same live sensor data.",
-    accent: "from-[oklch(0.75_0.15_150)] to-[oklch(0.6_0.13_215)]",
-  },
-];
-
-export const skills = [
-  {
-    group: "Frontend",
-    level: "Production Experience",
-    items: ["React", "Next.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS"],
-  },
-  {
-    group: "Interactive / Graphics",
-    level: "Production Experience",
-    items: ["Pixi.js", "WebGL", "Canvas Animation", "Spine", "Texture Packer"],
-  },
-  {
-    group: "Backend",
-    level: "Advanced",
-    items: ["Node.js", "Express", "Python", "Flask", "REST APIs"],
-  },
-  { group: "Databases", level: "Advanced", items: ["MySQL", "PostgreSQL", "Redis", "SQL"] },
-  {
-    group: "Mobile",
-    level: "Working Knowledge",
-    items: ["React Native"],
-  },
-  {
-    group: "Tools & Platforms",
-    level: "Production Experience",
-    items: [
-      "Git",
-      "GitHub",
-      "GitHub Actions",
-      "CI/CD",
-      "Docker",
-      "AWS Cloud Platform",
       "Linux",
-      "Postman",
-      "Jira",
-      "Visual Studio Code",
-      "MySQL Workbench",
+      "Redis",
+      "React Native",
+      "Git/GitHub",
     ],
+    production: "Production experience: deployment, server hosting, process management and log-driven debugging.",
   },
-];
-
-export const performanceFocus = [
-  {
-    title: "Canvas rendering",
-    body: "Optimized high-performance PixiJS canvas interfaces and animations.",
-  },
-  {
-    title: "Animation optimization",
-    body: "Tuned gameplay animation and interaction work in production titles.",
-  },
-  {
-    title: "Responsive UI",
-    body: "Responsive layouts maintained across different devices.",
-  },
-  {
-    title: "Cross-browser compatibility",
-    body: "Debugged rendering and animation issues across browsers and devices.",
-  },
-  {
-    title: "Asset delivery",
-    body: "Game assets served via AWS S3 and CloudFront for regional performance.",
-  },
-  {
-    title: "Component reuse",
-    body: "Reusable React components with managed dynamic application state.",
-  },
-];
-
-export const process = [
-  { stage: "Idea", body: "Define what the application has to do before writing code." },
-  { stage: "Design", body: "Shape the gameplay UI, layout and interaction model." },
-  {
-    stage: "Architecture",
-    body: "Decide the frontend, API, backend and database boundaries — as done end to end on Luvis.",
-  },
-  {
-    stage: "Development",
-    body: "Build reusable React components, canvas systems and API endpoints.",
-  },
-  {
-    stage: "Optimization",
-    body: "Profile rendering and animation, then fix cross-browser and device issues.",
-  },
-  { stage: "Deployment", body: "Ship and serve assets through AWS S3 and CloudFront." },
 ];
 
 export const timeline = [
   {
-    year: "2021",
-    title: "Bachelor of Engineering, Computer Science",
-    org: "QIS College of Engineering & Technology, Ongole",
-    body: "Started a four-year Computer Science degree, graduating in 2025 with a CGPA of 8.32.",
-  },
-  {
-    year: "2024",
-    title: "1st Place — CodewalaQuest Hackathon",
-    org: "QIS College of Engineering & Technology",
-    body: "Took first place in the CodewalaQuest Hackathon 2024.",
+    year: "2025",
+    title: "Associative Software Engineer",
+    org: "TZeSSt Technologies Private Ltd.",
+    body: "Frontend engineering on production gaming applications, extending into APIs, Node.js services, deployment and server work.",
   },
   {
     year: "2025",
-    title: "Graduated — CGPA 8.32",
-    org: "QIS College of Engineering & Technology",
-    body: "Completed the Bachelor of Engineering in Computer Science (2021 - 2025).",
+    title: "Luvis — production application",
+    org: "Frontend + application integration + production",
+    body: "Worked across the Luvis ecosystem: interfaces, API integration, payments, caching, notifications, mailing, admin panel and deployment.",
   },
   {
-    year: "Jun 2025",
-    title: "Associative Software Engineer",
-    org: "TZeSSt Technologies Private Ltd. — Hyderabad, India",
-    body: "Joined full-time, building interactive casino gaming applications with PixiJS and React.",
+    year: "2024",
+    title: "Hackathon win",
+    org: "Smart India Hackathon (Internal)",
+    body: "Recognised for building a working solution under time constraints.",
   },
   {
-    year: "Present",
-    title: "Building interactive game interfaces",
-    org: "TZeSSt Technologies Private Ltd.",
-    body: "Slot and crash game UI, canvas animation, sound integration, responsive layouts and AWS asset delivery.",
+    year: "2021 – 2025",
+    title: "Bachelor of Engineering, Computer Science",
+    org: "QIS College of Engineering and Technology",
+    body: "Computer science foundation alongside self-directed frontend and application work.",
   },
 ];
 
 export const education = {
-  school: "QIS College of Engineering & Technology, Ongole",
-  degree: "Bachelor of Engineering in Computer Science",
-  period: "2021 - 2025",
-  cgpa: "8.32",
+  degree: "Bachelor of Engineering — Computer Science",
+  school: "QIS College of Engineering and Technology",
+  period: "2021 – 2025",
+  cgpa: "7.5",
 };
 
 export const achievement = {
-  title: "1st Place — CodewalaQuest Hackathon 2024",
-  org: "QIS College of Engineering & Technology",
+  title: "Smart India Hackathon — Internal Winner",
+  org: "QIS College of Engineering and Technology",
 };
-
-/* ---------- Redesign content (all derived from the resume above) ---------- */
-
-export const pillars = [
-  {
-    label: "Interactive Experiences",
-    note: "Slot and crash game interfaces — gameplay UI, animations and interactions, in production.",
-  },
-  {
-    label: "PixiJS & Canvas",
-    note: "Built and optimized high-performance canvas-based game interfaces and animations.",
-  },
-  {
-    label: "React Architecture",
-    note: "Reusable components and dynamic application state across React applications.",
-  },
-  {
-    label: "Animation",
-    note: "Gameplay flows, sound integration and motion tuned for responsiveness.",
-  },
-  {
-    label: "Performance",
-    note: "Debugged complex rendering, animation and cross-browser/device issues.",
-  },
-  {
-    label: "Full-Stack Development",
-    note: "Python, Flask, Node.js, REST APIs and MySQL — owned end to end on Luvis.",
-  },
-];
-
-export const skillNotes: Record<string, string> = {
-  React: "Enhanced React applications and UI components in production.",
-  "Next.js": "Used alongside React in day-to-day frontend work.",
-  JavaScript: "Primary language for interactive application and gameplay work.",
-  TypeScript: "Typed frontend development for interactive interfaces.",
-  HTML5: "Markup for interactive, responsive frontend components.",
-  CSS3: "Responsive layouts across different devices.",
-  "Tailwind CSS": "Utility-first styling in frontend applications.",
-  "Pixi.js": "Built and optimized high-performance canvas game interfaces.",
-  WebGL: "GPU-accelerated rendering behind canvas game interfaces.",
-  "Canvas Animation": "Gameplay animation and interaction work in production titles.",
-  Spine: "Skeletal animation assets used in game interfaces.",
-  "Texture Packer": "Sprite atlas preparation for game assets.",
-  "Node.js": "Server-side JavaScript in application development.",
-  Express: "REST API layer in Node.js services.",
-  Python: "Backend services and the Random Forest model in the aquaculture project.",
-  Flask: "Application logic, API endpoints and database interactions on Luvis.",
-  "REST APIs": "Frontend-backend communication for dynamic functionality.",
-  MySQL: "Structured storage, retrieval and database operations.",
-  PostgreSQL: "Relational database work.",
-  Redis: "In-memory data store.",
-  SQL: "Querying and application-level database operations.",
-  "React Native": "Cross-platform mobile application development.",
-  Git: "Version control across all project work.",
-  GitHub: "Repository hosting and collaboration.",
-  "GitHub Actions": "Automated build and delivery workflows.",
-  "CI/CD": "Continuous integration and delivery pipelines.",
-  Docker: "Containerised development environments.",
-  "AWS Cloud Platform": "S3 and CloudFront for game asset delivery.",
-  Linux: "Primary development and deployment environment.",
-  Postman: "API testing during backend development.",
-  Jira: "Issue tracking and delivery workflow.",
-  "Visual Studio Code": "Daily development environment.",
-  "MySQL Workbench": "Schema design and query work.",
-};
-
-export const buildSteps = [
-  {
-    id: "01",
-    stage: "Architect",
-    body: "Decide the frontend, API, backend and database boundaries before writing code — as done end to end on Luvis.",
-    tags: ["Architecture", "REST APIs", "MySQL"],
-  },
-  {
-    id: "02",
-    stage: "Build",
-    body: "Build reusable React components, canvas systems and API endpoints, managing dynamic application state.",
-    tags: ["React", "PixiJS", "Flask"],
-  },
-  {
-    id: "03",
-    stage: "Animate",
-    body: "Implement gameplay flows, animations, interactions and sound integration across devices.",
-    tags: ["Canvas Animation", "Spine", "Sound"],
-  },
-  {
-    id: "04",
-    stage: "Optimize",
-    body: "Profile canvas rendering and animation, then resolve cross-browser and device issues in production apps.",
-    tags: ["Rendering", "Responsive UI", "Debugging"],
-  },
-  {
-    id: "05",
-    stage: "Deploy",
-    body: "Deploy and serve game assets through AWS S3 and CloudFront for reliable delivery across regions.",
-    tags: ["AWS S3", "CloudFront", "CI/CD"],
-  },
-];
-
-export const deliveryChain = [
-  { node: "Build output", note: "Game assets and bundled frontend" },
-  { node: "AWS S3", note: "Origin storage for game assets" },
-  { node: "CloudFront", note: "Edge distribution across regions" },
-  { node: "Players", note: "Reliable delivery, improved performance" },
-];

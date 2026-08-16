@@ -6,18 +6,22 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { FrontendCore } from "@/components/FrontendCore";
+import { SystemBridge } from "@/components/SystemBridge";
+import { CloudProduction } from "@/components/CloudProduction";
+import { LuvisCase } from "@/components/LuvisCase";
+import { FullFlow } from "@/components/FullFlow";
+import { TechStack } from "@/components/TechStack";
+import { SkillConstellation } from "@/components/SkillConstellation";
+import { Mindset } from "@/components/Mindset";
 import { Experience } from "@/components/Experience";
-import { Projects } from "@/components/Projects";
 import { Lab } from "@/components/Lab";
-import { Skills } from "@/components/Skills";
-import { Performance } from "@/components/Performance";
-import { Process } from "@/components/Process";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
-const title = "Mahesh Jillela — Frontend Engineer | Interactive & PixiJS";
+const title = "Mahesh Jillela — Frontend Developer | Production-Aware Engineering";
 const description =
-  "Mahesh Jillela builds interactive digital experiences — React, JavaScript, PixiJS, WebGL and TypeScript, plus full-stack work with Python, Flask and MySQL.";
+  "Frontend developer building interactive production interfaces, with hands-on experience across REST APIs, Node.js, Redis, databases, payments, notifications, AWS, Linux servers and deployment.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,7 +42,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Mahesh Jillela",
-          jobTitle: "Frontend Engineer",
+          jobTitle: "Frontend Developer",
           email: "mailto:maheshjillela6@gmail.com",
           address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressCountry: "IN" },
           sameAs: [
@@ -62,12 +66,16 @@ function Index() {
       <main id="main">
         <Hero />
         <About />
+        <FrontendCore />
+        <SystemBridge />
+        <CloudProduction />
+        <LuvisCase />
+        <FullFlow />
+        <TechStack />
+        <SkillConstellation />
+        <Mindset />
         <Experience />
-        <Projects />
         <Lab />
-        <Skills />
-        <Performance />
-        <Process />
         <Contact />
       </main>
       <Footer />
