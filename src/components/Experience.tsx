@@ -50,6 +50,19 @@ export function Experience() {
                 {job.type} · {job.place}
               </p>
 
+              <dl className="mt-8 space-y-4">
+                {[
+                  { k: "Built", v: job.built },
+                  { k: "Learned", v: job.learned },
+                  { k: "Production", v: job.production },
+                ].map((r) => (
+                  <div key={r.k} className="rounded-lg border border-border bg-surface/50 p-4">
+                    <dt className="label text-accent">{r.k}</dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-foreground/80">{r.v}</dd>
+                  </div>
+                ))}
+              </dl>
+
               <ul className="mt-8 flex flex-wrap gap-x-4 gap-y-2">
                 {job.tech.map((t) => (
                   <li key={t} className="font-mono text-[11px] text-muted-foreground">
