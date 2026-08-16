@@ -53,8 +53,8 @@ export function SkillConstellation() {
                     cy="50"
                     r={r}
                     fill="none"
-                    stroke="var(--border)"
-                    strokeWidth="0.2"
+                    stroke="color-mix(in oklab, var(--accent) 22%, transparent)"
+                    strokeWidth="0.3"
                     vectorEffect="non-scaling-stroke"
                   />
                 ))}
@@ -65,19 +65,12 @@ export function SkillConstellation() {
                     y1="50"
                     x2={n.x}
                     y2={n.y}
-                    stroke={active === n.label ? "var(--accent)" : "var(--border)"}
+                    stroke={active === n.label ? "var(--accent)" : "color-mix(in oklab, var(--accent) 16%, transparent)"}
                     strokeWidth={active === n.label ? "0.4" : "0.15"}
                     vectorEffect="non-scaling-stroke"
                   />
                 ))}
               </svg>
-
-              {/* centre */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                <p className="font-display text-base font-medium tracking-[0.08em] text-foreground sm:text-xl">
-                  {constellation.center}
-                </p>
-              </div>
 
               {nodes.map((n, i) => {
                 const isActive = active === n.label;
