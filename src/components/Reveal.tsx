@@ -80,12 +80,15 @@ export function SectionHeading({
   eyebrow,
   title,
   lead,
+  points,
   align = "left",
 }: {
   index?: string;
   eyebrow: string;
   title: string;
   lead?: string;
+  /** Short scannable fragments shown instead of a paragraph. 2-5 words each. */
+  points?: string[];
   align?: "left" | "wide";
 }) {
   return (
@@ -102,11 +105,30 @@ export function SectionHeading({
       </h2>
       {lead ? (
         <Reveal delay={0.16}>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {lead}
+          <p className="mt-6 flex max-w-2xl gap-3 text-base leading-snug text-foreground/80 sm:text-lg">
+            <span aria-hidden="true" className="mt-1 w-px shrink-0 self-stretch bg-accent/60" />
+            <span>{lead}</span>
           </p>
+        </Reveal>
+      ) : null}
+      {points?.length ? (
+        <Reveal delay={0.2}>
+          <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-2">
+            {points.map((p, i) => (
+              <li
+                key={p}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5"
+              >
+                <span className="font-mono text-[10px] text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[13px] leading-none text-foreground/85">{p}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       ) : null}
     </header>
   );
 }
+
