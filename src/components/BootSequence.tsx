@@ -13,6 +13,8 @@ const STAGES = [
  * Boot overlay inspired by game-studio preloaders: a percentage counter,
  * rotating geometric mark and a staged pipeline readout. Runs once per session.
  */
+let bootedThisMount = false;
+
 export function BootSequence() {
   const reduce = useReducedMotion();
   const [visible, setVisible] = useState(false);
@@ -20,7 +22,8 @@ export function BootSequence() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (sessionStorage.getItem("mj-booted") === "1") return;
+    if (sessionStorage.getItem("mj-booted") === "1" && !bootedThisMount) return;
+    bootedThisMount = true;
     sessionStorage.setItem("mj-booted", "1");
     setVisible(true);
     document.documentElement.style.overflow = "hidden";
