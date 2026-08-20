@@ -76,8 +76,9 @@ export function BootSequence() {
                   transition={{ duration: 22 + i * 9, repeat: Infinity, ease: "linear" }}
                 >
                   <polygon
-                    points={Array.from({ length: 6 + i * 2 }, (_, k, arr) => {
-                      const a = (k / arr.length) * Math.PI * 2 - Math.PI / 2;
+                    points={Array.from({ length: 6 + i * 2 }, (_, k) => {
+                      const sides = 6 + i * 2;
+                      const a = (k / sides) * Math.PI * 2 - Math.PI / 2;
                       const r = 78 - i * 20;
                       return `${100 + Math.cos(a) * r},${100 + Math.sin(a) * r}`;
                     }).join(" ")}
