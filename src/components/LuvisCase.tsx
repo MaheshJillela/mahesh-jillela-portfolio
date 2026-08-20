@@ -176,7 +176,8 @@ export function LuvisCase() {
         <Block
           eyebrow="Architecture"
           title="How the pieces actually connect."
-          lead="Interfaces and admin talk to the same API. Node.js coordinates cache, database, payments and notifications, all running on the server with logging behind it."
+          lead="One API behind two interfaces."
+          points={["Node.js coordinates", "Cache + database", "Payments + notifications", "Logged on the server"]}
         >
           <LuvisArchitecture />
         </Block>
@@ -185,7 +186,8 @@ export function LuvisCase() {
         <Block
           eyebrow="Admin panel"
           title="An application ecosystem, not a frontend website."
-          lead="The admin side gives an operational view over the same systems the player-facing app uses. Modules shown are conceptual placeholders."
+          lead="Operational view over the same systems."
+          points={["Same APIs as the app", "Modules are conceptual"]}
         >
           <AdminMock />
         </Block>
@@ -230,7 +232,8 @@ export function LuvisCase() {
         <Block
           eyebrow="Redis"
           title="Making frequently accessed data faster."
-          lead="Caching exists so the same data is not fetched from the database over and over. The cache is checked first; a miss falls through to the database and warms the cache."
+          lead="Cache first, database on a miss."
+          points={["Hit: instant", "Miss: DB read", "Then cache is warmed"]}
         >
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <Reveal>

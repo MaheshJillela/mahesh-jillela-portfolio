@@ -10,7 +10,8 @@ export function SystemBridge() {
           index="03"
           eyebrow="Frontend ↔ Backend"
           title="I don't just build the screen."
-          lead="I understand what happens when the screen talks to the system behind it — the request, the service, the data, and the response the interface has to handle."
+          lead="What happens when the screen talks to the system."
+          points={["Request", "Service", "Data", "Response the UI handles"]}
         />
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">

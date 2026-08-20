@@ -135,7 +135,8 @@ export function Lab() {
           index="04"
           eyebrow="Interactive lab"
           title="Interactive lab — run it, don't read it."
-          lead="Five lightweight experiments rendered with PixiJS and pointer maths. Each one pauses when it scrolls off-screen and falls back to a static frame under reduced motion."
+          lead="Five PixiJS experiments, pointer-driven."
+          points={["Pauses off-screen", "Reduced-motion fallback"]}
         />
 
         <ul className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

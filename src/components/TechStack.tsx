@@ -9,7 +9,8 @@ export function TechStack() {
           index="07"
           eyebrow="Tech stack"
           title="Grouped by what I actually use it for."
-          lead="No logo wall. Frontend is the primary block — everything else is there because a production application needed it."
+          lead="No logo wall."
+          points={["Frontend is primary", "Rest earned by need", "All used in production"]}
         />
 
         <div className="mt-16 space-y-4">

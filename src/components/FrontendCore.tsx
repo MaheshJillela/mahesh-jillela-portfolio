@@ -18,7 +18,8 @@ export function FrontendCore() {
           index="02"
           eyebrow="Core expertise"
           title="Frontend Engineering."
-          lead="The largest part of my work: building interfaces that are responsive, interactive and ready for real users — with every state accounted for."
+          lead="The largest part of my work."
+          points={["Responsive", "Interactive", "Every state handled", "Built for real users"]}
         />
 
         <div className="mt-16 grid gap-4 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">

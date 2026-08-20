@@ -84,7 +84,8 @@ export function CloudProduction() {
           index="04"
           eyebrow="Cloud · Server · Deployment"
           title="I can take it from code to production."
-          lead="Building the interface is half the job. I can also host it, deploy it, keep the process alive and debug it when something breaks in production."
+          lead="Building the interface is half the job."
+          points={["Host", "Deploy", "Keep the process alive", "Debug in production"]}
         />
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">

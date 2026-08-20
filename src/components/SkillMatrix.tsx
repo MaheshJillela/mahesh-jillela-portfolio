@@ -23,7 +23,8 @@ export function SkillMatrix() {
           index="09"
           eyebrow="Skill showcase"
           title="Every skill, and where I used it."
-          lead="Grouped by the layer of the application it belongs to — from the interface down to the server it runs on. Pick a layer, then a skill, to see how it shows up in real work."
+          lead="Grouped by application layer."
+          points={["Pick a layer", "Pick a skill", "See where it was used"]}
         />
 
         {/* Layer selector */}
