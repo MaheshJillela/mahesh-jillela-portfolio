@@ -12,12 +12,14 @@ function Block({
   eyebrow,
   title,
   lead,
+  points,
   children,
 }: {
   id?: string;
   eyebrow: string;
   title: string;
   lead?: string;
+  points?: string[];
   children: React.ReactNode;
 }) {
   return (
@@ -28,13 +30,32 @@ function Block({
           {title}
         </h3>
         {lead ? (
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">{lead}</p>
+          <p className="mt-4 flex max-w-2xl gap-3 text-sm leading-snug text-foreground/80">
+            <span aria-hidden="true" className="mt-0.5 w-px shrink-0 self-stretch bg-accent/60" />
+            <span>{lead}</span>
+          </p>
+        ) : null}
+        {points?.length ? (
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {points.map((p, i) => (
+              <li
+                key={p}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5"
+              >
+                <span className="font-mono text-[10px] text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[13px] leading-none text-foreground/85">{p}</span>
+              </li>
+            ))}
+          </ul>
         ) : null}
       </Reveal>
       <div className="mt-10">{children}</div>
     </div>
   );
 }
+
 
 function Bullets({ items, columns = 2 }: { items: string[]; columns?: 1 | 2 }) {
   return (
