@@ -13,6 +13,7 @@ import { LuvisCase } from "@/components/LuvisCase";
 import { FullFlow } from "@/components/FullFlow";
 import { TechStack } from "@/components/TechStack";
 import { SkillConstellation } from "@/components/SkillConstellation";
+import { SkillMatrix } from "@/components/SkillMatrix";
 import { Mindset } from "@/components/Mindset";
 import { Experience } from "@/components/Experience";
 import { Lab } from "@/components/Lab";
