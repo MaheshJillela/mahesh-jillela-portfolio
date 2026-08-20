@@ -20,7 +20,7 @@ export function SkillMatrix() {
     <section id="skills-matrix" className="relative border-t border-border py-24 sm:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
-          index="08"
+          index="09"
           eyebrow="Skill showcase"
           title="Every skill, and where I used it."
           lead="Grouped by the layer of the application it belongs to — from the interface down to the server it runs on. Pick a layer, then a skill, to see how it shows up in real work."
