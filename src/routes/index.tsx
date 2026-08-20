@@ -74,6 +74,7 @@ function Index() {
         <FullFlow />
         <TechStack />
         <SkillConstellation />
+        <SkillMatrix />
         <Mindset />
         <Experience />
         <Lab />
