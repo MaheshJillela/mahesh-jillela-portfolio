@@ -96,10 +96,9 @@ export function HudRails() {
                     {s.label}
                   </span>
                   <motion.span
-                    animate={reduce ? {} : { width: isActive ? 22 : 10 }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ width: isActive ? 22 : 10 }}
+                    transition={reduce ? { duration: 0 } : { duration: 0.3 }}
                     className={`block h-px ${isActive ? "bg-accent" : "bg-border-strong group-hover:bg-accent/60"}`}
-                    style={reduce ? { width: isActive ? 22 : 10 } : undefined}
                   />
                 </a>
               </li>
