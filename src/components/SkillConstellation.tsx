@@ -42,8 +42,22 @@ export function SkillConstellation() {
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <Reveal>
-            <div className="noise relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-surface">
+            <div className="hud-bracket noise relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-surface">
               <div className="grid-texture absolute inset-0 opacity-50" aria-hidden="true" />
+
+              {/* radar sweep */}
+              <motion.div
+                aria-hidden="true"
+                className="absolute inset-0 origin-center"
+                animate={reduce ? {} : { rotate: 360 }}
+                transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+                style={{
+                  background:
+                    "conic-gradient(from 0deg, color-mix(in oklab, var(--accent) 16%, transparent) 0deg, transparent 48deg, transparent 360deg)",
+                  maskImage: "radial-gradient(circle at 50% 50%, black 46%, transparent 47%)",
+                }}
+              />
+
 
               {/* rings */}
               <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
