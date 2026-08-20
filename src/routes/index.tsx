@@ -3,6 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CustomCursor } from "@/components/CustomCursor";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { BootSequence } from "@/components/BootSequence";
+import { HudRails } from "@/components/HudRails";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -59,12 +61,18 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="relative min-h-screen bg-background text-foreground">
+      <div
+        aria-hidden="true"
+        className="aurora-wash pointer-events-none fixed inset-0 z-0 opacity-45"
+      />
+      <BootSequence />
       <SmoothScroll />
       <ScrollProgress />
+      <HudRails />
       <CustomCursor />
       <Navbar />
-      <main id="main">
+      <main id="main" className="relative z-10">
         <Hero />
         <About />
         <FrontendCore />
