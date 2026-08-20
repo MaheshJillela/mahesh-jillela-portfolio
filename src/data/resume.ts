@@ -584,3 +584,166 @@ export const achievement = {
   title: "Smart India Hackathon — Internal Winner",
   org: "QIS College of Engineering and Technology",
 };
+
+export type SkillDepth = "core" | "strong" | "working";
+
+export const skillMatrix = [
+  {
+    id: "interface",
+    layer: "Interface",
+    index: "01",
+    lead: "What the user sees and touches.",
+    skills: [
+      {
+        name: "React",
+        depth: "core" as SkillDepth,
+        note: "Component architecture, reusable UI pieces and dynamic application state.",
+        proof: "Luvis game interfaces",
+      },
+      {
+        name: "JavaScript / TypeScript",
+        depth: "core" as SkillDepth,
+        note: "Browser-side logic, events, async work and data transformation.",
+        proof: "Daily driver",
+      },
+      {
+        name: "HTML / CSS",
+        depth: "core" as SkillDepth,
+        note: "Semantic markup, responsive layouts and cross-browser behaviour.",
+        proof: "Mobile-first builds",
+      },
+      {
+        name: "Tailwind CSS",
+        depth: "core" as SkillDepth,
+        note: "Design-token driven styling kept consistent across a whole application.",
+        proof: "Production UI",
+      },
+      {
+        name: "PixiJS / Canvas",
+        depth: "strong" as SkillDepth,
+        note: "Canvas rendering and optimisation for interactive game interfaces.",
+        proof: "Gaming application",
+      },
+      {
+        name: "Animation & interaction",
+        depth: "strong" as SkillDepth,
+        note: "Transitions, micro-interactions and gameplay feedback that stay at 60fps.",
+        proof: "Luvis gameplay flows",
+      },
+      {
+        name: "React Native",
+        depth: "working" as SkillDepth,
+        note: "Cross-platform mobile screens sharing logic with the web application.",
+        proof: "Mobile app work",
+      },
+    ],
+  },
+  {
+    id: "application",
+    layer: "Application",
+    index: "02",
+    lead: "The layer the interface actually talks to.",
+    skills: [
+      {
+        name: "REST API integration",
+        depth: "core" as SkillDepth,
+        note: "Requests, JSON contracts, auth headers, errors and every loading state.",
+        proof: "All Luvis screens",
+      },
+      {
+        name: "Node.js",
+        depth: "strong" as SkillDepth,
+        note: "Reading and supporting the services behind the endpoints I consume.",
+        proof: "Luvis services",
+      },
+      {
+        name: "Payments",
+        depth: "strong" as SkillDepth,
+        note: "Gateway integration, validation and transaction state end to end.",
+        proof: "Live transactions",
+      },
+      {
+        name: "Notifications & mailing",
+        depth: "strong" as SkillDepth,
+        note: "Event-driven push and email flows triggered from real application events.",
+        proof: "Luvis platform",
+      },
+      {
+        name: "Python / Flask",
+        depth: "working" as SkillDepth,
+        note: "Small services and scripts where Python was the faster route.",
+        proof: "Support tooling",
+      },
+    ],
+  },
+  {
+    id: "data",
+    layer: "Data & cache",
+    index: "03",
+    lead: "Where state lives between requests.",
+    skills: [
+      {
+        name: "Redis",
+        depth: "strong" as SkillDepth,
+        note: "Caching frequently read data to cut repeated database work.",
+        proof: "Luvis caching",
+      },
+      {
+        name: "MySQL / SQL",
+        depth: "strong" as SkillDepth,
+        note: "Reads, writes, validation and inspecting data when a bug is reported.",
+        proof: "Production data",
+      },
+      {
+        name: "Admin panels",
+        depth: "strong" as SkillDepth,
+        note: "Internal tooling so the people running the product can operate it.",
+        proof: "Luvis admin",
+      },
+    ],
+  },
+  {
+    id: "production",
+    layer: "Production",
+    index: "04",
+    lead: "Getting it to real users and keeping it up.",
+    skills: [
+      {
+        name: "AWS (S3 / CloudFront)",
+        depth: "strong" as SkillDepth,
+        note: "Hosting and delivering application assets to real users.",
+        proof: "Deployed builds",
+      },
+      {
+        name: "Linux servers",
+        depth: "strong" as SkillDepth,
+        note: "SSH, files, permissions, processes and configuration.",
+        proof: "Live servers",
+      },
+      {
+        name: "PM2 / process management",
+        depth: "working" as SkillDepth,
+        note: "Keeping services running, restarting and watching them after deploys.",
+        proof: "Service uptime",
+      },
+      {
+        name: "Logging & debugging",
+        depth: "strong" as SkillDepth,
+        note: "Tracing a request through logs to find the cause, not the symptom.",
+        proof: "Live incidents",
+      },
+      {
+        name: "Git / GitHub",
+        depth: "core" as SkillDepth,
+        note: "Branching, review and release flow across a working team.",
+        proof: "Team workflow",
+      },
+    ],
+  },
+];
+
+export const depthMeta: Record<SkillDepth, { label: string; dots: number }> = {
+  core: { label: "Core", dots: 3 },
+  strong: { label: "Strong", dots: 2 },
+  working: { label: "Working", dots: 1 },
+};

@@ -7,7 +7,7 @@ export function Mindset() {
     <section id="mindset" className="relative border-t border-border py-24 sm:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
-          index="09"
+          index="10"
           eyebrow="Engineering mindset"
           title="I think beyond the screen."
           lead={mindset.statement}
