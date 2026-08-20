@@ -12,12 +12,14 @@ function Block({
   eyebrow,
   title,
   lead,
+  points,
   children,
 }: {
   id?: string;
   eyebrow: string;
   title: string;
   lead?: string;
+  points?: string[];
   children: React.ReactNode;
 }) {
   return (
@@ -28,13 +30,32 @@ function Block({
           {title}
         </h3>
         {lead ? (
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">{lead}</p>
+          <p className="mt-4 flex max-w-2xl gap-3 text-sm leading-snug text-foreground/80">
+            <span aria-hidden="true" className="mt-0.5 w-px shrink-0 self-stretch bg-accent/60" />
+            <span>{lead}</span>
+          </p>
+        ) : null}
+        {points?.length ? (
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {points.map((p, i) => (
+              <li
+                key={p}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5"
+              >
+                <span className="font-mono text-[10px] text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[13px] leading-none text-foreground/85">{p}</span>
+              </li>
+            ))}
+          </ul>
         ) : null}
       </Reveal>
       <div className="mt-10">{children}</div>
     </div>
   );
 }
+
 
 function Bullets({ items, columns = 2 }: { items: string[]; columns?: 1 | 2 }) {
   return (
@@ -176,7 +197,8 @@ export function LuvisCase() {
         <Block
           eyebrow="Architecture"
           title="How the pieces actually connect."
-          lead="Interfaces and admin talk to the same API. Node.js coordinates cache, database, payments and notifications, all running on the server with logging behind it."
+          lead="One API behind two interfaces."
+          points={["Node.js coordinates", "Cache + database", "Payments + notifications", "Logged on the server"]}
         >
           <LuvisArchitecture />
         </Block>
@@ -185,7 +207,8 @@ export function LuvisCase() {
         <Block
           eyebrow="Admin panel"
           title="An application ecosystem, not a frontend website."
-          lead="The admin side gives an operational view over the same systems the player-facing app uses. Modules shown are conceptual placeholders."
+          lead="Operational view over the same systems."
+          points={["Same APIs as the app", "Modules are conceptual"]}
         >
           <AdminMock />
         </Block>
@@ -230,7 +253,8 @@ export function LuvisCase() {
         <Block
           eyebrow="Redis"
           title="Making frequently accessed data faster."
-          lead="Caching exists so the same data is not fetched from the database over and over. The cache is checked first; a miss falls through to the database and warms the cache."
+          lead="Cache first, database on a miss."
+          points={["Hit: instant", "Miss: DB read", "Then cache is warmed"]}
         >
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <Reveal>

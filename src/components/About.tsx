@@ -92,10 +92,21 @@ export function About() {
             <SectionHeading index="01" eyebrow="About" title="Frontend first. Production aware." />
 
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
-                {profile.description}
-              </p>
+              <ul className="mt-8 max-w-md space-y-px overflow-hidden rounded-lg border border-border bg-border">
+                {profile.descriptionPoints.map((p, i) => (
+                  <li
+                    key={p}
+                    className="flex items-center gap-3 bg-background px-4 py-3 text-sm text-foreground/85"
+                  >
+                    <span className="font-mono text-[10px] text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
+
 
             <Reveal delay={0.14}>
               <dl className="mt-10 space-y-5">

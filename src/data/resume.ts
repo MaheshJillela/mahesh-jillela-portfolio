@@ -13,7 +13,14 @@ export const profile = {
   github: "https://github.com/MaheshJillela",
   linkedin: "https://www.linkedin.com/in/mahesh-jillela",
   description:
-    "Frontend-focused developer with hands-on experience building production applications and working across APIs, Node.js, cloud infrastructure, servers, payments, caching, notifications and deployment.",
+    "Frontend-focused developer with production experience across the whole application lifecycle.",
+  descriptionPoints: [
+    "Production applications",
+    "APIs + Node.js",
+    "Cloud + servers",
+    "Payments · caching · notifications",
+    "Deployment",
+  ] as string[],
   chain: ["Design", "Code", "API", "Server", "Production"],
   heroTech: ["JavaScript", "React", "Node.js", "Redis", "AWS", "Linux"],
 };
@@ -139,7 +146,7 @@ export const apiSkills = [
 ];
 
 export const nodeWork = {
-  lead: "Hands-on Node.js experience supporting production applications — not my primary specialisation, but practical and production-tested through Luvis.",
+  lead: "Practical, not my specialisation — production-tested through Luvis.",
   items: [
     "Backend services",
     "APIs",
@@ -211,7 +218,7 @@ export const luvis = {
   subtitle: "A Production Gaming Application",
   url: "https://luvis.site",
   urlLabel: "luvis.site",
-  lead: "Luvis is not simply a website. It is an application ecosystem of interconnected systems — web application, game experience, admin panel, APIs, payments, caching, notifications, mailing and the server infrastructure holding it together.",
+  lead: "Not a website. An ecosystem of connected systems.",
   subsystems: [
     { label: "Web application", note: "User-facing interfaces and application shell" },
     { label: "Game experience", note: "Interactive, game-related interfaces" },

@@ -19,7 +19,8 @@ export function FullFlow() {
           index="06"
           eyebrow="Full application flow"
           title="One click, the whole system."
-          lead="Scroll to follow a single Luvis request as it travels through the frontend, the API, Node.js, the cache, the database, external services and back to the screen."
+          lead="Scroll to follow one Luvis request, end to end."
+          points={["Frontend", "API", "Node.js", "Cache", "Database", "Back to screen"]}
         />
 
         <div ref={ref} className="relative mt-16 pl-10 sm:pl-16">

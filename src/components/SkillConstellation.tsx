@@ -36,7 +36,8 @@ export function SkillConstellation() {
           index="08"
           eyebrow="Skills"
           title="A constellation, not a progress bar."
-          lead="Frontend sits at the centre of everything. The outer ring is the production stack I work with around it."
+          lead="Frontend at the centre."
+          points={["Inner ring: core", "Outer rings: production stack"]}
         />
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
