@@ -17,15 +17,17 @@ let bootedThisMount = false;
 
 export function BootSequence() {
   const reduce = useReducedMotion();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [pct, setPct] = useState(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (sessionStorage.getItem("mj-booted") === "1" && !bootedThisMount) return;
+    if (sessionStorage.getItem("mj-booted") === "1" && !bootedThisMount) {
+      setVisible(false);
+      return;
+    }
     bootedThisMount = true;
     sessionStorage.setItem("mj-booted", "1");
-    setVisible(true);
     document.documentElement.style.overflow = "hidden";
 
     const total = reduce ? 500 : 1900;
