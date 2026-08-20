@@ -10,7 +10,7 @@ function ServerUnit() {
   const panel = serverPanels.find((p) => p.id === open) ?? null;
 
   return (
-    <div className="noise relative overflow-hidden rounded-xl border border-border bg-surface p-6 sm:p-8">
+    <div className="hud-bracket noise relative overflow-hidden rounded-xl border border-border bg-surface p-6 sm:p-8">
       <div className="grid-texture absolute inset-0 opacity-50" aria-hidden="true" />
       <div className="relative">
         <div className="flex items-baseline justify-between">
