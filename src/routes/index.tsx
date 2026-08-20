@@ -3,6 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CustomCursor } from "@/components/CustomCursor";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { BootSequence } from "@/components/BootSequence";
+import { HudRails } from "@/components/HudRails";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
