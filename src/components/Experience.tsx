@@ -32,7 +32,7 @@ export function Experience() {
     <section id="experience" className="relative border-t border-border py-24 sm:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <SectionHeading
-          index="10"
+          index="11"
           eyebrow="Experience"
           title="Role, what I built, what it taught me."
         />
