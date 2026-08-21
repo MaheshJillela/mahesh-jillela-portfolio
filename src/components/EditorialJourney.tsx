@@ -212,7 +212,7 @@ function LuvisWorld() {
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        className={`pointer-events-none absolute top-3 z-20 w-40 border-l border-accent/60 bg-background/85 py-1 pl-3 sm:w-48 ${onRight ? "left-0" : "right-0 -translate-x-full border-l-0 border-r border-r-accent/60 pr-3 pl-0 text-right"}`}
+                        className={`pointer-events-none absolute top-3 z-20 w-40 border-r border-r-accent/60 bg-background/85 py-1 pr-3 text-right sm:w-48 ${onRight ? "right-0 -translate-x-1/2" : "right-0 -translate-x-full"}`}
                       >
                         <span className="font-editorial text-base text-foreground sm:text-lg">{node.label}</span>
                         <span className="mt-1 block text-[11px] leading-relaxed text-muted-foreground">{node.body}</span>
