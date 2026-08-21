@@ -291,8 +291,6 @@ function SkillTopography() {
             ))}
           </div>
         </div>
-
-        </div>
         <div className="mt-28 flex flex-col items-center text-center">
           <span className="h-24 w-px bg-linear-to-b from-accent to-transparent" />
           <p className="mt-8 max-w-2xl font-editorial text-3xl italic leading-snug text-foreground/75 sm:text-4xl">“{mindset.statement}”</p>
