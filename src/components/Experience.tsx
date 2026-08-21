@@ -1,131 +1,68 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { Reveal, SectionHeading } from "@/components/Reveal";
+import { Reveal } from "@/components/Reveal";
 import { experience, timeline } from "@/data/resume";
 
-function ScrollLine({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 75%", "end 60%"],
-  });
-  const scaleY = useSpring(scrollYProgress, { stiffness: 90, damping: 26, restDelta: 0.001 });
-
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute top-0 bottom-0 left-[7px] w-px bg-border sm:left-[calc(7rem+7px)]"
-    >
-      <motion.div
-        style={reduce ? { scaleY: 1 } : { scaleY }}
-        className="h-full w-px origin-top bg-gradient-to-b from-accent via-accent to-accent/10"
-      />
-    </div>
-  );
-}
-
 export function Experience() {
-  const journeyRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: lineRef, offset: ["start 80%", "end 40%"] });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 80, damping: 24 });
+  const job = experience[0];
   const entries = [...timeline].reverse();
 
+  if (!job) return null;
+
   return (
-    <section id="experience" className="relative border-t border-border py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
-        <SectionHeading
-          index="11"
-          eyebrow="Experience"
-          title="Role, what I built, what it taught me."
-        />
+    <section id="experience" className="relative overflow-hidden py-28 sm:py-44">
+      <div className="mx-auto w-full max-w-[1240px] px-5 sm:px-8">
+        <div className="flex items-center gap-5">
+          <span className="font-mono text-[10px] text-accent">06</span>
+          <span className="font-mono text-[10px] tracking-[0.24em] text-muted-foreground uppercase">Career ascent</span>
+          <span className="h-px flex-1 bg-border" />
+        </div>
 
-        {experience.map((job) => (
-          <div key={job.company} className="mt-16 grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-            {/* Meta column */}
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <p className="label text-accent">{job.period}</p>
-              <h3 className="mt-5 font-display text-3xl leading-tight font-medium text-foreground sm:text-4xl">
-                {job.role}
-              </h3>
-              <p className="mt-3 text-base text-foreground/80">{job.company}</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {job.type} · {job.place}
-              </p>
+        <div className="mt-16 grid gap-16 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">{job.period}</p>
+            <h2 className="mt-5 font-editorial text-5xl leading-[0.94] text-foreground sm:text-7xl">From learning<br /><em className="text-muted-foreground">to production.</em></h2>
+            <div className="mt-10 border-l border-accent/50 pl-5">
+              <p className="font-editorial text-2xl text-foreground">{job.role}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{job.company}</p>
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-foreground/75">{job.built}</p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2">
+              {job.tech.map((tech) => <span key={tech} className="font-mono text-[9px] tracking-[0.1em] text-muted-foreground uppercase">{tech}</span>)}
+            </div>
+          </div>
 
-              <dl className="mt-8 space-y-4">
-                {[
-                  { k: "Built", v: job.built },
-                  { k: "Learned", v: job.learned },
-                  { k: "Production", v: job.production },
-                ].map((r) => (
-                  <div key={r.k} className="rounded-lg border border-border bg-surface/50 p-4">
-                    <dt className="label text-accent">{r.k}</dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-foreground/80">{r.v}</dd>
-                  </div>
-                ))}
-              </dl>
+          <div ref={lineRef} className="relative pl-10 sm:pl-16">
+            <div className="absolute top-0 bottom-0 left-[5px] w-px bg-border sm:left-[9px]">
+              <motion.div style={reduce ? { scaleY: 1 } : { scaleY }} className="h-full w-px origin-bottom bg-accent" />
+            </div>
+            <ol className="flex flex-col-reverse gap-20">
+              {entries.map((entry, i) => (
+                <Reveal as="li" key={`${entry.year}-${entry.title}`} delay={i * 0.04} className="relative">
+                  <span className="absolute top-2 -left-[39px] size-3 rounded-full border border-accent bg-background shadow-[0_0_18px_var(--accent)] sm:-left-[62px]" />
+                  <p className="font-mono text-[10px] tracking-[0.18em] text-accent uppercase">{entry.year}</p>
+                  <h3 className="mt-4 font-editorial text-3xl leading-tight text-foreground sm:text-5xl">{entry.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{entry.org}</p>
+                  <p className="mt-5 max-w-xl text-sm leading-relaxed text-foreground/75">{entry.body}</p>
+                </Reveal>
+              ))}
+            </ol>
 
-              <ul className="mt-8 flex flex-wrap gap-x-4 gap-y-2">
-                {job.tech.map((t) => (
-                  <li key={t} className="font-mono text-[11px] text-muted-foreground">
-                    {t}
+            <div className="mt-24 border-t border-border pt-10">
+              <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">Production evidence</p>
+              <ol className="mt-8 divide-y divide-border">
+                {job.points.slice(0, 5).map((point, i) => (
+                  <li key={point} className="group grid grid-cols-[auto_minmax(0,1fr)] gap-5 py-6">
+                    <span className="font-mono text-[9px] text-accent/60">0{i + 1}</span>
+                    <span className="text-sm leading-relaxed text-foreground/75 transition-transform duration-500 group-hover:translate-x-2 group-hover:text-foreground">{point}</span>
                   </li>
                 ))}
-              </ul>
-            </Reveal>
-
-            {/* Responsibilities as numbered editorial rows */}
-            <ol className="border-t border-border">
-              {job.points.map((p, i) => (
-                <Reveal as="li" key={p} delay={i * 0.03} className="group border-b border-border">
-                  <div className="flex gap-5 py-6 transition-colors sm:gap-8">
-                    <span className="font-mono text-[11px] text-accent/70 transition-colors group-hover:text-accent">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="max-w-2xl text-[0.95rem] leading-relaxed text-foreground/85 transition-colors group-hover:text-foreground">
-                      {p}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
-          </div>
-        ))}
-
-        {/* Journey — animated timeline, newest first */}
-        <div className="mt-24 sm:mt-32">
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <span className="label text-muted-foreground">Journey</span>
-              <span aria-hidden="true" className="rule-x flex-1" />
+              </ol>
             </div>
-          </Reveal>
-
-          <div ref={journeyRef} className="relative mt-10 pl-8 sm:pl-0">
-            <ScrollLine containerRef={journeyRef} />
-
-            <ol className="space-y-12">
-              {entries.map((e, i) => (
-                <Reveal as="li" key={`${e.year}-${e.title}`} delay={i * 0.04}>
-                  <div className="relative sm:grid sm:grid-cols-[7rem_1fr] sm:gap-8">
-                    <p className="label text-accent sm:pt-1 sm:text-right">{e.year}</p>
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-1.5 -left-8 size-[15px] rounded-full border border-accent/50 bg-background sm:left-[calc(7rem)]"
-                    >
-                      <span className="absolute inset-[3px] rounded-full bg-accent" />
-                    </span>
-                    <div className="mt-2 sm:mt-0 sm:pl-8">
-                      <h4 className="font-display text-lg font-medium text-foreground sm:text-xl">
-                        {e.title}
-                      </h4>
-                      <p className="mt-1 text-sm text-muted-foreground">{e.org}</p>
-                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/70">
-                        {e.body}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
           </div>
         </div>
       </div>
