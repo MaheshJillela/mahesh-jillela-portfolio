@@ -177,7 +177,7 @@ function RequestRiver() {
 function LuvisWorld() {
   const [active, setActive] = useState("web");
   const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
-  const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
+
   return (
     <section id="luvis" className="relative overflow-hidden py-28 sm:py-44">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,var(--ember-soft),transparent_42%)]" />
