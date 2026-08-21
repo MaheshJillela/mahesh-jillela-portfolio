@@ -176,7 +176,7 @@ function RequestRiver() {
 
 function LuvisWorld() {
   const [active, setActive] = useState("web");
-  const current = luvisArchitecture.nodes.find((node) => node.id === active) ?? luvisArchitecture.nodes[1];
+  const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
   const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
   return (
     <section id="luvis" className="relative overflow-hidden py-28 sm:py-44">
