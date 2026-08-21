@@ -199,18 +199,30 @@ function LuvisWorld() {
               const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
               const x = 50 + Math.cos(a) * 44;
               const y = 50 + Math.sin(a) * 44;
+              const isActive = active === node.id;
+              const onRight = x > 50;
               return (
-                <button key={node.id} type="button" onClick={() => setActive(node.id)} onMouseEnter={() => setActive(node.id)} onFocus={() => setActive(node.id)} style={{ left: `${x}%`, top: `${y}%` }} className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap border-b py-2 font-mono text-[8px] tracking-[0.08em] uppercase transition-colors sm:text-[10px] ${active === node.id ? "border-ember text-ember" : "border-transparent text-muted-foreground hover:text-foreground"}`}>
-                  {node.label}
-                </button>
+                <div key={node.id} className="absolute" style={{ left: `${x}%`, top: `${y}%` }}>
+                  <button type="button" onClick={() => setActive(node.id)} onMouseEnter={() => setActive(node.id)} onFocus={() => setActive(node.id)} className={`-translate-x-1/2 -translate-y-1/2 whitespace-nowrap border-b py-2 font-mono text-[8px] tracking-[0.08em] uppercase transition-colors sm:text-[10px] ${isActive ? "border-ember text-ember" : "border-transparent text-muted-foreground hover:text-foreground"}`}>
+                    {node.label}
+                  </button>
+                  <AnimatePresence>
+                    {isActive ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className={`pointer-events-none absolute top-3 z-20 w-40 border-l border-ember/60 bg-background/85 py-1 pl-3 sm:w-48 ${onRight ? "left-0" : "right-0 -translate-x-full border-l-0 border-r border-r-ember/60 pr-3 pl-0 text-right"}`}
+                      >
+                        <span className="font-editorial text-base text-foreground sm:text-lg">{node.label}</span>
+                        <span className="mt-1 block text-[11px] leading-relaxed text-muted-foreground">{node.body}</span>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
               );
             })}
-            <AnimatePresence mode="wait">
-              <motion.div key={current?.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute right-0 bottom-0 max-w-56 border-l border-ember/60 pl-4">
-                <span className="font-editorial text-xl text-foreground">{current?.label}</span>
-                <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">{current?.body}</span>
-              </motion.div>
-            </AnimatePresence>
+
           </div>
         </div>
       </Chapter>
