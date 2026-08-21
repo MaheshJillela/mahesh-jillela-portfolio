@@ -180,33 +180,33 @@ function LuvisWorld() {
   const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
   return (
     <section id="luvis" className="relative overflow-hidden py-28 sm:py-44">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,var(--blush-soft),transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,var(--ember-soft),transparent_42%)]" />
       <Chapter index="04" label="Case study — the only project">
         <div className="mt-14 grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <div className="relative z-10">
-            <p className="font-mono text-[10px] tracking-[0.22em] text-blush uppercase">{luvis.subtitle}</p>
+            <p className="font-mono text-[10px] tracking-[0.22em] text-ember uppercase">{luvis.subtitle}</p>
             <h2 className="mt-5 font-editorial text-[22vw] leading-[0.72] text-foreground sm:text-[9rem] lg:text-[10rem]">Luvis</h2>
-            <p className="mt-10 max-w-sm border-l border-blush pl-5 text-base leading-relaxed text-foreground/80">{luvis.lead}</p>
-            <a href={luvis.url} target="_blank" rel="noreferrer noopener" className="mt-8 inline-flex items-center gap-3 border-b border-blush pb-2 font-mono text-[10px] tracking-[0.16em] text-blush uppercase">
+            <p className="mt-10 max-w-sm border-l border-ember pl-5 text-base leading-relaxed text-foreground/80">{luvis.lead}</p>
+            <a href={luvis.url} target="_blank" rel="noreferrer noopener" className="mt-8 inline-flex items-center gap-3 border-b border-ember pb-2 font-mono text-[10px] tracking-[0.16em] text-ember uppercase">
               Visit {luvis.urlLabel}<ArrowUpRight className="size-4" />
             </a>
           </div>
           <div className="relative mx-auto aspect-square w-full max-w-[680px]">
             <div className="absolute inset-[8%] rounded-full border border-border" />
-            <div className="absolute inset-[25%] rounded-full border border-blush/30" />
-            <div className="absolute inset-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-blush text-center font-editorial text-2xl text-background sm:size-40 sm:text-3xl">Web<br />app</div>
+            <div className="absolute inset-[25%] rounded-full border border-ember/30" />
+            <div className="absolute inset-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-ember text-center font-editorial text-2xl text-background sm:size-40 sm:text-3xl">Web<br />app</div>
             {nodes.map((node, i) => {
               const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
               const x = 50 + Math.cos(a) * 44;
               const y = 50 + Math.sin(a) * 44;
               return (
-                <button key={node.id} type="button" onClick={() => setActive(node.id)} onMouseEnter={() => setActive(node.id)} onFocus={() => setActive(node.id)} style={{ left: `${x}%`, top: `${y}%` }} className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap border-b py-2 font-mono text-[8px] tracking-[0.08em] uppercase transition-colors sm:text-[10px] ${active === node.id ? "border-blush text-blush" : "border-transparent text-muted-foreground hover:text-foreground"}`}>
+                <button key={node.id} type="button" onClick={() => setActive(node.id)} onMouseEnter={() => setActive(node.id)} onFocus={() => setActive(node.id)} style={{ left: `${x}%`, top: `${y}%` }} className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap border-b py-2 font-mono text-[8px] tracking-[0.08em] uppercase transition-colors sm:text-[10px] ${active === node.id ? "border-ember text-ember" : "border-transparent text-muted-foreground hover:text-foreground"}`}>
                   {node.label}
                 </button>
               );
             })}
             <AnimatePresence mode="wait">
-              <motion.div key={current?.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute right-0 bottom-0 max-w-56 border-l border-blush/60 pl-4">
+              <motion.div key={current?.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute right-0 bottom-0 max-w-56 border-l border-ember/60 pl-4">
                 <span className="font-editorial text-xl text-foreground">{current?.label}</span>
                 <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">{current?.body}</span>
               </motion.div>
