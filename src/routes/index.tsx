@@ -7,18 +7,8 @@ import { BootSequence } from "@/components/BootSequence";
 import { HudRails } from "@/components/HudRails";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { FrontendCore } from "@/components/FrontendCore";
-import { SystemBridge } from "@/components/SystemBridge";
-import { CloudProduction } from "@/components/CloudProduction";
-import { LuvisCase } from "@/components/LuvisCase";
-import { FullFlow } from "@/components/FullFlow";
-import { TechStack } from "@/components/TechStack";
-import { SkillConstellation } from "@/components/SkillConstellation";
-import { SkillMatrix } from "@/components/SkillMatrix";
-import { Mindset } from "@/components/Mindset";
+import { EditorialJourney } from "@/components/EditorialJourney";
 import { Experience } from "@/components/Experience";
-import { Lab } from "@/components/Lab";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -74,18 +64,8 @@ function Index() {
       <Navbar />
       <main id="main" className="relative z-10">
         <Hero />
-        <About />
-        <FrontendCore />
-        <SystemBridge />
-        <CloudProduction />
-        <LuvisCase />
-        <FullFlow />
-        <TechStack />
-        <SkillConstellation />
-        <SkillMatrix />
-        <Mindset />
+        <EditorialJourney />
         <Experience />
-        <Lab />
         <Contact />
       </main>
       <Footer />

@@ -12,6 +12,7 @@
 @theme inline {
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-editorial: var(--font-editorial);
   --font-mono: var(--font-mono);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -115,6 +116,7 @@
   --sidebar-ring: oklch(0.855 0.148 178);
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "Instrument Serif", Georgia, serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -144,7 +146,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   ::selection {
