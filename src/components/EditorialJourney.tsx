@@ -240,28 +240,58 @@ function SkillTopography() {
         <div className="mt-14 grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">Depth,<br /><em className="text-accent">not percentages.</em></h2>
-            <div className="mt-10 border-l border-accent/50 pl-5">
-              <p className="font-mono text-[10px] tracking-[0.18em] text-accent uppercase">{selected?.layer} / {selected?.depth}</p>
-              <p className="mt-3 font-editorial text-3xl text-foreground">{selected?.name}</p>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">{selected?.note}</p>
-              <p className="mt-4 font-mono text-[9px] tracking-[0.14em] text-foreground/60 uppercase">Proof — {selected?.proof}</p>
-            </div>
+            <p className="mt-8 max-w-sm border-l border-accent/50 pl-5 text-sm leading-relaxed text-muted-foreground">
+              Tap any skill — it opens right there with exactly where I used it in production.
+            </p>
           </div>
           <div className="space-y-12">
             {skillMatrix.map((layer, layerIndex) => (
               <div key={layer.id} className="relative border-l border-border pl-7 sm:pl-10">
                 <span className="absolute top-2 -left-1 size-2 rounded-full bg-accent" />
                 <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">0{layerIndex + 1} / {layer.layer}</p>
-                <div className="mt-6 flex flex-wrap gap-x-7 gap-y-5">
-                  {layer.skills.map((skill) => (
-                    <button key={skill.name} type="button" onClick={() => setActive(skill.name)} onMouseEnter={() => setActive(skill.name)} onFocus={() => setActive(skill.name)} className={`font-editorial text-2xl transition-colors sm:text-4xl ${active === skill.name ? "text-accent" : "text-foreground/45 hover:text-foreground"}`}>
-                      {skill.name}
-                    </button>
-                  ))}
+                <div className="mt-6 space-y-5">
+                  {layer.skills.map((skill) => {
+                    const isActive = active === skill.name;
+                    return (
+                      <div key={skill.name}>
+                        <button
+                          type="button"
+                          onClick={() => setActive(skill.name)}
+                          onMouseEnter={() => setActive(skill.name)}
+                          onFocus={() => setActive(skill.name)}
+                          aria-expanded={isActive}
+                          className={`flex items-baseline gap-4 text-left font-editorial text-2xl transition-colors sm:text-4xl ${isActive ? "text-accent" : "text-foreground/45 hover:text-foreground"}`}
+                        >
+                          {skill.name}
+                          <span className="font-mono text-[9px] tracking-[0.16em] uppercase opacity-70">{skill.depth}</span>
+                        </button>
+                        <AnimatePresence initial={false}>
+                          {isActive ? (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3, ease: EASE }}
+                              className="overflow-hidden"
+                            >
+                              <div className="mt-3 max-w-xl border-l border-accent/50 pl-4">
+                                <p className="text-sm leading-relaxed text-foreground/80">{skill.note}</p>
+                                <p className="mt-3 font-mono text-[9px] tracking-[0.18em] text-accent uppercase">Where I used it</p>
+                                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{skill.usedIn}</p>
+                                <p className="mt-2 font-mono text-[9px] tracking-[0.14em] text-foreground/55 uppercase">Proof — {skill.proof}</p>
+                              </div>
+                            </motion.div>
+                          ) : null}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
           </div>
+        </div>
+
         </div>
         <div className="mt-28 flex flex-col items-center text-center">
           <span className="h-24 w-px bg-linear-to-b from-accent to-transparent" />
