@@ -176,41 +176,53 @@ function RequestRiver() {
 
 function LuvisWorld() {
   const [active, setActive] = useState("web");
-  const current = luvisArchitecture.nodes.find((node) => node.id === active) ?? luvisArchitecture.nodes[1];
   const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
+
   return (
     <section id="luvis" className="relative overflow-hidden py-28 sm:py-44">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,var(--blush-soft),transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,var(--ember-soft),transparent_42%)]" />
       <Chapter index="04" label="Case study — the only project">
         <div className="mt-14 grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <div className="relative z-10">
-            <p className="font-mono text-[10px] tracking-[0.22em] text-blush uppercase">{luvis.subtitle}</p>
+            <p className="font-mono text-[10px] tracking-[0.22em] text-ember uppercase">{luvis.subtitle}</p>
             <h2 className="mt-5 font-editorial text-[22vw] leading-[0.72] text-foreground sm:text-[9rem] lg:text-[10rem]">Luvis</h2>
-            <p className="mt-10 max-w-sm border-l border-blush pl-5 text-base leading-relaxed text-foreground/80">{luvis.lead}</p>
-            <a href={luvis.url} target="_blank" rel="noreferrer noopener" className="mt-8 inline-flex items-center gap-3 border-b border-blush pb-2 font-mono text-[10px] tracking-[0.16em] text-blush uppercase">
+            <p className="mt-10 max-w-sm border-l border-ember pl-5 text-base leading-relaxed text-foreground/80">{luvis.lead}</p>
+            <a href={luvis.url} target="_blank" rel="noreferrer noopener" className="mt-8 inline-flex items-center gap-3 border-b border-ember pb-2 font-mono text-[10px] tracking-[0.16em] text-ember uppercase">
               Visit {luvis.urlLabel}<ArrowUpRight className="size-4" />
             </a>
           </div>
           <div className="relative mx-auto aspect-square w-full max-w-[680px]">
             <div className="absolute inset-[8%] rounded-full border border-border" />
-            <div className="absolute inset-[25%] rounded-full border border-blush/30" />
-            <div className="absolute inset-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-blush text-center font-editorial text-2xl text-background sm:size-40 sm:text-3xl">Web<br />app</div>
+            <div className="absolute inset-[25%] rounded-full border border-ember/30" />
+            <div className="absolute inset-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-ember text-center font-editorial text-2xl text-background sm:size-40 sm:text-3xl">Web<br />app</div>
             {nodes.map((node, i) => {
               const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
               const x = 50 + Math.cos(a) * 44;
               const y = 50 + Math.sin(a) * 44;
+              const isActive = active === node.id;
+              const onRight = x > 50;
               return (
-                <button key={node.id} type="button" onClick={() => setActive(node.id)} onMouseEnter={() => setActive(node.id)} onFocus={() => setActive(node.id)} style={{ left: `${x}%`, top: `${y}%` }} className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap border-b py-2 font-mono text-[8px] tracking-[0.08em] uppercase transition-colors sm:text-[10px] ${active === node.id ? "border-blush text-blush" : "border-transparent text-muted-foreground hover:text-foreground"}`}>
-                  {node.label}
-                </button>
+                <div key={node.id} className="absolute" style={{ left: `${x}%`, top: `${y}%` }}>
+                  <button type="button" onClick={() => setActive(node.id)} onMouseEnter={() => setActive(node.id)} onFocus={() => setActive(node.id)} className={`-translate-x-1/2 -translate-y-1/2 whitespace-nowrap border-b py-2 font-mono text-[8px] tracking-[0.08em] uppercase transition-colors sm:text-[10px] ${isActive ? "border-ember text-ember" : "border-transparent text-muted-foreground hover:text-foreground"}`}>
+                    {node.label}
+                  </button>
+                  <AnimatePresence>
+                    {isActive ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className={`pointer-events-none absolute top-3 z-20 w-40 border-l border-ember/60 bg-background/85 py-1 pl-3 sm:w-48 ${onRight ? "left-0" : "right-0 -translate-x-full border-l-0 border-r border-r-ember/60 pr-3 pl-0 text-right"}`}
+                      >
+                        <span className="font-editorial text-base text-foreground sm:text-lg">{node.label}</span>
+                        <span className="mt-1 block text-[11px] leading-relaxed text-muted-foreground">{node.body}</span>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
               );
             })}
-            <AnimatePresence mode="wait">
-              <motion.div key={current?.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute right-0 bottom-0 max-w-56 border-l border-blush/60 pl-4">
-                <span className="font-editorial text-xl text-foreground">{current?.label}</span>
-                <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">{current?.body}</span>
-              </motion.div>
-            </AnimatePresence>
+
           </div>
         </div>
       </Chapter>
@@ -221,31 +233,59 @@ function LuvisWorld() {
 function SkillTopography() {
   const allSkills = useMemo(() => skillMatrix.flatMap((layer) => layer.skills.map((skill) => ({ ...skill, layer: layer.layer }))), []);
   const [active, setActive] = useState(allSkills[0]?.name ?? "React");
-  const selected = allSkills.find((skill) => skill.name === active) ?? allSkills[0];
+  
   return (
     <section id="skills" className="relative py-28 sm:py-44">
       <Chapter index="05" label="Skill topography">
         <div className="mt-14 grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">Depth,<br /><em className="text-accent">not percentages.</em></h2>
-            <div className="mt-10 border-l border-accent/50 pl-5">
-              <p className="font-mono text-[10px] tracking-[0.18em] text-accent uppercase">{selected?.layer} / {selected?.depth}</p>
-              <p className="mt-3 font-editorial text-3xl text-foreground">{selected?.name}</p>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">{selected?.note}</p>
-              <p className="mt-4 font-mono text-[9px] tracking-[0.14em] text-foreground/60 uppercase">Proof — {selected?.proof}</p>
-            </div>
+            <p className="mt-8 max-w-sm border-l border-accent/50 pl-5 text-sm leading-relaxed text-muted-foreground">
+              Tap any skill — it opens right there with exactly where I used it in production.
+            </p>
           </div>
           <div className="space-y-12">
             {skillMatrix.map((layer, layerIndex) => (
               <div key={layer.id} className="relative border-l border-border pl-7 sm:pl-10">
                 <span className="absolute top-2 -left-1 size-2 rounded-full bg-accent" />
                 <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">0{layerIndex + 1} / {layer.layer}</p>
-                <div className="mt-6 flex flex-wrap gap-x-7 gap-y-5">
-                  {layer.skills.map((skill) => (
-                    <button key={skill.name} type="button" onClick={() => setActive(skill.name)} onMouseEnter={() => setActive(skill.name)} onFocus={() => setActive(skill.name)} className={`font-editorial text-2xl transition-colors sm:text-4xl ${active === skill.name ? "text-accent" : "text-foreground/45 hover:text-foreground"}`}>
-                      {skill.name}
-                    </button>
-                  ))}
+                <div className="mt-6 space-y-5">
+                  {layer.skills.map((skill) => {
+                    const isActive = active === skill.name;
+                    return (
+                      <div key={skill.name}>
+                        <button
+                          type="button"
+                          onClick={() => setActive(skill.name)}
+                          onMouseEnter={() => setActive(skill.name)}
+                          onFocus={() => setActive(skill.name)}
+                          aria-expanded={isActive}
+                          className={`flex items-baseline gap-4 text-left font-editorial text-2xl transition-colors sm:text-4xl ${isActive ? "text-accent" : "text-foreground/45 hover:text-foreground"}`}
+                        >
+                          {skill.name}
+                          <span className="font-mono text-[9px] tracking-[0.16em] uppercase opacity-70">{skill.depth}</span>
+                        </button>
+                        <AnimatePresence initial={false}>
+                          {isActive ? (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3, ease: EASE }}
+                              className="overflow-hidden"
+                            >
+                              <div className="mt-3 max-w-xl border-l border-accent/50 pl-4">
+                                <p className="text-sm leading-relaxed text-foreground/80">{skill.note}</p>
+                                <p className="mt-3 font-mono text-[9px] tracking-[0.18em] text-accent uppercase">Where I used it</p>
+                                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{skill.usedIn}</p>
+                                <p className="mt-2 font-mono text-[9px] tracking-[0.14em] text-foreground/55 uppercase">Proof — {skill.proof}</p>
+                              </div>
+                            </motion.div>
+                          ) : null}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
