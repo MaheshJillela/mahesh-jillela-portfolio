@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ArrowUpRight, Github, Linkedin, Mail, Phone, Send, Trophy } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Phone, Send } from "lucide-react";
 import { Reveal, LineReveal } from "@/components/Reveal";
 import { WaveField } from "@/components/pixi/WaveField";
-import { achievement, profile } from "@/data/resume";
+import { profile } from "@/data/resume";
 
 const channels = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}`, Icon: Mail },
@@ -38,49 +38,25 @@ export function Contact() {
           </div>
         </Reveal>
 
-        <h2 className="mt-8 max-w-4xl font-display text-[12vw] leading-[0.95] font-medium tracking-[-0.03em] text-foreground sm:mt-10 sm:text-[5.5rem]">
+        <h2 className="mt-8 max-w-5xl font-editorial text-[15vw] leading-[0.88] font-normal text-foreground sm:mt-10 sm:text-[7rem]">
           <LineReveal text="LET'S BUILD SOMETHING INTERACTIVE." />
         </h2>
 
 
-        <div className="mt-10 grid gap-10 sm:mt-16 sm:gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+        <div className="mt-10 grid gap-10 sm:mt-16 sm:gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-24">
           <div>
             <Reveal delay={0.08}>
               <p className="max-w-lg font-display text-lg leading-snug text-foreground/90 sm:text-xl">
                 Open to interactive frontend and full-stack work.
               </p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {["Canvas / PixiJS", "React apps", "Full-stack builds", profile.location].map((t) => (
-                  <li
-                    key={t}
-                    className="rounded-full border border-border px-3 py-1 font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase"
-                  >
-                    {t}
-                  </li>
-                ))}
-              </ul>
               <a
                 data-cursor="OPEN"
                 href={`mailto:${profile.email}`}
-                className="group mt-8 inline-flex min-h-12 max-w-full items-center gap-3 rounded-full bg-accent px-5 font-mono text-[10px] tracking-[0.14em] text-accent-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5 sm:px-6 sm:text-[11px] sm:tracking-[0.18em]"
+                 className="group mt-8 inline-flex min-h-12 max-w-full items-center gap-3 border-b border-accent pb-2 font-mono text-[10px] tracking-[0.14em] text-accent uppercase transition-transform duration-300 hover:translate-x-1 sm:text-[11px] sm:tracking-[0.18em]"
               >
                 <span className="truncate">{profile.email}</span>
                 <ArrowUpRight className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-            </Reveal>
-
-            <Reveal delay={0.12}>
-              <div className="mt-10 flex items-center gap-4 rounded-xl border border-accent/30 bg-accent/5 p-5">
-                <Trophy className="size-5 shrink-0 text-accent" aria-hidden="true" />
-                <div>
-                  <p className="font-display text-sm font-medium text-foreground">
-                    {achievement.title}
-                  </p>
-                  <p className="mt-1 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">
-                    {achievement.org}
-                  </p>
-                </div>
-              </div>
             </Reveal>
 
             <ul className="mt-10 border-t border-border">
@@ -114,9 +90,8 @@ export function Contact() {
           <Reveal delay={0.1}>
             <form
               onSubmit={onSubmit}
-              className="noise relative overflow-hidden rounded-xl border border-border bg-surface p-6 sm:p-8"
+               className="relative border-y border-border py-8"
             >
-              <div className="grid-texture absolute inset-0 opacity-50" aria-hidden="true" />
               <div className="relative">
                 <p className="label text-accent">Send a message</p>
 
