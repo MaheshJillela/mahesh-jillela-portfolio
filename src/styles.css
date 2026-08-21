@@ -80,6 +80,7 @@
   --accent: oklch(0.855 0.148 178);
   --accent-foreground: oklch(0.17 0.01 200);
   --accent-dim: oklch(0.62 0.1 180);
+  --accent-soft: oklch(0.855 0.148 178 / 0.12);
 
   /* Ember — secondary accent for the Luvis case study */
   --ember: oklch(0.815 0.135 68);
