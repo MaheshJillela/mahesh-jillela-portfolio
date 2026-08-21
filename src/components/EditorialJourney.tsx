@@ -233,7 +233,7 @@ function LuvisWorld() {
 function SkillTopography() {
   const allSkills = useMemo(() => skillMatrix.flatMap((layer) => layer.skills.map((skill) => ({ ...skill, layer: layer.layer }))), []);
   const [active, setActive] = useState(allSkills[0]?.name ?? "React");
-  const selected = allSkills.find((skill) => skill.name === active) ?? allSkills[0];
+  
   return (
     <section id="skills" className="relative py-28 sm:py-44">
       <Chapter index="05" label="Skill topography">
