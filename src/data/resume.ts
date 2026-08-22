@@ -5,59 +5,182 @@
 
 export const profile = {
   name: "Mahesh Jillela",
-  title: "Frontend Developer",
-  headline: "I build interfaces that don't stop at the browser.",
+  title: "Front-End Game Developer",
+  headline: "Building immersive HTML5 casino games, crash games & interactive web experiences.",
   location: "Hyderabad, India",
   email: "maheshjillela6@gmail.com",
   phone: "9347612425",
   github: "https://github.com/MaheshJillela",
   linkedin: "https://www.linkedin.com/in/mahesh-jillela",
   description:
-    "Frontend-focused developer with production experience across the whole application lifecycle.",
+    "Front-end game developer building production HTML5 slot, crash and instant games with PixiJS — plus modern React applications.",
   descriptionPoints: [
-    "Production applications",
-    "APIs + Node.js",
-    "Cloud + servers",
-    "Payments · caching · notifications",
-    "Deployment",
+    "HTML5 casino games",
+    "PixiJS rendering",
+    "Game UI + animation systems",
+    "Performance optimisation",
+    "React applications",
   ] as string[],
-  chain: ["Design", "Code", "API", "Server", "Production"],
-  heroTech: ["JavaScript", "React", "Node.js", "Redis", "AWS", "Linux"],
+  chain: ["Design", "Render", "Animate", "Optimise", "Ship"],
+  heroTech: ["PixiJS", "React", "TypeScript", "JavaScript", "HTML5 Canvas", "Spine", "AWS"],
 };
 
 export const positioning = {
-  core: "Frontend",
-  extended: ["API", "Node.js", "Database", "Redis", "Server", "Cloud", "Production"],
+  core: "Game frontend",
+  extended: ["PixiJS", "Canvas", "Spine", "Game UI", "Animation", "Performance", "React"],
   statement:
-    "Frontend is my core strength — but I can also understand, connect, deploy and troubleshoot the systems behind the frontend.",
+    "Game frontend is my specialisation — rendering, animation and interaction under a 60fps budget — and I carry the same engineering standard into React applications and internal developer tooling.",
 };
 
 export const aboutPoints = [
   {
-    k: "Frontend first",
-    v: "Frontend development is my primary expertise: interactive, responsive, production-ready interfaces.",
+    k: "Game frontend first",
+    v: "Professional front-end game developer building HTML5 slot games, crash games and instant games for production.",
   },
   {
-    k: "Data flow",
-    v: "I care about how the interface communicates with backend systems, and I understand APIs and data flow.",
+    k: "PixiJS rendering",
+    v: "Canvas and WebGL rendering with PixiJS: scene graphs, sprite sheets, asset loading and draw-call budgets.",
   },
   {
-    k: "Node.js when needed",
-    v: "I work with Node.js when the problem requires server-side logic or service integration.",
+    k: "Game UI & animation",
+    v: "Betting interfaces, bonus screens, reels and result reveals built as reusable animation systems, with Spine integration.",
   },
   {
-    k: "Deploy & host",
-    v: "I deploy and host applications on cloud and server environments, with practical Linux experience.",
+    k: "Responsive game UI",
+    v: "Game layouts that survive portrait, landscape, notches and low-end devices without losing framerate.",
   },
   {
-    k: "Data & caching",
-    v: "I understand databases and caching, and how they change what the frontend feels like.",
+    k: "React applications",
+    v: "Modern React + TypeScript application work: component architecture, state and frontend architecture decisions.",
   },
   {
-    k: "Production reality",
-    v: "Through Luvis I have worked on live production systems and troubleshooting beyond the frontend.",
+    k: "Python tooling",
+    v: "Python for scripting, automation and developer tooling around asset pipelines — programming, not AI/ML.",
+  },
+  {
+    k: "Ship & debug",
+    v: "AWS deployment (S3 + CloudFront), performance profiling and debugging real production issues.",
   },
 ];
+
+/** Gaming experience — the specialisation section between Experience and Projects. */
+export const gamingExperience = {
+  title: "Building Interactive Casino Experiences",
+  lead: "HTML5 game frontend, end to end: from asset pipeline to a game that holds framerate on a three-year-old phone.",
+  cards: [
+    { icon: "dice", title: "HTML5 slot games", body: "Reels, spin cycles, paylines and win presentation built on PixiJS." },
+    { icon: "trending", title: "Crash games", body: "Real-time multiplier curves, live state and instant bet/cashout feedback." },
+    { icon: "zap", title: "Instant games", body: "Short-loop game formats with immediate reveal and result animation." },
+    { icon: "layout", title: "Game UI", body: "HUD, wallet, history and settings surfaces designed for thumb reach." },
+    { icon: "sparkles", title: "Bonus screens", body: "Feature rounds, transitions and celebration sequences." },
+    { icon: "coins", title: "Betting interfaces", body: "Stake selectors, auto-play and bet validation states." },
+    { icon: "smartphone", title: "Responsive layouts", body: "Portrait and landscape scaling across phone, tablet and desktop." },
+    { icon: "film", title: "Animation systems", body: "Reusable timelines and tween layers instead of one-off animations." },
+    { icon: "bone", title: "Spine integration", body: "Skeletal animation wired into game state and event flow." },
+    { icon: "cpu", title: "PixiJS rendering", body: "Scene graph, containers, batching and texture management." },
+    { icon: "download", title: "Asset loading", body: "Sprite sheets, TexturePacker atlases, preloaders and progress." },
+    { icon: "gauge", title: "Performance", body: "Frame budgets, GPU/CPU profiling and memory cleanup." },
+    { icon: "monitor", title: "Cross-device", body: "Browser and device matrix testing on real hardware." },
+    { icon: "workflow", title: "Game state", body: "Deterministic state machines between idle, play and result." },
+    { icon: "brush", title: "Visual polish", body: "Easing, timing and micro-feedback that make a game feel good." },
+    { icon: "bug", title: "Production debugging", body: "Reproducing and fixing live rendering and state issues." },
+  ],
+};
+
+/** Animated achievement counters. */
+export const metrics = [
+  { value: 12, suffix: "+", label: "HTML5 games built", note: "Slot, crash and instant formats" },
+  { value: 40, suffix: "+", label: "Production features delivered", note: "Shipped to live players" },
+  { value: 2, suffix: "", label: "Internal developer tools created", note: "Pixoma and supporting tooling" },
+  { value: 20, suffix: "+", label: "Technologies used", note: "Rendering, frontend, cloud" },
+  { value: 30, suffix: "+", label: "Performance optimisations", note: "Frame, memory and load time" },
+  { value: 80, suffix: "+", label: "UI components developed", note: "Game and application surfaces" },
+];
+
+export const philosophy = {
+  title: "Engineering Interactive Experiences",
+  statement:
+    "I enjoy building software where graphics, performance, interaction and user experience come together. Whether it's a casino slot game, a crash game, an internal development tool like Pixoma, or a React application, I enjoy solving engineering problems that make products feel polished, responsive and enjoyable to use.",
+  pillars: [
+    { k: "Graphics", v: "Rendering decisions made on purpose, not by accident." },
+    { k: "Performance", v: "A frame budget is a product requirement." },
+    { k: "Interaction", v: "Every input needs an immediate, readable response." },
+    { k: "Experience", v: "Polish is what people actually remember." },
+  ],
+};
+
+/** Pixoma — internal game development toolkit. */
+export const pixoma = {
+  name: "Pixoma",
+  subtitle: "Internal Game Development Toolkit",
+  url: "https://pixoma.qishub.in/",
+  urlLabel: "pixoma.qishub.in",
+  lead:
+    "An internal productivity platform that streamlines the pre-development workflow for HTML5 casino games.",
+  body:
+    "Artists, animators, designers and developers collaborate before production begins — visualising assets, inspecting atlases and previewing animation before a single game screen is built.",
+  panels: [
+    { label: "Spine preview", note: "Load a skeleton, scrub animations, verify naming" },
+    { label: "Timeline editor", note: "Sequence events and check timing before code" },
+    { label: "Sprite sheet animator", note: "Play frame sequences at target framerate" },
+    { label: "TexturePacker integration", note: "Inspect atlases, frames and trim data" },
+    { label: "Audio sync", note: "Align sound cues against animation frames" },
+    { label: "Image sequence preview", note: "Review renders as motion, not stills" },
+    { label: "Pixi Graphics generation", note: "Generate Pixi objects from visual setups" },
+    { label: "Animation state view", note: "Visualise states and transitions" },
+    { label: "Asset organisation", note: "Structure assets the way the game expects" },
+    { label: "Pre-dev validation", note: "Catch broken assets before production" },
+  ],
+  caseStudy: {
+    problem:
+      "Game assets were validated only once development started — broken atlases, mis-named Spine animations and wrong timing surfaced late and cost days.",
+    goal:
+      "Give the art and dev teams one place to inspect, preview and validate assets before production begins.",
+    architecture:
+      "PixiJS rendering surface inside a React + TypeScript dashboard, with a preview runtime for Spine, sprite sheets and image sequences, and an asset inspection layer over TexturePacker atlases.",
+    technologies: ["PixiJS", "React", "TypeScript", "HTML5 Canvas", "Spine", "TexturePacker", "Node.js", "AWS"],
+    challenges:
+      "Rendering many independent previews without leaking GPU memory, and keeping audio aligned with frame-based animation.",
+    role:
+      "Frontend and rendering engineering: preview runtime, dashboard UI, animation tooling and asset inspection.",
+    results:
+      "Pre-development asset issues get caught before production, and non-developers can review animation without a game build.",
+    learnings:
+      "Developer tooling is a product: the workflow it removes matters more than the features it adds.",
+  },
+};
+
+export const gameProjects = [
+  {
+    title: "HTML5 slot games",
+    note: "Reels, paylines, bonus rounds and win presentation",
+    tech: ["PixiJS", "Spine", "TypeScript"],
+  },
+  {
+    title: "Crash games",
+    note: "Live multiplier curve, bet and cashout states",
+    tech: ["PixiJS", "Canvas", "WebSockets"],
+  },
+  {
+    title: "Instant games",
+    note: "Short-loop formats with immediate reveal",
+    tech: ["PixiJS", "TypeScript"],
+  },
+];
+
+export const webProjects = [
+  {
+    title: "React applications",
+    note: "Component architecture, typed API layers and dynamic state",
+    tech: ["React", "TypeScript", "Tailwind"],
+  },
+  {
+    title: "This portfolio",
+    note: "PixiJS canvas layers, Framer Motion transitions, static build",
+    tech: ["React", "PixiJS", "Framer Motion"],
+  },
+];
+
 
 export const frontendCore = [
   {
