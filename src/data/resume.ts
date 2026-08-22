@@ -640,7 +640,7 @@ export const mindset = {
     "Logs",
     "User",
   ],
-  statement: "I care about what happens after a user clicks the button.",
+  statement: "A game is judged in the first frame — so I engineer for the frame, not the feature list.",
 };
 
 export const principles = [
