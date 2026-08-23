@@ -5,7 +5,7 @@ import { luvis, profile } from "@/data/resume";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const lines = ["I BUILD", "INTERFACES THAT", "DON'T STOP AT THE BROWSER."];
+const lines = ["I BUILD", "GAMES THAT RUN", "IN THE BROWSER."];
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
