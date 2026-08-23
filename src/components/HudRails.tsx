@@ -3,16 +3,15 @@ import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 
 const SECTIONS = [
   { id: "about", label: "About" },
-  { id: "frontend", label: "Frontend" },
+  { id: "frontend", label: "Craft" },
   { id: "systems", label: "Systems" },
-  { id: "cloud", label: "Cloud" },
   { id: "luvis", label: "Luvis" },
-  { id: "flow", label: "Flow" },
-  { id: "stack", label: "Stack" },
   { id: "skills", label: "Skills" },
-  { id: "mindset", label: "Mindset" },
   { id: "experience", label: "Work" },
-  { id: "lab", label: "Lab" },
+  { id: "gaming", label: "Gaming" },
+  { id: "projects", label: "Projects" },
+  { id: "metrics", label: "Numbers" },
+  { id: "philosophy", label: "Ethos" },
   { id: "contact", label: "Contact" },
 ] as const;
 

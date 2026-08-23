@@ -1,11 +1,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, Mail } from "lucide-react";
 import { ParticleField } from "@/components/pixi/ParticleField";
-import { luvis, profile } from "@/data/resume";
+import { pixoma, profile } from "@/data/resume";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const lines = ["I BUILD", "INTERFACES THAT", "DON'T STOP AT THE BROWSER."];
+const lines = ["I BUILD", "GAMES THAT RUN", "IN THE BROWSER."];
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -42,7 +42,7 @@ export function Hero() {
 
         <h1 className="mt-10 font-display text-[11.5vw] leading-[0.9] font-medium tracking-[-0.03em] text-foreground sm:mt-14 sm:text-[8.4vw] lg:text-[6.1vw]">
           <span className="sr-only">
-            Mahesh Jillela — Frontend Developer. {profile.headline}
+            Mahesh Jillela — Front-End Game Developer. {profile.headline}
           </span>
           {lines.map((line, i) => (
             <span
@@ -59,8 +59,8 @@ export function Hero() {
               >
                 {i === 2 ? (
                   <>
-                    <span className="text-muted-foreground/45">DON'T STOP AT </span>
-                    <span>THE BROWSER.</span>
+                    <span className="text-muted-foreground/45">IN THE </span>
+                    <span>BROWSER.</span>
                   </>
                 ) : (
                   line
@@ -103,28 +103,28 @@ export function Hero() {
             className="max-w-2xl"
           >
             <p className="border-l border-accent/50 pl-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              <span className="text-foreground">Frontend-focused developer</span> with hands-on
-              experience building production applications and working across APIs, Node.js, cloud
-              infrastructure, servers, payments, caching, notifications and deployment.
+              <span className="text-foreground">Front-End Game Developer</span> building immersive
+              HTML5 casino games — slots, crash and instant games — with PixiJS, Spine and HTML5
+              Canvas, alongside modern React and TypeScript applications.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
               <button
                 type="button"
                 data-cursor="VIEW"
-                onClick={() => scrollTo("frontend")}
+                onClick={() => scrollTo("gaming")}
                 className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-accent px-6 font-mono text-[11px] tracking-[0.18em] text-accent-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
               >
-                Explore my work
+                Explore my games
                 <ArrowDownRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
               </button>
               <button
                 type="button"
                 data-cursor="OPEN"
-                onClick={() => scrollTo("luvis")}
+                onClick={() => scrollTo("pixoma")}
                 className="group inline-flex min-h-12 items-center gap-3 rounded-full border border-accent/50 px-6 font-mono text-[11px] tracking-[0.18em] text-accent uppercase transition-colors duration-300 hover:bg-accent/10"
               >
-                Explore {luvis.name}
+                Explore {pixoma.name}
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
               <button
@@ -163,7 +163,7 @@ export function Hero() {
         <div className="flex flex-col gap-2 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
           <span className="label text-muted-foreground">Scroll to begin</span>
           <span className="label text-muted-foreground">
-            Frontend first · production aware
+            PixiJS · Canvas · Spine · React
           </span>
         </div>
       </div>

@@ -39,7 +39,7 @@ export function Contact() {
         </Reveal>
 
         <h2 className="mt-8 max-w-5xl font-editorial text-[15vw] leading-[0.88] font-normal text-foreground sm:mt-10 sm:text-[7rem]">
-          <LineReveal text="LET'S BUILD SOMETHING INTERACTIVE." />
+          <LineReveal text="LET'S BUILD INTERACTIVE EXPERIENCES." />
         </h2>
 
 
@@ -47,7 +47,7 @@ export function Contact() {
           <div>
             <Reveal delay={0.08}>
               <p className="max-w-lg font-display text-lg leading-snug text-foreground/90 sm:text-xl">
-                Open to interactive frontend and full-stack work.
+                Open to front-end game development and interactive UI opportunities.
               </p>
               <a
                 data-cursor="OPEN"

@@ -17,7 +17,7 @@ export function Experience() {
     <section id="experience" className="relative overflow-hidden py-28 sm:py-44">
       <div className="mx-auto w-full max-w-[1240px] px-5 sm:px-8">
         <div className="flex items-center gap-5">
-          <span className="font-mono text-[10px] text-accent">06</span>
+          <span className="font-mono text-[10px] text-accent">04</span>
           <span className="font-mono text-[10px] tracking-[0.24em] text-muted-foreground uppercase">Career ascent</span>
           <span className="h-px flex-1 bg-border" />
         </div>
@@ -25,7 +25,7 @@ export function Experience() {
         <div className="mt-16 grid gap-16 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">{job.period}</p>
-            <h2 className="mt-5 font-editorial text-5xl leading-[0.94] text-foreground sm:text-7xl">From learning<br /><em className="text-muted-foreground">to production.</em></h2>
+            <h2 className="mt-5 font-editorial text-5xl leading-[0.94] text-foreground sm:text-7xl">From code<br /><em className="text-muted-foreground">to live gameplay.</em></h2>
             <div className="mt-10 border-l border-accent/50 pl-5">
               <p className="font-editorial text-2xl text-foreground">{job.role}</p>
               <p className="mt-2 text-sm text-muted-foreground">{job.company}</p>
