@@ -10,7 +10,7 @@ export function Philosophy() {
       />
       <div className="relative mx-auto w-full max-w-[1240px] px-5 sm:px-8">
         <div className="flex items-center gap-5">
-          <span className="font-mono text-[10px] text-accent">09</span>
+          <span className="font-mono text-[10px] text-accent">10</span>
           <span className="font-mono text-[10px] tracking-[0.24em] text-muted-foreground uppercase">
             Developer philosophy
           </span>
