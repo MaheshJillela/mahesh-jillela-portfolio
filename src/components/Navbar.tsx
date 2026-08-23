@@ -5,11 +5,12 @@ import { Menu, X } from "lucide-react";
 const links = [
   { id: "top", label: "Home" },
   { id: "about", label: "About" },
-  { id: "frontend", label: "Frontend" },
-  { id: "systems", label: "Systems" },
-  { id: "luvis", label: "Luvis" },
+  { id: "frontend", label: "Craft" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "gaming", label: "Gaming" },
+  { id: "projects", label: "Projects" },
+  { id: "philosophy", label: "Philosophy" },
   { id: "contact", label: "Contact" },
 ];
 
