@@ -112,19 +112,19 @@ export function Hero() {
               <button
                 type="button"
                 data-cursor="VIEW"
-                onClick={() => scrollTo("frontend")}
+                onClick={() => scrollTo("gaming")}
                 className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-accent px-6 font-mono text-[11px] tracking-[0.18em] text-accent-foreground uppercase transition-transform duration-300 hover:-translate-y-0.5"
               >
-                Explore my work
+                Explore my games
                 <ArrowDownRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
               </button>
               <button
                 type="button"
                 data-cursor="OPEN"
-                onClick={() => scrollTo("luvis")}
+                onClick={() => scrollTo("pixoma")}
                 className="group inline-flex min-h-12 items-center gap-3 rounded-full border border-accent/50 px-6 font-mono text-[11px] tracking-[0.18em] text-accent uppercase transition-colors duration-300 hover:bg-accent/10"
               >
-                Explore {luvis.name}
+                Explore {pixoma.name}
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
               <button
