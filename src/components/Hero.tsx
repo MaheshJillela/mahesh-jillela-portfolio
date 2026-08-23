@@ -103,9 +103,9 @@ export function Hero() {
             className="max-w-2xl"
           >
             <p className="border-l border-accent/50 pl-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              <span className="text-foreground">Frontend-focused developer</span> with hands-on
-              experience building production applications and working across APIs, Node.js, cloud
-              infrastructure, servers, payments, caching, notifications and deployment.
+              <span className="text-foreground">Front-End Game Developer</span> building immersive
+              HTML5 casino games — slots, crash and instant games — with PixiJS, Spine and HTML5
+              Canvas, alongside modern React and TypeScript applications.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
