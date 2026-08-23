@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, Mail } from "lucide-react";
 import { ParticleField } from "@/components/pixi/ParticleField";
-import { luvis, profile } from "@/data/resume";
+import { pixoma, profile } from "@/data/resume";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -163,7 +163,7 @@ export function Hero() {
         <div className="flex flex-col gap-2 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
           <span className="label text-muted-foreground">Scroll to begin</span>
           <span className="label text-muted-foreground">
-            Frontend first · production aware
+            PixiJS · Canvas · Spine · React
           </span>
         </div>
       </div>
