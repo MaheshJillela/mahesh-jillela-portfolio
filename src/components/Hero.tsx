@@ -42,7 +42,7 @@ export function Hero() {
 
         <h1 className="mt-10 font-display text-[11.5vw] leading-[0.9] font-medium tracking-[-0.03em] text-foreground sm:mt-14 sm:text-[8.4vw] lg:text-[6.1vw]">
           <span className="sr-only">
-            Mahesh Jillela — Frontend Developer. {profile.headline}
+            Mahesh Jillela — Front-End Game Developer. {profile.headline}
           </span>
           {lines.map((line, i) => (
             <span
@@ -59,8 +59,8 @@ export function Hero() {
               >
                 {i === 2 ? (
                   <>
-                    <span className="text-muted-foreground/45">DON'T STOP AT </span>
-                    <span>THE BROWSER.</span>
+                    <span className="text-muted-foreground/45">IN THE </span>
+                    <span>BROWSER.</span>
                   </>
                 ) : (
                   line
