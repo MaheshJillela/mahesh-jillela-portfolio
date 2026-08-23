@@ -133,11 +133,11 @@ function CapabilityBands() {
   );
 }
 
-function RequestRiver() {
+export function RequestRiver() {
   const reduce = useReducedMotion();
   return (
     <section id="systems" className="relative overflow-hidden py-28 sm:py-40">
-      <Chapter index="03" label="Beyond the browser">
+      <Chapter index="08" label="Beyond the canvas">
         <h2 className="mt-14 max-w-4xl font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">
           One tap becomes a <em className="text-accent">rendered frame.</em>
         </h2>
@@ -174,7 +174,7 @@ function RequestRiver() {
   );
 }
 
-function LuvisWorld() {
+export function LuvisWorld() {
   const [active, setActive] = useState("web");
   const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
 
@@ -236,7 +236,7 @@ function SkillTopography() {
   
   return (
     <section id="skills" className="relative py-28 sm:py-44">
-      <Chapter index="05" label="Skill topography">
+      <Chapter index="03" label="Skill topography">
         <div className="mt-14 grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">Depth,<br /><em className="text-accent">not percentages.</em></h2>
@@ -305,8 +305,6 @@ export function EditorialJourney() {
     <>
       <AboutOrbit />
       <CapabilityBands />
-      <RequestRiver />
-      <LuvisWorld />
       <SkillTopography />
     </>
   );
