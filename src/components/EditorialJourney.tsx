@@ -32,11 +32,11 @@ function AboutOrbit() {
   const item = aboutPoints[active];
   return (
     <section id="about" className="relative overflow-hidden py-28 sm:py-40">
-      <Chapter index="01" label="Positioning">
+      <Chapter index="01" label="Positioning — front-end game developer">
         <div className="mt-14 grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <h2 className="max-w-xl font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">
-              Frontend is the <em className="text-accent">centre.</em>
+              The canvas is the <em className="text-accent">product.</em>
             </h2>
             <AnimatePresence mode="wait">
               <motion.div
@@ -92,12 +92,12 @@ function CapabilityBands() {
   const capability = frontendCore[active];
   return (
     <section id="frontend" className="relative py-28 sm:py-40">
-      <Chapter index="02" label="Frontend craft">
+      <Chapter index="02" label="Game frontend craft">
         <div className="mt-16 lg:grid lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <h2 className="font-editorial text-5xl leading-none text-foreground sm:text-7xl">The interface<br /><em className="text-muted-foreground">is the product.</em></h2>
+            <h2 className="font-editorial text-5xl leading-none text-foreground sm:text-7xl">Rendering, animation,<br /><em className="text-muted-foreground">interaction.</em></h2>
             <p className="mt-8 max-w-sm border-l border-accent/50 pl-5 text-sm leading-relaxed text-muted-foreground">
-              Select a discipline to see the browser-side decisions behind it.
+              Select a discipline to see the rendering and animation decisions behind it.
             </p>
           </div>
           <div className="mt-14 divide-y divide-border border-y border-border lg:mt-0">
@@ -133,13 +133,13 @@ function CapabilityBands() {
   );
 }
 
-function RequestRiver() {
+export function RequestRiver() {
   const reduce = useReducedMotion();
   return (
     <section id="systems" className="relative overflow-hidden py-28 sm:py-40">
-      <Chapter index="03" label="Beyond the browser">
+      <Chapter index="08" label="Beyond the canvas">
         <h2 className="mt-14 max-w-4xl font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">
-          One click becomes a <em className="text-accent">system journey.</em>
+          One tap becomes a <em className="text-accent">rendered frame.</em>
         </h2>
         <div id="flow" className="relative mt-20 overflow-x-auto pb-8">
           <div className="relative min-w-[980px] py-24">
@@ -174,14 +174,14 @@ function RequestRiver() {
   );
 }
 
-function LuvisWorld() {
+export function LuvisWorld() {
   const [active, setActive] = useState("web");
   const nodes = luvisArchitecture.nodes.filter((node) => node.id !== "user");
 
   return (
     <section id="luvis" className="relative overflow-hidden py-28 sm:py-44">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,var(--accent-soft),transparent_42%)]" />
-      <Chapter index="04" label="Case study — the only project">
+      <Chapter index="07" label="Case study — production gaming platform">
         <div className="mt-14 grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <div className="relative z-10">
             <p className="font-mono text-[10px] tracking-[0.22em] text-accent uppercase">{luvis.subtitle}</p>
@@ -236,7 +236,7 @@ function SkillTopography() {
   
   return (
     <section id="skills" className="relative py-28 sm:py-44">
-      <Chapter index="05" label="Skill topography">
+      <Chapter index="03" label="Skill topography">
         <div className="mt-14 grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="font-editorial text-5xl leading-[0.96] text-foreground sm:text-7xl">Depth,<br /><em className="text-accent">not percentages.</em></h2>
@@ -305,8 +305,6 @@ export function EditorialJourney() {
     <>
       <AboutOrbit />
       <CapabilityBands />
-      <RequestRiver />
-      <LuvisWorld />
       <SkillTopography />
     </>
   );
