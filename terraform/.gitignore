@@ -1,0 +1,25 @@
+# Local Terraform files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.state-archive-old-account/
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+terraform.tfvars
+*.auto.tfvars
+*.auto.tfvars.json
+.terraformrc
+terraform.rc
+
+# Secrets / credentials — never commit
+*.pem
+*.key
+credentials
+secrets.tfvars
+*_secret.tfvars
+cloudflare.auto.tfvars
