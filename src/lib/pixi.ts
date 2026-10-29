@@ -14,7 +14,9 @@ export function prefersReducedMotion() {
  * - pauses the ticker whenever the canvas is off-screen
  * - fully destroys the app on unmount
  */
-export function usePixiScene(setup: PixiSetup) {
+export function usePixiScene(setup: PixiSetup, keepRunning?: () => boolean) {
+  const activityRef = useRef(keepRunning);
+  activityRef.current = keepRunning;
   const hostRef = useRef<HTMLDivElement>(null);
   const setupRef = useRef(setup);
   setupRef.current = setup;
@@ -57,7 +59,7 @@ export function usePixiScene(setup: PixiSetup) {
       observer = new IntersectionObserver(
         (entries) => {
           if (!app) return;
-          if (entries[0]?.isIntersecting) app.ticker.start();
+          if (entries[0]?.isIntersecting || activityRef.current?.()) app.ticker.start();
           else app.ticker.stop();
         },
         { threshold: 0 },
