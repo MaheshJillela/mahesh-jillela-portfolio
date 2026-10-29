@@ -4,13 +4,11 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { id: "top", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "frontend", label: "Craft" },
-  { id: "skills", label: "Skills" },
+  { id: "gaming", label: "Game craft" },
+  { id: "control-panel", label: "Control panel" },
+  { id: "production", label: "Production" },
+  { id: "frontend", label: "Frontend" },
   { id: "experience", label: "Experience" },
-  { id: "gaming", label: "Gaming" },
-  { id: "projects", label: "Projects" },
-  { id: "philosophy", label: "Philosophy" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -68,7 +66,9 @@ export function Navbar() {
 
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-          scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "border-b border-transparent"
+          scrolled
+            ? "border-b border-border bg-background/85 backdrop-blur-md"
+            : "border-b border-transparent"
         }`}
       >
         <nav
@@ -164,7 +164,7 @@ export function Navbar() {
                     className="flex w-full items-baseline justify-between py-5 text-left"
                   >
                     <span className="font-display text-2xl text-foreground">{l.label}</span>
-                    <span className="font-mono text-[11px] text-accent">
+                    <span aria-hidden="true" className="font-mono text-[11px] text-accent">
                       0{i + 1}
                     </span>
                   </button>

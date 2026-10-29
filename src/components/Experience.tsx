@@ -1,5 +1,6 @@
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { experience, timeline } from "@/data/resume";
 

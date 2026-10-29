@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 type As = "div" | "li" | "section" | "span" | "article" | "p";
@@ -72,7 +73,6 @@ export function LineReveal({
       ))}
     </motion.span>
   );
-
 }
 
 export function SectionHeading({
@@ -131,4 +131,3 @@ export function SectionHeading({
     </header>
   );
 }
-

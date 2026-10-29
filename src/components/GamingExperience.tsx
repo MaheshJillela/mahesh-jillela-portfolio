@@ -91,7 +91,7 @@ export function GamingExperience() {
                 <div className="relative flex items-center justify-between">
                   <motion.span
                     className="inline-flex size-10 items-center justify-center rounded-lg border border-accent/40 bg-accent/10 text-accent"
-                    whileHover={reduce ? undefined : { rotate: -6, scale: 1.06 }}
+                    whileHover={reduce ? {} : { rotate: -6, scale: 1.06 }}
                     transition={{ type: "spring", stiffness: 260, damping: 18 }}
                   >
                     <Icon className="size-4" aria-hidden="true" />
