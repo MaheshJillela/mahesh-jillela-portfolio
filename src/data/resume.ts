@@ -672,6 +672,8 @@ export const experience = [
       "Engineered game UI surfaces — HUD, wallet, history, bonus and result screens — as reusable components.",
       "Built Pixoma, an internal game development toolkit for asset inspection and animation preview.",
       "Deployed and served game builds and assets through AWS S3 and CloudFront.",
+      "Independently implemented client-side game launching from partner lobbies.",
+      "Implemented client-side GA4 analytics for game interactions and lifecycle events.",
       "Tuned performance with GPU/CPU profiling and memory cleanup to hold framerate on low-end devices.",
       "Debugged live production rendering, animation and state issues reported from real gameplay.",
       "Built React + TypeScript application interfaces and used Python for scripting and developer tooling.",

@@ -933,4 +933,18 @@ npm run dev
 npm run build
 ```
 
-Upload `.output/public` to your S3 bucket (see `terraform/README.md`).
+The build prerenders the portfolio to `.output/public/index.html`. The browser runs the animations and interactions using the bundled assets. TanStack Start renders the HTML during the build.
+
+To preview the files with a static file server:
+
+```sh
+python3 -m http.server 8080 --bind 127.0.0.1 --directory .output/public
+```
+
+Open [the local preview](http://127.0.0.1:8080/). To deploy, sync the contents of `.output/public` to the bucket root:
+
+```sh
+aws s3 sync .output/public/ s3://YOUR_BUCKET_NAME/
+```
+
+Set `index.html` as the index document when using an S3 website endpoint. For a private S3 bucket behind CloudFront, use `index.html` as the default root object. The repository's [Terraform setup](terraform/README.md) configures the private bucket and CloudFront.

@@ -3,7 +3,12 @@ import { Container, Graphics, Sprite, Texture, BlurFilter } from "pixi.js";
 import { usePixiScene, prefersReducedMotion } from "@/lib/pixi";
 
 export type MachineEvent = { phase: string; remaining: number | null; complete: boolean };
-type Props = { feature: number; request: number; onEvent: (event: MachineEvent) => void };
+type Props = {
+  feature: number;
+  request: number;
+  onEvent: (event: MachineEvent) => void;
+  onError: () => void;
+};
 
 // Original symbol artwork, drawn once into textures rather than redrawn each frame.
 function symbolTexture(kind: number) {
@@ -208,23 +213,20 @@ function symbolTexture(kind: number) {
 }
 
 const WIDTH = 760,
-  HEIGHT = 510,
+  HEIGHT = 650,
   CELL = 112,
   COL = 128,
   LEFT = 60;
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function SlotMachine({ feature, request, onEvent }: Props) {
+export function SlotMachine({ feature, request, onEvent, onError }: Props) {
   const props = useRef({ feature, request, onEvent });
   props.current = { feature, request, onEvent };
   const control = useRef<{ start: () => void } | null>(null);
   const active = useRef(false);
   useEffect(() => {
-    if (request > 0) {
-      active.current = true;
-      control.current?.start();
-    }
-  }, [request]);
+    control.current?.start();
+  }, [feature, request]);
   const host = usePixiScene(
     (app) => {
       control.current = { start: () => app.ticker.start() };
@@ -274,7 +276,7 @@ export function SlotMachine({ feature, request, onEvent }: Props) {
       const light = new Graphics();
       world.addChild(light);
       let oldFeature = -1,
-        oldRequest = -1,
+        oldRequest = 0,
         elapsed = 0,
         phaseTime = 0,
         round = 0,
@@ -294,18 +296,21 @@ export function SlotMachine({ feature, request, onEvent }: Props) {
         }
       };
       const beginSpin = () => {
+        active.current = true;
         stage = "spin";
         phaseTime = 0;
         spinning = true;
         event(
           round === 0 ? "Reels spinning" : "Feature round spinning",
-          props.current.feature === 4
-            ? round <= 2
-              ? 3
-              : 6 - round
-            : props.current.feature === 3 || props.current.feature === 5
-              ? 4 - round
-              : null,
+          round === 0
+            ? null
+            : props.current.feature === 4
+              ? round <= 2
+                ? 3
+                : 6 - round
+              : props.current.feature === 3 || props.current.feature === 5
+                ? 4 - round
+                : null,
         );
       };
       const outcome = (col: number, row: number) => {
@@ -324,7 +329,6 @@ export function SlotMachine({ feature, request, onEvent }: Props) {
         if (p.feature !== oldFeature) {
           idleRendered = false;
           oldFeature = p.feature;
-          oldRequest = p.request;
           stage = "idle";
           phaseTime = 0;
           round = 0;
@@ -332,13 +336,17 @@ export function SlotMachine({ feature, request, onEvent }: Props) {
           expansion = 0;
           spinning = false;
           event("Ready to spin");
-        } else if (p.request !== oldRequest) {
+        }
+        if (p.request !== oldRequest) {
           idleRendered = false;
           oldRequest = p.request;
           round = 0;
           held.clear();
           expansion = 0;
-          beginSpin();
+          if (p.feature === 5) {
+            round = 1;
+            beginSpin();
+          } else beginSpin();
         }
         const resting = stage === "idle" || stage === "done";
         if (
@@ -486,6 +494,14 @@ export function SlotMachine({ feature, request, onEvent }: Props) {
           }
         }
         if (stage === "collect" && phaseTime > 1000 / speed) {
+          stage = "restore";
+          phaseTime = 0;
+          round = 0;
+          held.clear();
+          event("Returning to base game");
+        }
+        if (stage === "restore" && phaseTime > 900 / speed) {
+          expansion = 0;
           stage = "done";
           active.current = false;
           event("Sequence complete · ready to replay", null, true);
@@ -497,6 +513,7 @@ export function SlotMachine({ feature, request, onEvent }: Props) {
       };
     },
     () => active.current,
+    onError,
   );
-  return <div ref={host} className="aspect-[760/510] w-full" aria-hidden="true" />;
+  return <div ref={host} className="aspect-[760/650] w-full" aria-hidden="true" />;
 }

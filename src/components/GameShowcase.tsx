@@ -1,7 +1,11 @@
+import { GameWork, ProductionWork } from "@/components/GameWork";
+import { SkillMechanics } from "@/components/SkillMechanics";
 import { SlotEngine } from "@/components/SlotEngine";
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { Graphics } from "pixi.js";
-import { ArrowUpRight, Code2, Layers, Monitor, Rocket } from "lucide-react";
+import { Layers, Rocket } from "lucide-react";
 import { usePixiScene, prefersReducedMotion } from "@/lib/pixi";
 
 const formats = [
@@ -94,6 +98,7 @@ function Heading({
 }
 
 export function GameShowcase() {
+  const reduce = useReducedMotion();
   const [mode, setMode] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [status, setStatus] = useState("Ready to explore");
@@ -142,6 +147,7 @@ export function GameShowcase() {
             the mechanics behind the game.
           </p>
         </Heading>
+        <GameWork />
         <div className="overflow-hidden rounded-3xl border border-border bg-surface/50">
           <div
             className="flex flex-wrap gap-2 border-b border-border p-4"
@@ -227,15 +233,27 @@ export function GameShowcase() {
         <Heading label="02 / Production interface experience" title="One panel. Many contexts." />
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">
-              I implemented a complete new control panel design across multiple jurisdictions and
-              localizations.
-            </p>
-            <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground">
-              Explore a simplified concept: the same interface adapts its language and available
-              controls. Sample profiles illustrate configuration; they do not represent legal
-              requirements.
-            </p>
+            <div className="flex flex-wrap items-center gap-3 text-sm">
+              <span className="rounded-xl border border-accent/40 bg-accent/10 p-4 text-accent">
+                One control panel
+              </span>
+              <span aria-hidden="true">→</span>
+              <div className="space-y-2 font-mono text-xs">
+                <span className="block rounded-lg border border-border px-4 py-2">
+                  EN / ES / DE
+                </span>
+                <span className="block rounded-lg border border-border px-4 py-2">
+                  Profile A / Profile B
+                </span>
+              </div>
+            </div>
+            <details className="mt-5 text-xs text-muted-foreground">
+              <summary className="cursor-pointer py-3">About this control panel</summary>
+              <p className="max-w-lg leading-relaxed">
+                I implemented a new control panel across jurisdictions and localizations. These
+                sample profiles illustrate configuration.
+              </p>
+            </details>
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
               <label className="text-xs text-muted-foreground">
                 Language
@@ -320,6 +338,24 @@ export function GameShowcase() {
           label="03 / From scratch to production"
           title="The canvas is only the beginning."
         />
+        <div className="relative mx-8 mb-8 h-16" aria-hidden="true">
+          <div className="absolute inset-x-0 top-8 h-px bg-border-strong" />
+          {[0, 1, 2, 3].map((stop) => (
+            <span
+              key={stop}
+              className="absolute top-7 size-2 rounded-full bg-accent/40"
+              style={{ left: `${(stop / 3) * 100}%` }}
+            />
+          ))}
+          <motion.div
+            initial={false}
+            animate={{ left: `${(stage / 3) * 100}%` }}
+            transition={{ duration: reduce ? 0 : 0.6 }}
+            className="absolute top-3 -translate-x-1/2 rounded-full border border-accent bg-background p-3 text-accent"
+          >
+            <Rocket className="size-5" />
+          </motion.div>
+        </div>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {stages.map((s, i) => (
             <button
@@ -343,43 +379,8 @@ export function GameShowcase() {
           </div>
         </div>
       </section>
-      <section id="frontend" className="mx-auto max-w-[1240px] scroll-mt-24 px-5 py-20 sm:px-8">
-        <Heading label="04 / Beyond games" title="Game craft. Frontend foundations." />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            {
-              icon: Code2,
-              name: "TypeScript + JavaScript",
-              note: "The logic behind interactions",
-              diagram: "INPUT → STATE → FEEDBACK",
-            },
-            {
-              icon: Layers,
-              name: "React",
-              note: "Reusable interfaces and components",
-              diagram: "APP / COMPONENT / UI",
-            },
-            {
-              icon: Monitor,
-              name: "Responsive UI",
-              note: "Interfaces across screen sizes",
-              diagram: "DESKTOP ↔ TABLET ↔ MOBILE",
-            },
-          ].map(({ icon: Icon, name, note, diagram }) => (
-            <div key={name} className="rounded-2xl border border-border p-7">
-              <Icon className="size-7 text-accent" />
-              <div className="my-10 border-y border-border py-6 font-mono text-[10px] tracking-wider text-accent">
-                {diagram}
-              </div>
-              <h3 className="text-xl">{name}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{note}</p>
-            </div>
-          ))}
-        </div>
-        <a href="#contact" className="mt-8 inline-flex items-center gap-3 text-sm text-accent">
-          Let’s build an interactive experience <ArrowUpRight className="size-4" />
-        </a>
-      </section>
+      <ProductionWork />
+      <SkillMechanics />
     </>
   );
 }

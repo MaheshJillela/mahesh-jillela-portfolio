@@ -97,8 +97,11 @@ export function SlotEngine() {
   const [request, setRequest] = useState(0);
   const [running, setRunning] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [rendererError, setRendererError] = useState(false);
+  const [generation, setGeneration] = useState(0);
   const [event, setEvent] = useState<MachineEvent>({
-    phase: "Ready to spin",
+    phase: "Loading reel renderer…",
     remaining: null,
     complete: false,
   });
@@ -114,8 +117,8 @@ export function SlotEngine() {
         <div>
           <p className="label text-accent">Production experience / playable reel system</p>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Core engine and feature development across Seariches, Eye of the Reels and Pirates
-            Awakening.
+            Rendering studies of core engine and feature work across five slot clients. Select a
+            system, then run its sequence.
           </p>
         </div>
         <span className="rounded-full border border-border px-3 py-2 font-mono text-[10px] text-muted-foreground">
@@ -160,9 +163,16 @@ export function SlotEngine() {
               </span>
             </div>
             <SlotMachine
+              key={generation}
               feature={selected}
               request={request}
+              onError={() => {
+                setRendererError(true);
+                setRunning(false);
+                setReady(false);
+              }}
               onEvent={(next) => {
+                setReady(true);
                 setEvent(next);
                 if (next.complete) setRunning(false);
               }}
@@ -176,6 +186,31 @@ export function SlotEngine() {
                 {event.phase}
               </p>
             </div>
+            {rendererError && (
+              <div className="absolute inset-0 z-10 grid place-items-center bg-background/95 p-6 text-center">
+                <div>
+                  <p className="text-sm text-foreground">
+                    The interactive renderer could not start.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setRendererError(false);
+                      setRequest(0);
+                      setEvent({
+                        phase: "Loading reel renderer…",
+                        remaining: null,
+                        complete: false,
+                      });
+                      setGeneration((value) => value + 1);
+                    }}
+                    className="mt-4 rounded-full bg-accent px-5 py-3 text-sm text-accent-foreground"
+                  >
+                    Retry renderer
+                  </button>
+                </div>
+              </div>
+            )}
             {confirm && (
               <div
                 className="absolute inset-0 z-10 grid place-items-center bg-[#050912]/85 p-6 backdrop-blur-sm"
@@ -221,7 +256,7 @@ export function SlotEngine() {
               {mechanics.map((item, i) => (
                 <button
                   key={item.name}
-                  disabled={running || confirm}
+                  disabled={!ready || running || confirm}
                   aria-pressed={i === selected}
                   onClick={() => {
                     setSelected(i);
@@ -238,12 +273,18 @@ export function SlotEngine() {
                 {mechanic.short.toUpperCase()}
               </p>
               <button
-                disabled={running || confirm}
+                disabled={!ready || running || confirm}
                 onClick={() => (selected === 5 ? setConfirm(true) : spin())}
                 className="mt-4 flex min-h-14 w-full items-center justify-center gap-3 rounded-full border border-[#f5dea0]/60 bg-gradient-to-b from-[#edcf8f] to-[#b68a43] text-sm font-semibold tracking-wider text-[#21180d] shadow-[0_4px_20px_#dcb66322] transition-transform hover:scale-[1.02] disabled:scale-100 disabled:opacity-50"
               >
                 <RotateCw className={`size-5 ${running ? "motion-safe:animate-spin" : ""}`} />
-                {running ? "IN PLAY" : selected === 5 ? "BUY FEATURE DEMO" : "SPIN DEMO"}
+                {!ready
+                  ? "LOADING…"
+                  : running
+                    ? "IN PLAY"
+                    : selected === 5
+                      ? "BUY FEATURE DEMO"
+                      : "SPIN DEMO"}
               </button>
             </div>
           </div>

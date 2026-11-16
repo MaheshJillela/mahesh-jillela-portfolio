@@ -14,7 +14,9 @@ export function prefersReducedMotion() {
  * - pauses the ticker whenever the canvas is off-screen
  * - fully destroys the app on unmount
  */
-export function usePixiScene(setup: PixiSetup, keepRunning?: () => boolean) {
+export function usePixiScene(setup: PixiSetup, keepRunning?: () => boolean, onError?: () => void) {
+  const errorRef = useRef(onError);
+  errorRef.current = onError;
   const activityRef = useRef(keepRunning);
   activityRef.current = keepRunning;
   const hostRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,7 @@ export function usePixiScene(setup: PixiSetup, keepRunning?: () => boolean) {
           autoDensity: true,
         });
       } catch {
+        if (!disposed) errorRef.current?.();
         return;
       }
       if (disposed) {
