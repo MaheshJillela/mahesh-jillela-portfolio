@@ -20,10 +20,12 @@ export function Hero() {
       id="top"
       className="noise relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-24 pb-12"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 mask-[linear-gradient(#000_0%,#000_72%,transparent_100%)]"
+        aria-hidden="true"
+      >
         <div className="grid-fade absolute inset-0" />
         <ParticleField className="absolute inset-0" density={0.00014} linkDistance={118} />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       <div className="relative mx-auto w-full max-w-[1400px] px-5 sm:px-8">

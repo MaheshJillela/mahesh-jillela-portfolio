@@ -1,0 +1,621 @@
+.game-orbit {
+  --stage-height: max(23rem, calc(100svh - 5rem));
+  --travel: clamp(100rem, 240svh, 160rem);
+  height: calc(var(--stage-height) + var(--travel));
+  color: var(--foreground);
+}
+
+.game-orbit__stage {
+  --orbit-light: rgb(var(--orbit-rgb));
+  --orbit-line: rgb(var(--orbit-rgb) / 0.42);
+  --orbit-glow: rgb(var(--orbit-rgb) / 0.14);
+  --orbit-ink: color-mix(in oklab, var(--background) 93%, var(--orbit-light));
+  position: sticky;
+  top: 4.5rem;
+  height: var(--stage-height);
+  isolation: isolate;
+}
+
+.game-orbit__heading {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.55rem 1.5rem;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+
+.game-orbit__heading h2 {
+  margin-top: 0.35rem;
+  color: var(--foreground);
+  font-size: clamp(1.9rem, 5vw, 3.65rem);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+
+.game-orbit__heading > p {
+  max-width: 16rem;
+  color: #c0cbd4;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.game-orbit__camera {
+  position: absolute;
+  inset: 6.5rem 0 4.5rem;
+  isolation: isolate;
+}
+
+.game-orbit__geometry,
+.game-orbit__path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.game-orbit__geometry {
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke-linecap: round;
+  transition: opacity 250ms ease;
+}
+
+.game-orbit__stage[data-inspecting="true"] .game-orbit__geometry {
+  opacity: 0.58;
+}
+
+.game-orbit__track-halo {
+  stroke: #82aaff;
+  stroke-width: 8px;
+  opacity: 0.25;
+  filter: blur(4px);
+}
+
+.game-orbit__track-line {
+  stroke-width: 2.25px;
+}
+
+.game-orbit__track-sweep {
+  stroke: #e8fff9;
+  stroke-width: 3px;
+  stroke-dasharray: 5 95;
+  stroke-dashoffset: 5;
+  filter: drop-shadow(0 0 4px #84f8ec);
+  animation: game-orbit-track-sweep 8s linear infinite;
+}
+
+@keyframes game-orbit-track-sweep {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 5;
+  }
+  10%,
+  78% {
+    opacity: 0.78;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-orbit__track-sweep {
+    display: none;
+  }
+}
+
+.game-orbit__path {
+  margin: 0;
+  list-style: none;
+}
+
+.game-orbit__stop {
+  --orbit-light: rgb(var(--orbit-rgb));
+  --orbit-line: rgb(var(--orbit-rgb) / 0.42);
+  --orbit-glow: rgb(var(--orbit-rgb) / 0.19);
+  position: absolute;
+  top: var(--y, 62%);
+  left: var(--x, 55%);
+  opacity: var(--depth-opacity, 0);
+  transform: translate(-50%, -50%) scale(var(--depth-scale, 1));
+}
+
+.game-orbit__stop:not([data-visible="true"]) {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.game-orbit__stage[data-inspecting="true"] .game-orbit__stop[data-current="false"] {
+  opacity: calc(var(--depth-opacity, 0) * 0.44);
+}
+
+.game-orbit__trigger {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding: 0.25rem 0.6rem 0.5rem;
+  border-radius: 1rem;
+  color: inherit;
+  cursor: pointer;
+}
+
+.game-orbit__controls {
+  position: absolute;
+  z-index: 4;
+  inset: auto 0 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.game-orbit__controls > div {
+  min-width: 8.5rem;
+}
+
+.game-orbit__controls button {
+  display: grid;
+  width: 2.9rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #c6d7ec49;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--background) 92%, #adc7e9);
+  cursor: pointer;
+}
+
+.game-orbit__controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.game-orbit__controls button:not(:disabled):hover {
+  border-color: var(--orbit-light);
+}
+.game-orbit__position {
+  font-size: 0.875rem;
+}
+
+.game-orbit__progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.45rem;
+}
+
+.game-orbit__progress i {
+  width: 0.55rem;
+  height: 2px;
+  border-radius: 1rem;
+  background: #a0b0c55c;
+}
+
+.game-orbit__progress i[data-current="true"] {
+  width: 1.05rem;
+  background: var(--orbit-light);
+}
+
+.game-orbit__artifact {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  width: clamp(9rem, 29vw, 22rem);
+  aspect-ratio: 52 / 41;
+  place-items: center;
+  transition: transform 440ms cubic-bezier(0.18, 0.82, 0.28, 1);
+}
+
+.game-orbit__artifact::before,
+.game-orbit__artifact::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.game-orbit__artifact::before {
+  inset: 1% -7% 5%;
+  background: radial-gradient(ellipse, var(--orbit-glow), transparent 67%);
+  opacity: 0.72;
+  transition: opacity 320ms ease;
+}
+
+.game-orbit__artifact::after {
+  bottom: 8%;
+  left: 24%;
+  width: 52%;
+  height: 15%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #08090dba 15%, transparent 68%);
+  opacity: 0.88;
+}
+
+.game-orbit__stage[data-inspecting="true"]
+  .game-orbit__stop[data-current="true"]
+  .game-orbit__artifact {
+  transform: translateY(-0.45rem) scale(1.09);
+}
+
+.game-orbit__stage[data-inspecting="true"]
+  .game-orbit__stop[data-current="true"]
+  .game-orbit__artifact::before {
+  opacity: 1;
+}
+
+.game-orbit__model {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 0.85rem var(--orbit-glow));
+}
+
+.game-orbit__fallback {
+  position: absolute;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 28% 23%,
+    #fff,
+    var(--orbit-light) 17%,
+    var(--orbit-ink) 74%
+  );
+}
+
+.game-orbit__artifact[data-shape="diamond"] .game-orbit__fallback {
+  clip-path: polygon(50% 0, 100% 38%, 50% 100%, 0 38%);
+  border-radius: 0;
+}
+
+.game-orbit__artifact[data-shape="hex"] .game-orbit__fallback {
+  clip-path: polygon(24% 3%, 76% 3%, 100% 50%, 76% 97%, 24% 97%, 0 50%);
+  border-radius: 0;
+}
+
+.game-orbit__artifact:has(.game-orbit__model[data-ready="true"]) .game-orbit__fallback {
+  display: none;
+}
+
+.game-orbit__game-name {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #f4f1ff;
+  font-size: clamp(0.85rem, 2vw, 1.16rem);
+  font-weight: 600;
+  line-height: 1.18;
+  white-space: nowrap;
+}
+
+.game-orbit__game-name svg {
+  flex-shrink: 0;
+  color: var(--orbit-light);
+}
+
+.game-orbit__stop[data-current="true"] .game-orbit__game-name {
+  color: var(--orbit-light);
+}
+
+.game-orbit__screen,
+.game-orbit__projection {
+  --screen-cut: polygon(
+    0 0,
+    calc(100% - 1.1rem) 0,
+    100% 1.1rem,
+    100% 100%,
+    1.1rem 100%,
+    0 calc(100% - 1.1rem)
+  );
+  min-width: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  color: #edf7ff;
+  isolation: isolate;
+  filter: drop-shadow(0 0.5rem 1rem #05090d9e);
+}
+
+.game-orbit__glass,
+.game-orbit__glass::before,
+.game-orbit__glass::after {
+  position: absolute;
+  clip-path: var(--screen-cut);
+  pointer-events: none;
+}
+
+.game-orbit__glass {
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    var(--orbit-light),
+    var(--orbit-line) 48%,
+    #c5e5ff55 73%,
+    var(--orbit-light)
+  );
+}
+
+.game-orbit__glass::before {
+  content: "";
+  inset: 1px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 4px, rgb(var(--orbit-rgb) / 0.045) 4px 5px),
+    radial-gradient(ellipse at 0 0, rgb(var(--orbit-rgb) / 0.23), transparent 70%),
+    linear-gradient(140deg, #14212af7, #0b121bef 70%);
+}
+
+.game-orbit__glass::after {
+  content: "";
+  inset: 1px;
+  background: linear-gradient(
+    0deg,
+    transparent 40%,
+    rgb(var(--orbit-rgb) / 0.18) 50%,
+    transparent 63%
+  );
+  background-size: 100% 250%;
+  animation: game-orbit-scan 720ms ease-out both;
+}
+
+@keyframes game-orbit-scan {
+  from {
+    opacity: 1;
+    background-position: 0 95%;
+  }
+  to {
+    opacity: 0;
+    background-position: 0 0;
+  }
+}
+
+.game-orbit__screen {
+  position: absolute;
+  z-index: 3;
+  inset: auto 0 4.05rem;
+  max-height: 73%;
+  overflow: auto;
+  animation: game-orbit-screen-in 340ms cubic-bezier(0.18, 0.8, 0.25, 1) both;
+}
+
+.game-orbit__screen-heading,
+.game-orbit__projection-heading,
+.game-orbit__screen footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.game-orbit__screen-heading {
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--orbit-line);
+}
+
+.game-orbit__screen-heading p {
+  margin: 0 0 0.2rem;
+  color: var(--orbit-light);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.game-orbit__screen-heading h3 {
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.game-orbit__screen-heading button,
+.game-orbit__projection-heading button {
+  display: grid;
+  flex: 0 0 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  color: var(--orbit-light);
+  cursor: pointer;
+}
+
+.game-orbit__mechanics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem 0.35rem;
+  margin: 0.9rem 0 1rem;
+  list-style: none;
+}
+
+.game-orbit__mechanics button {
+  display: flex;
+  width: 100%;
+  min-height: 4.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 0.35rem;
+  border-radius: 0.5rem;
+  color: #e0edf8;
+  font-size: 0.875rem;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+}
+
+.game-orbit__mechanic-object {
+  display: grid;
+  width: 2.85rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--orbit-line);
+  border-radius: 0.25rem 0.85rem;
+  color: var(--orbit-light);
+  background: linear-gradient(145deg, var(--orbit-glow), #0d1820 78%);
+  box-shadow:
+    inset 0 1px rgb(var(--orbit-rgb) / 0.25),
+    0 0.28rem 0.8rem #03090760;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.game-orbit__mechanics li:nth-child(even) .game-orbit__mechanic-object {
+  border-radius: 50%;
+}
+
+.game-orbit__mechanics button[aria-expanded="true"] {
+  color: var(--orbit-light);
+}
+
+.game-orbit__mechanics button[aria-expanded="true"] .game-orbit__mechanic-object {
+  transform: translateY(-0.2rem) scale(1.1);
+  box-shadow:
+    inset 0 0 0.8rem var(--orbit-line),
+    0 0 1.2rem var(--orbit-line);
+}
+
+.game-orbit__projection {
+  --projection-shift: 0.75rem;
+  position: relative;
+  z-index: 3;
+  margin: 0.7rem 0 1rem;
+  animation: game-orbit-project 250ms ease-out both;
+}
+
+.game-orbit__projection h4 {
+  color: var(--orbit-light);
+  font-weight: 650;
+}
+
+.game-orbit__projection ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0.55rem 0 0.85rem;
+  color: var(--orbit-light);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  list-style: none;
+}
+
+.game-orbit__projection li {
+  border-top: 1px solid var(--orbit-line);
+  padding-top: 0.55rem;
+  animation: game-orbit-reveal 320ms ease-out both;
+}
+
+.game-orbit__projection li::before {
+  content: "";
+  display: block;
+  width: 0.4rem;
+  aspect-ratio: 1;
+  margin-bottom: 0.4rem;
+  background: var(--orbit-light);
+  box-shadow: 0 0 0.65rem var(--orbit-line);
+  transform: rotate(45deg);
+}
+
+.game-orbit__projection li:nth-child(2) {
+  animation-delay: 100ms;
+}
+.game-orbit__projection li:nth-child(3) {
+  animation-delay: 190ms;
+}
+
+.game-orbit__projection p {
+  color: #dedaf0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.game-orbit__demo {
+  min-height: 2.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: 1px solid var(--orbit-line);
+  border-radius: 100px;
+  padding-inline: 0.85rem;
+  color: var(--orbit-light);
+  background: var(--orbit-glow);
+}
+
+.game-orbit__demo:hover {
+  background: rgb(var(--orbit-rgb) / 0.23);
+}
+.game-orbit :focus-visible {
+  outline: 2px solid var(--orbit-light);
+  outline-offset: 3px;
+}
+
+@keyframes game-orbit-screen-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem) scaleY(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes game-orbit-project {
+  from {
+    opacity: 0;
+    translate: var(--projection-shift) 0.35rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes game-orbit-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 900px) and (min-height: 620px) {
+  .game-orbit__screen {
+    inset: 7rem auto auto 0;
+    width: min(34%, 24rem);
+    max-height: none;
+    overflow: visible;
+  }
+
+  .game-orbit__screen::after {
+    content: "";
+    position: absolute;
+    top: 4.25rem;
+    left: 100%;
+    width: clamp(2rem, 7vw, 5rem);
+    height: 20%;
+    background: linear-gradient(90deg, var(--orbit-glow), transparent);
+    clip-path: polygon(0 0, 100% 74%, 100% 80%, 0 100%);
+    pointer-events: none;
+  }
+
+  .game-orbit__projection {
+    position: absolute;
+    top: max(0.5rem, calc(var(--projection-top) - 3.5rem));
+    left: calc(100% + 0.55rem);
+    width: clamp(12rem, 19vw, 16rem);
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-orbit *,
+  .game-orbit *::before {
+    animation: none;
+    transition: none;
+  }
+}

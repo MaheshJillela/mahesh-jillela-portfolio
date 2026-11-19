@@ -1,4 +1,5 @@
-import { GameWork, ProductionWork } from "@/components/GameWork";
+import { GameOrbit } from "@/components/GameOrbit";
+import { ProductionWork } from "@/components/GameWork";
 import { SkillMechanics } from "@/components/SkillMechanics";
 import { SlotEngine } from "@/components/SlotEngine";
 import { useRef, useState } from "react";
@@ -8,48 +9,19 @@ import { Graphics } from "pixi.js";
 import { Layers, Rocket } from "lucide-react";
 import { usePixiScene, prefersReducedMotion } from "@/lib/pixi";
 
-const formats = [
-  {
-    name: "Slots",
-    title: "Orchestrate the reveal.",
-    note: "Reel motion → staggered stops → result presentation",
-    skills: ["Masked reels", "Animation sequencing", "Game states"],
-    detail:
-      "A small rendering study: clipped symbols, independent reel timing and a clear transition back to idle.",
-  },
-  {
-    name: "Crash",
-    title: "Make every frame count.",
-    note: "Round start → rising curve → round complete",
-    skills: ["Delta-time animation", "Canvas paths", "Round lifecycle"],
-    detail:
-      "A predetermined curve demonstrates time-based rendering and round states. The value is illustrative, not a game outcome.",
-  },
-];
-
-function GameCanvas({
-  mode,
-  playing,
-  onComplete,
-}: {
-  mode: number;
-  playing: boolean;
-  onComplete: () => void;
-}) {
-  const state = useRef({ mode, playing, onComplete });
-  state.current = { mode, playing, onComplete };
+function GameCanvas({ playing, onComplete }: { playing: boolean; onComplete: () => void }) {
+  const state = useRef({ playing, onComplete });
+  state.current = { playing, onComplete };
   const host = usePixiScene((app) => {
     const g = new Graphics();
     app.stage.addChild(g);
     let elapsed = 0;
-    let previous = -1;
     let wasPlaying = false;
     app.ticker.add((ticker) => {
       const s = state.current;
-      if (previous !== s.mode || (s.playing && !wasPlaying)) {
+      if (s.playing && !wasPlaying) {
         elapsed = 0;
       }
-      previous = s.mode;
       wasPlaying = s.playing;
       if (s.playing) elapsed += ticker.deltaMS;
       const progress = prefersReducedMotion() ? 1 : Math.min(elapsed / 2400, 1);
@@ -99,14 +71,13 @@ function Heading({
 
 export function GameShowcase() {
   const reduce = useReducedMotion();
-  const [mode, setMode] = useState(0);
+  const [demo, setDemo] = useState<"Slots" | "Crash / instant" | null>(null);
   const [playing, setPlaying] = useState(false);
   const [status, setStatus] = useState("Ready to explore");
   const [locale, setLocale] = useState("en");
   const [jurisdiction, setJurisdiction] = useState("A");
   const [sound, setSound] = useState(true);
   const [stage, setStage] = useState(0);
-  const item = formats[mode]!;
   const copy =
     locale === "es"
       ? { play: "Jugar", balance: "Saldo", settings: "Ajustes" }
@@ -137,91 +108,52 @@ export function GameShowcase() {
   ];
   return (
     <>
-      <section
-        id="gaming"
-        className="mx-auto max-w-[1240px] scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28"
-      >
-        <Heading label="01 / Slot mechanics & engine development" title="Inside the games I build.">
-          <p className="max-w-xs text-sm text-muted-foreground">
-            Production experience, from core reel systems to complete feature lifecycles. Explore
-            the mechanics behind the game.
-          </p>
-        </Heading>
-        <GameWork />
-        <div className="overflow-hidden rounded-3xl border border-border bg-surface/50">
-          <div
-            className="flex flex-wrap gap-2 border-b border-border p-4"
-            role="group"
-            aria-label="Game format"
-          >
-            {formats.map((format, i) => (
-              <button
-                key={format.name}
-                aria-pressed={mode === i}
-                onClick={() => {
-                  setMode(i);
-                  setPlaying(false);
-                  setStatus("Ready to explore");
-                }}
-                className={`rounded-full px-5 py-3 text-sm transition-colors ${mode === i ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-accent/10"}`}
-              >
-                {format.name}
-              </button>
-            ))}
-          </div>
-          {mode === 0 ? (
-            <div className="p-5 sm:p-8">
-              <SlotEngine />
-            </div>
-          ) : (
-            <div className="grid lg:grid-cols-[1.3fr_1fr]">
-              <div className="relative border-b border-border lg:border-r lg:border-b-0">
-                <div className="flex justify-between px-6 pt-5 font-mono text-[10px] tracking-wider text-muted-foreground">
-                  <span>PIXI.JS / LIVE CANVAS</span>
-                  <span>TECHNIQUE STUDY</span>
-                </div>
-                <GameCanvas
-                  mode={mode}
-                  playing={playing}
-                  onComplete={() => {
-                    setPlaying(false);
-                    setStatus("Sequence complete · ready to replay");
-                  }}
-                />
-                <div className="flex min-h-20 flex-wrap items-center justify-between gap-3 px-6 pb-6">
-                  <p role="status" className="text-xs text-muted-foreground">
-                    {status}
-                  </p>
-                  <button
-                    disabled={playing}
-                    onClick={() => {
-                      setPlaying(true);
-                      setStatus("Sequence running…");
+      <section id="gaming" className="scroll-mt-[4.5rem]">
+        <div className="mx-auto max-w-[1240px] px-5 pb-20 sm:px-8 sm:pb-28">
+          <GameOrbit
+            demo={demo}
+            onDemo={(family) => {
+              setPlaying(false);
+              setStatus("Ready to explore");
+              setDemo(family);
+            }}
+          />
+          {demo && (
+            <div id="game-study" className="mt-8 scroll-mt-24" tabIndex={-1}>
+              {demo === "Slots" ? (
+                <SlotEngine />
+              ) : (
+                <div className="overflow-hidden rounded-2xl border border-border bg-surface/50">
+                  <h3 className="px-6 pt-6 font-editorial text-3xl">Crash curve study</h3>
+                  <GameCanvas
+                    playing={playing}
+                    onComplete={() => {
+                      setPlaying(false);
+                      setStatus("Sequence complete · ready to replay");
                     }}
-                    className="rounded-full bg-accent px-6 py-3 text-sm text-accent-foreground disabled:opacity-50"
-                  >
-                    {playing ? "Running…" : "Run sequence ↗"}
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center p-7 sm:p-10">
-                <p className="label text-accent">{item.name} / frontend mechanics</p>
-                <h3 className="mt-5 font-editorial text-4xl sm:text-5xl">{item.title}</h3>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {item.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-full border border-border px-3 py-2 font-mono text-[10px]"
+                  />
+                  <div className="flex flex-wrap items-center justify-between gap-4 px-6 pb-6">
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        A predetermined curve visualizes frame timing and the round lifecycle.
+                      </p>
+                      <p role="status" className="mt-1 text-sm text-accent">
+                        {status}
+                      </p>
+                    </div>
+                    <button
+                      disabled={playing}
+                      onClick={() => {
+                        setPlaying(true);
+                        setStatus("Sequence running…");
+                      }}
+                      className="rounded-full bg-accent px-6 py-3 text-sm text-accent-foreground disabled:opacity-50"
                     >
-                      {skill}
-                    </span>
-                  ))}
+                      {playing ? "Running…" : "Run sequence"}
+                    </button>
+                  </div>
                 </div>
-                <p className="mt-8 border-t border-border pt-5 text-xs leading-relaxed text-accent">
-                  {item.note}
-                </p>
-              </div>
+              )}
             </div>
           )}
         </div>

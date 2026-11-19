@@ -50,10 +50,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
-      <div
-        aria-hidden="true"
-        className="aurora-wash pointer-events-none fixed inset-0 z-0 opacity-45"
-      />
+      <div aria-hidden="true" className="aurora-wash pointer-events-none fixed inset-0 z-0" />
       <SmoothScroll />
       <ScrollProgress />
       <CustomCursor />

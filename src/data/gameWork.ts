@@ -1,5 +1,3 @@
-// Source references are relative to the two client projects supplied by Mahesh.
-// Counts describe source clients and variants. Registry aliases are grouped.
 export const gameWork = [
   {
     id: "seariches",
@@ -13,7 +11,6 @@ export const gameWork = [
       "Hold & Spin",
       "Buy feature",
     ],
-    source: "app/games/seariches/src",
   },
   {
     id: "eyeofthereels",
@@ -27,7 +24,6 @@ export const gameWork = [
       "Hold & Spin",
       "Buy feature",
     ],
-    source: "app/games/eyeofthereels/src",
   },
   {
     id: "piratesawakening",
@@ -41,99 +37,30 @@ export const gameWork = [
       "Buy feature",
       "Ladder presentation",
     ],
-    source: "app/games/piratesawakening/src",
-  },
-  {
-    id: "piratesfortune",
-    name: "Pirates Fortune",
-    family: "Slots",
-    mechanics: [
-      "Core reels",
-      "Reel expansion",
-      "Free spins",
-      "Hold & Spin",
-      "Buy feature",
-      "Ladder presentation",
-    ],
-    source: "app/games/piratesfortune/src",
-  },
-  {
-    id: "piratesfortunegold",
-    name: "Pirates Fortune Gold",
-    family: "Slots",
-    mechanics: [
-      "Core reels",
-      "Reel expansion",
-      "Lock & respins",
-      "Free spins",
-      "Hold & Spin",
-      "Buy feature",
-    ],
-    source: "app/games/piratesfortunegold/src",
   },
   {
     id: "skyx",
     name: "SkyX",
     family: "Crash / instant",
     mechanics: ["Round lifecycle", "Multiplier curve", "Bet / cashout", "Autoplay"],
-    source: "src/games/skyx/controller + src/games/crash/controller",
-  },
-  {
-    id: "skyx-new",
-    name: "SkyX New",
-    family: "Crash / instant",
-    mechanics: ["Round lifecycle", "Multiplier curve", "Bet / cashout", "Autoplay"],
-    source: "src/games/skyx_new/controller",
-    aliases: "sky-x / skyx_new",
   },
   {
     id: "sky-sniffer",
     name: "Sky Sniffer",
     family: "Crash / instant",
     mechanics: ["Round lifecycle", "Multiplier curve", "Bet / cashout", "Autoplay"],
-    source: "src/games/skysniffer/controller",
-  },
-  {
-    id: "sky-sniffer-v2",
-    name: "Sky Sniffer V2",
-    family: "Crash / instant",
-    mechanics: ["Round lifecycle", "Multiplier curve", "Bet / cashout", "Autoplay"],
-    source: "src/games/skysnifferv2/controller",
-  },
-  {
-    id: "city-sniffer",
-    name: "City Sniffer",
-    family: "Crash / instant",
-    mechanics: ["Round lifecycle", "Multiplier curve", "Bet / cashout"],
-    source: "src/games/citysniffer/controller",
-  },
-  {
-    id: "superdog",
-    name: "Superdog",
-    family: "Crash / instant",
-    mechanics: ["Round lifecycle", "Multiplier curve", "Bet / cashout"],
-    source: "src/games/superdog/controller",
-  },
-  {
-    id: "cave-crasher",
-    name: "Cave Crasher",
-    family: "Crash / instant",
-    mechanics: ["Round lifecycle", "Bet / cashout", "Scene animation"],
-    source: "src/games/mining/controller",
   },
   {
     id: "chickenluck",
     name: "Chickenluck",
     family: "Crash / instant",
     mechanics: ["Step progression", "Jump animation", "Bet / cashout"],
-    source: "src/games/chickenroad/controller",
   },
   {
     id: "nflkick",
     name: "NFL Kick",
     family: "Crash / instant",
     mechanics: ["Kick interaction", "Result reveal", "Autoplay", "GA4 events"],
-    source: "src/games/nflkick/controller + state",
   },
 ] as const;
 
